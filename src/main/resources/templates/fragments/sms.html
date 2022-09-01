@@ -1,0 +1,435 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<body class="" >
+  <div class="wrapper">
+   
+
+   <div class="main-panel">
+     
+	 
+	 
+	  <div class="content" th:fragment="smsdashboardmain" id="output">
+       
+        <div class="container-fluid">
+          
+			<div class="row">
+			
+				<div class="floating-form-group" id="reservationdiv" style="margin-left:20px;margin-top:-20px">
+							<input  id="reservation" name="daterange"   class="floating-form-control" required >							
+							<label   class="label1">Filter by daterange</label>
+				</div>
+          
+			</div>
+		  
+			<div class="row">
+            
+					<div class="col-md-12">
+					  
+
+					  <div class="card" id="left">
+					   
+						<div class="card-header card-header-tabs card-header-primary" style="height:50px;margin-top:-35px">
+						  <h4 class="card-title" >Sms history</h4>
+						</div>
+						
+						<div class="card-body table-responsive" >
+						 
+						 <div id="table-wrapper">
+							<div id="table-scroll">
+ 
+						 
+								 <table class="table table-hover table-dark">
+									<thead class="text-warning">
+									  <th style="max-width: 15%">Date</th>
+									  <th style="max-width: 15%">To</th>
+									  <th style="max-width: 40%">Msg</th>
+									  <th style="max-width: 10%">Sent</th>
+									  <th style="max-width: 10%">Dlvd</th>
+									  <th style="max-width: 10%">Failed</th>
+									</thead>
+
+										<tbody>
+										  
+										  <tr th:block th:each="student: ${smssenthistory}">						
+												<th:block th:each="collumn : ${collumns}">								
+												<td  						  												                    th:if="${collumn} == Date_sent"  th:text="${student.activeProperty(collumn).getValue()}" />
+												<td  style="color:#d6a3e1;  font-size:14px;font-weight:bold;"  th:if="${collumn} == Recipients" th:text="${student.activeProperty(collumn).getValue()}" />							
+												<td  style="color:#33ff33;  font-size:14px;font-weight:bold;"  th:if="${collumn} == Message"    th:text="${student.activeProperty(collumn).getValue()}" />							
+												<td  style="color:firebrick;font-size:19px;font-weight:bold;"  th:if="${collumn} == Sent" 	    th:text="${#numbers.formatDecimal(student.activeProperty(collumn).getValue(), 0, 'COMMA', 0, 'POINT')}" />							
+												<td  style="color:#33ff33;  font-size:14px;font-weight:bold;"  th:if="${collumn} == Delivered"  th:text="${#numbers.formatDecimal(student.activeProperty(collumn).getValue(), 0, 'COMMA', 0, 'POINT')}" />							
+												<td  style="color:firebrick;font-size:19px;font-weight:bold;"  th:if="${collumn} == Failed" 	    th:text="${#numbers.formatDecimal(student.activeProperty(collumn).getValue(), 0, 'COMMA', 0, 'POINT')}" />							
+												</th:block> 							
+										  </tr>                      
+										 
+										</tbody>
+
+								  </table>
+						  
+							</div>
+						</div>
+					  
+					  
+					  </div>
+					  </div>
+					
+
+					</div>
+					
+					
+
+
+          </div>
+		  
+
+	  
+	  
+    </div>
+  </div>
+	 
+	 
+	 
+	 <div class="content"   th:fragment="nemsgfrag" id="output">
+		<div class="container-fluid">
+			  
+			<div class="card" style="padding-bottom:10px">			
+			   
+				 <div class="card-header card-header-primary" style="max-height:50px;">
+						
+						<div class="row" style="align-content: center;">
+
+										<div style="width: 60%;">
+											<h4 id="tabletitle" class="card-title" style="color: white; padding-left: 10px">New message</h4>
+										</div>
+
+										<div style="text-align: right; width: 40%;">
+											  <button type="button"  id="accountbal" style=" color:white;font-size: 13px;background-color: transparent;background-repeat: no-repeat;border: none;cursor: pointer;overflow: hidden;outline: none;"></button>
+										</div>
+										
+										
+						</div>
+									
+						
+				 </div>
+						
+						
+						
+			  
+			  
+			  
+			<div class="row">
+				  
+				<div class="col-md-12">
+				   
+				   
+					 
+					  <div class="card-body" style="margin-top:-10px; ">				   
+					   
+					   <div class="row" style="margin-top:10px;">
+
+							<div class="col-md-8">			
+								<span style="font-size:20px;padding-bottom:15px"><strong>Select recipients</strong></span>
+							</div>
+							
+							<div class="col-md-4">			
+								<div class="floating-form-group">
+									<select  id="bothorsingleparentselect" name="bothorsingleparentselect"    type="select"  class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+										<option value="Both parents">Both parents</option>
+										<option value="One parent">One parent</option>
+										<option value="Both parents">Both parents</option>
+										<option value="All registerd numbers">All registerd numbers</option>
+									</select>
+									
+									<label class="label2">Recipient numbers</label>
+								</div>
+							</div>
+						   
+						   
+						</div>	
+					   
+						   <div id ="div1" class="table-responsive">                    
+							
+							
+							
+							
+						  </div>
+					   
+					  </div>
+					  
+				   
+				</div>
+				
+			</div>
+			  
+			  
+			  
+			<div class="col-md-12">                       
+									
+					<form>
+				  
+						<div class="row" >
+							<div class="col-md-12">                       
+												
+								<div class="form-group purple-border">
+									<label>Phone Numbers</label>
+										</br>
+									<textarea class="form-control" id="phonenumberstextarea" rows="5"  readonly placeholder="Enter ..."> </textarea>
+								</div>
+							</div>
+								   
+						</div>
+				  
+
+						<div class="row" >          
+							<div class="col-md-12" >				   
+										<div class="modal-footer">
+											<button type="button" onclick="proceedtosendsms()"  class="btn btn-primary" data-dismiss="modal" style="width:100px;background-color: #9c27b0;">Proceed</button>
+										</div>
+							</div>
+						</div>
+						
+						
+					</form>
+				</div>
+			  
+			</div> 
+		
+		  
+		  
+		</div>
+			
+		
+		</br>
+		  
+		</div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <div id="popupsendingmsg" class="modal"  >
+			<div class="modal-dialog">
+				<div class="modal-content">
+					
+					<div class="modal-header" style="background-color:#9C27B0">
+						<h5 class="modal-title" style="color:white">Send text</h5>
+						<button id="closesearchstudentsmsbut" type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					
+					<div class="content">
+						<div class="container-fluid">
+						  
+							
+										
+										
+								<div class="row" style="margin-top:15px">
+									<div class="col-md-12">                       
+										<div class="form-group purple-border">
+											<label>Type Message </label>
+												</br>
+											<textarea class="form-control" id="messagetextarea" rows="3" placeholder="Enter ..."> </textarea>
+										</div>
+									</div>
+										   
+								</div>
+						  
+								<div class="row">
+									
+									
+									<div class="col-md-4">
+									  <div class="card card-stats">
+										<div class="card-header card-header-warning card-header-icon" >
+										  <div class="card-icon" style="margin-top:0">
+											<i class="material-icons">message</i>
+										  </div>
+											<p class="card-category">Sms per person</p>
+										  <h3  id="smsperperson"  class="card-title"></h3>
+										</div>
+									   
+									  </div>
+									</div>
+									
+									
+									<div class="col-md-4">
+									  <div class="card card-stats">
+										<div class="card-header card-header-danger card-header-icon">
+										  <div class="card-icon"  style="margin-top:0">
+											<i class="material-icons">group</i>
+										  </div>
+										  <p class="card-category">Total Recipients</p>
+										  <h3 id="smstotalrecipients" class="card-title"></h3>
+										</div>
+									   
+									  </div>
+									</div>
+									
+									<div class="col-md-4">
+									  <div class="card card-stats">
+										<div class="card-header card-header-success card-header-icon">
+										  <div class="card-icon"  style="margin-top:0">
+											<i class="material-icons">send</i>
+										  </div>
+										  <p class="card-category">Total sms Sent</p>
+										  <h3  id="smstotalsent"  class="card-title"></h3>
+										</div>
+									   
+									  </div>
+									</div>
+									
+								</div>
+							
+						</div>
+						
+					</div>
+					 
+					<div class="modal-footer">
+								<button type="button" id="sendthattextbutt" class="btn btn-primary"  style="width:100px;background-color: #9c27b0;">Send</button>
+					</div>
+					
+				</div>
+			</div>
+	</div>
+  
+  
+  
+  <div id="popupsearchstudent" class="modal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					
+					<div class="modal-header" style="background-color:#9C27B0">
+						<h5 class="modal-title" style="color:white">SEARCH STUDENT</h5>
+						<button id="closesearchstudentsmsbut" type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					
+					<div class="content">
+						<div class="container-fluid">
+						  
+							<div class="row" style="margin-top:10px">
+								<div class="col-md-5">                       
+									<div class="form-group">
+										<label class="bmd-label-floating">Search student</label>
+										<input id="searchstudents" type="text" class="form-control">
+									</div>
+								</div>
+							</div>
+						  
+						  
+							<div class="row">
+								<div id ="searchstudentsdiv" class="table-responsive">                    
+						
+											
+								</div>
+							</div>
+						</div>
+					</div>
+					 
+					<div class="modal-footer">
+						<button type="button" id="getsearchedstudentsbutt" class="btn btn-primary" data-dismiss="modal" style="background-color: #9c27b0;">Submit</button>
+					</div>
+				</div>
+			</div>
+	</div>
+  
+  
+  <div id="modalprogress" class="modal fade">
+    <div class="modal-dialog modal-confirmloading">
+        <div class="modal-content">
+            
+			<div class="modal-header flex-column">
+					<h4 class="alignleft" style="margin-top:-20px">Please wait..</h4> 
+			
+            </div>
+			
+			
+            <div class="modal-body">
+			
+			<div class="row" >           
+				<div class="column">
+					<div class="main-">
+					  <div class="double-lines-spinner" style="margin-left:0px"></div>
+					</div>
+				</div>
+				<div class="column" style="margin-left:30px">
+					<h4 class="modal-title w-100" style="font-size: 20px;">Loading data</h4> 
+				</div>
+			</div>
+			
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalprogress2" class="modal fade">
+    <div class="modal-dialog modal-confirmloading">
+        <div class="modal-content">
+            
+			<div class="modal-header flex-column">
+					<h4 class="alignleft" style="margin-top:-20px">Please wait..</h4>			
+            </div>			
+			
+            <div class="modal-body">
+			
+				<div class="row" >           
+					<div class="column">
+						<div class="main-">
+						  <div class="double-lines-spinner" style="margin-left:0px"></div>
+						</div>
+					</div>
+					<div class="column" style="margin-left:30px">
+						<h4 class="modal-title w-100" style="font-size: 20px;">Loading data</h4> 
+					</div>
+				</div>
+			
+            </div>
+                                                                                                                              ``
+        </div>
+    </div>
+</div>
+
+<div id="myModal" class="modal fade"  style="z-index: 10000000000000 !important;">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="material-icons">&#xE876;</i>
+				</div>				
+				<h4 class="modal-title w-100" id="messageid"></h4>	
+			</div>
+			
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div> 
+
+<div id="myModalError" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">								
+				<h4 class="modal-title w-100" id="change-me"></h4>	
+			</div>
+			
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>  
+  
+
+
+
+
+  
+  
+</body>
+
+</html>

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pageA4" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cc21a512-41d3-4508-bce5-c45f907e91b5">
+	<property name="ireport.zoom" value="0.9090909090909095"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="secdataadapters.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="class" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{class}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT `adm no`, CONCAT(`first name`,' ',`second name`,' ',surname) AS name,address,city,`DATE OF JOINING`,`date of leaving`,(SELECT class FROM studentclass WHERE NO=`current form`) AS currentc,
+ (SELECT class FROM studentclass WHERE NO=`class joined`) AS classjoined,`date of birth`,schoolname,schoolcategory 
+ FROM registration 
+ JOIN schooldetails  where `ADM NO`='4351']]>
+	</queryString>
+	<field name="adm no" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="adm no"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="registration"/>
+	</field>
+	<field name="name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="name"/>
+	</field>
+	<field name="address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="address"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="schooldetails"/>
+	</field>
+	<field name="city" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="city"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="schooldetails"/>
+	</field>
+	<field name="DATE OF JOINING" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="DATE OF JOINING"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="registration"/>
+	</field>
+	<field name="date of leaving" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="date of leaving"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="registration"/>
+	</field>
+	<field name="currentc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="currentc"/>
+	</field>
+	<field name="classjoined" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="classjoined"/>
+	</field>
+	<field name="date of birth" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="date of birth"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="registration"/>
+	</field>
+	<field name="schoolname" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="schoolname"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="schooldetails"/>
+	</field>
+	<field name="schoolcategory" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="schoolcategory"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="schooldetails"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="121" splitType="Stretch">
+			<image onErrorType="Blank">
+				<reportElement x="217" y="-14" width="117" height="117" uuid="78edb503-630f-495a-9ee5-8305f48f9f81"/>
+				<imageExpression><![CDATA["/goklogo.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="96" splitType="Stretch">
+			<staticText>
+				<reportElement x="93" y="33" width="363" height="46" uuid="cbacb499-ed39-4e13-8033-61d8b96d15b8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KENYA SECONDARY SCHOOL LEAVING CERTIFICATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="-7" width="555" height="14" uuid="48a57ff8-c6ca-4874-8ffe-773363a91585"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[REPUBLIC OF KENYA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="12" width="555" height="14" uuid="0236954a-9d2f-4c8f-918c-b5e89aafd730"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[MINISTRY OF EDUCATION]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="585">
+			<staticText>
+				<reportElement x="11" y="79" width="328" height="20" uuid="2ce3eb4f-f466-4880-92bf-84d1bd44a6af"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Admission/Serial No. ..............................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="124" width="534" height="20" uuid="5a5a19a5-4f61-4571-8b56-c621518a4cc9"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[THIS IS TO CERTIFY THAT     .........................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="145" width="530" height="25" uuid="097d2f8a-84e2-4143-980b-b4223540d82c"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[entered this school on.......................................................................... ............... and was enrolled in]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="170" width="530" height="25" uuid="ea1aa99e-b758-437d-a32b-270689d0f4d8"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[.............................................................................. and left on .............................................From]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="224" width="530" height="25" uuid="cbcc0e2b-07b4-48bd-a680-069d7d2884ad"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[course for ..............................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="200" width="530" height="25" uuid="e219dd89-fe2c-4868-a0d3-aeb0af4f7501"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[........................................................................... having satisfactorily completed the approved]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="250" width="530" height="25" uuid="43fcd0b6-6ae4-4994-bd4b-79d7ebd0a86d"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="12" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Date of Birth(in Admission Register) ....................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="274" width="530" height="25" uuid="c30f379f-6ff4-4bc2-872c-fc91cefa90dd"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Headteacher's report on the pupil's ability, industry and conduct .... .................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="303" width="530" height="25" uuid="ea888457-dea9-4318-8724-3760d48ec9bb"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[.......................................................................................................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="329" width="530" height="25" uuid="cf0636e4-b181-4f6d-8dfa-96403f15bcde"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[.......................................................................................................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="385" width="530" height="25" uuid="3457a882-0b23-4335-930e-49619959125a"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[.......................................................................................................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="358" width="530" height="25" uuid="4affe9f2-53e4-4539-ad3d-996e6e231e78"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[.......................................................................................................................................................................................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="428" width="530" height="25" uuid="1c549e7f-e643-4cf1-af87-20d3a54bee2b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Pupil's Signature ......................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="465" width="530" height="25" uuid="a2419fde-d8ae-4dea-88b1-69193872ab30"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Date of Issue  ..........................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="490" width="530" height="20" uuid="e8937a7b-337c-46f5-ac01-9b5faea5ae3b"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Signature ......................................................]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="510" width="184" height="20" uuid="d3e64754-1fdf-4518-af10-dfc2ede011a2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Headteacher]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="565" width="555" height="20" uuid="6a3ca703-0946-423d-8dd1-2002aa939717"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[This certificate was issued without any erasure or alteration whatsoever]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="124" y="74" width="136" height="20" uuid="e57d4950-1131-4bcb-8263-2ecd708800d2"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{adm no}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy" isBlankWhenNull="true">
+				<reportElement x="81" y="464" width="199" height="13" uuid="a52ef1e1-6e83-4246-9320-60d1a254fee0"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="268" y="2" width="288" height="20" uuid="000c996d-20fb-4ee5-871c-4fd651f9b7f4"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{schoolname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="190" y="120" width="345" height="20" uuid="3549eb2e-6c29-4f0d-bf37-97c52c518654"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMM d, yyyy" isBlankWhenNull="true">
+				<reportElement x="188" y="150" width="136" height="15" uuid="dc41d17a-8d66-4a49-acf0-5f69f06f1a28"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DATE OF JOINING}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="90" y="175" width="136" height="15" uuid="86711124-3d39-4c0e-9a8e-1650511416ac">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{classjoined}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMM d, yyyy">
+				<reportElement x="329" y="175" width="97" height="15" isRemoveLineWhenBlank="true" uuid="bf4da1e0-8f8e-4ec7-b6d0-45d7952bf00b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date of leaving}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMM d, yyyy" isBlankWhenNull="true">
+				<reportElement x="267" y="254" width="136" height="15" uuid="76ddb06a-5ae1-4676-a844-54d5dc199aa6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date of birth}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="107" y="229" width="136" height="15" uuid="abe47818-e7ce-4985-91a0-8eb1e84f586e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{class}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="50" y="205" width="136" height="15" uuid="9d5e44f0-8384-442d-bc30-4efccf45e39b">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{class}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="25" width="288" height="20" uuid="eeb7f301-5c2b-4c3d-954c-a127d4f408d3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PO BOX "+$F{address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="43" width="288" height="20" uuid="2270c0e1-7f9d-495b-bac6-f7b142daff49"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+</jasperReport>

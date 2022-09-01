@@ -1,0 +1,3088 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<title>
+		Finance main page
+	</title>
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="./plugins/fontawesome-free/css/all.min.css">
+	
+	
+	<!-- CSS Files -->
+	<link href="./assets/css/mainimagecapture.css" rel="stylesheet" />
+	<link type="text/css" rel="stylesheet" href="./assets/css/custom-checkbox-radio.css">
+	
+	<link rel="stylesheet" href="./dist/css/adminlte.min.css">
+	<link href="./assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+	
+	
+	<link rel="stylesheet" href="./plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="./plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+	<link rel="stylesheet" href="./plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="./plugins/daterangepicker/daterangepicker.css">
+	
+	
+	<link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css' rel='stylesheet'>
+	<link href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.min.css" rel="stylesheet"/>
+
+	<link href="./assets/css/modlacss.css" rel="stylesheet" />		
+	
+	<style>					
+		.modal { overflow: auto !important; }		
+	</style>
+	
+</head>
+
+
+<body class="bdbody" id="mybody" style="zoom:85%">
+	<div class="wrapper ">
+		<div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+			
+			
+			<div class="logo"><a href="" class="simple-text logo-normal">
+				Shule one
+			</a></div>
+			<div class="sidebar-wrapper">
+				<ul class="nav">
+					
+					<li class="nav-item">
+						<a class="nav-link" href="./dashboard.html">
+							<i class="material-icons">Home</i>
+							<p>Home</p>
+						</a>
+					</li>
+					
+					<li class="nav-item active  ">
+						<a class="nav-link" href="./dashboard.html">
+							<i class="material-icons">dashboard</i>
+							<p>Dashboard</p>
+						</a>
+					</li>
+					<li class="nav-item ">
+						<a id="defaultModalbtn" class="nav-link"  href="#">
+							<i class="material-icons">money</i>
+							<p>Pay fees</p>
+						</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link" href="">
+							<i class="material-icons">content_paste</i>
+							<p>Payment Vouchers</p>
+						</a>
+					</li>
+					<li class="nav-item ">
+						<a class="nav-link" id="defaultModalbtnfeebalances"  href="#">
+							<i class="material-icons">library_books</i>
+							<p>Generate Balances</p>
+						</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div>
+		
+
+
+		<div class="main-panel">
+			<!-- Navbar -->
+			<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute  ">
+				<div class="container-fluid">
+					
+					<div class="navbar-wrapper">
+						<a class="navbar-brand" href="javascript:;">Dashboard</a>
+					</div>
+					
+					
+					
+					<div class="collapse navbar-collapse justify-content-start">
+						<!-- Left navbar links -->
+						<ul class="navbar-nav">
+							
+
+							<li class="nav-item dropdown">
+								<a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Quickview</a>
+								
+								<ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+									<li><a href="accountshome.html" class="dropdown-item">Home</a></li>
+									<li><a href="#" id="defaultModalbtnfeestructure1" class="dropdown-item">Set Fee Structure</a></li>	
+									<li><a href="#" id="defaultModalbtnfeebalances2" class="dropdown-item">Student Balances</a></li>
+									<li><a href="#" id="defaultModalbtnupdatefeebalance" class="dropdown-item">Update Fee Balances</a></li>
+									<li><a href="#" class="dropdown-item">Student Statements</a></li>
+									<li><a href="#" id="defaultModalbtnreceipts" class="dropdown-item">Receipts</a></li>
+									<li><a href="#" id="defaultModalbtngroupreceipts" class="dropdown-item">Group Receipts</a></li>
+									
+									<li><a href="#" class="dropdown-item">Fee Reminders</a></li>
+									<li><a href="#" id="defaultModalbtnfeetextreminders" class="dropdown-item">Fee Reminders Texts</a></li>
+									<li><a href="schoolaccountgroups.html" class="dropdown-item">School Accounts Group</a></li>
+									<li><a href="#" class="dropdown-item">Close</a></li>
+
+								</ul>
+							</li>
+							
+							<li class="nav-item dropdown">
+								<a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Banking</a>
+								<ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+									<li><a href="listofaccounts.html" class="dropdown-item">List</a></li>
+									<li><a href="#" class="dropdown-item">Update Account Opening Balance</a></li>	
+									<li><a href="#" id="defaultModalbtntransferfunds" class="dropdown-item">Transfer Funds</a></li>	
+									<li><a href="#" id="defaultModalbtnbankreconciliation" class="dropdown-item">Bank Reconciliation</a></li>	
+									
+								</ul>
+							</li>
+							
+							<li class="nav-item dropdown">
+								<a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Transactions</a>
+								<ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+									<li><a href="listofaccounts.html" class="dropdown-item">Account Transaction</a></li>
+									<li><a href="#" class="dropdown-item">Balance per Votehead</a></li>
+									<li><a href="#" id="defaultModalbtnstudentinvoicing" class="dropdown-item">Student Invoicing</a></li>	
+									
+								</ul>
+							</li>
+							
+							<li class="nav-item dropdown">
+								<a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Financial Reports</a>
+								<ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+									<li><a href="#" class="dropdown-item">Income and Expenditure</a></li>
+									<li><a href="#" class="dropdown-item">Profit and Loss</a></li>
+									<li><a href="#" class="dropdown-item">Trial Balance</a></li>
+									<li><a href="#" class="dropdown-item">Fee Payments</a></li>
+									<li><a href="#" class="dropdown-item">Notes To The BalanceSheet</a></li>
+									<li><a href="#" class="dropdown-item">Balancesheet</a></li>
+									<li><a href="#" class="dropdown-item">Ledger</a></li>
+									<li><a href="#" class="dropdown-item">Accounts Module Logs</a></li>
+								</ul>
+							</li>
+
+							
+							
+						</ul>
+
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="navbar-toggler-icon icon-bar"></span>
+						<span class="navbar-toggler-icon icon-bar"></span>
+						<span class="navbar-toggler-icon icon-bar"></span>
+					</button>
+					
+					<div class="collapse navbar-collapse justify-content-end">
+						<form class="navbar-form">
+							<div class="input-group no-border">
+								<input type="text" value="" class="form-control" placeholder="Search...">
+								<button type="submit" class="btn btn-white btn-round btn-just-icon">
+									<i class="material-icons">search</i>
+									<div class="ripple-container"></div>
+								</button>
+							</div>
+						</form>
+						
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a class="nav-link" href="javascript:;">
+									<i class="material-icons">dashboard</i>
+									<p class="d-lg-none d-md-block">
+										Stats
+									</p>
+								</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<i class="material-icons">notifications</i>
+									<span class="notification">5</span>
+									<p class="d-lg-none d-md-block">
+										Some Actions
+									</p>
+								</a>
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+									<a class="dropdown-item" href="#">Mike John responded to your email</a>
+									<a class="dropdown-item" href="#">You have 5 new tasks</a>
+									<a class="dropdown-item" href="#">You're now friend with Andrew</a>
+									<a class="dropdown-item" href="#">Another Notification</a>
+									<a class="dropdown-item" href="#">Another One</a>
+								</div>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<i class="material-icons">person</i>
+									<p class="d-lg-none d-md-block">
+										Account
+									</p>
+								</a>
+								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+									<a class="dropdown-item" href="#">Profile</a>
+									<a class="dropdown-item" href="#">Settings</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="#">Log out</a>
+								</div>
+							</li>
+							
+						</ul>
+						
+					</div>
+				</div>
+			</nav>
+			
+			
+			
+			
+			
+			<!-- End Navbar -->
+			<div class="content">
+				<div class="container-fluid">
+					
+					
+					<div class="row" style="margin-top:-30px">
+						
+						<div class="col-lg-3 col-md-6 col-sm-6">
+							
+							<div class="card card-stats">
+								<div class="card-header card-header-warning card-header-icon">
+									<div class="card-icon">
+										<i class="material-icons">paid</i>
+									</div>
+									<p class="card-category">Todays Revenue</p>
+									<h3 class="card-title">28,300
+										<small>Ksh</small>
+									</h3>
+								</div>
+								<div class="card-footer">
+									<div class="stats">
+										<span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span>
+										<a href="javascript:;"> &nbsp Increase in income</a>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+						
+						<div class="col-lg-3 col-md-6 col-sm-6">
+							<div class="card card-stats">
+								<div class="card-header card-header-success card-header-icon">
+									<div class="card-icon">
+										<i class="material-icons">payments</i>
+									</div>
+									<p class="card-category">Todays Expenses</p>
+									<h3 class="card-title">15,300
+										<small>Ksh</small>
+									</h3>
+								</div>
+								<div class="card-footer">
+									<div class="stats">
+										<span class="text-danger"><i class="fa fa-long-arrow-down"></i> 13% </span>
+										<a href="javascript:;"> &nbsp Increase in Expenses</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-md-6 col-sm-6">
+							<div class="card card-stats">
+								<div class="card-header card-header-danger card-header-icon">
+									<div class="card-icon">
+										<i class="material-icons">account_balance</i>
+									</div>
+									<p class="card-category">Bank balances</p>
+									<h3 class="card-title">2,456,900</h3>
+								</div>
+								<div class="card-footer">
+									<div class="stats">
+										<i class="material-icons">local_offer</i> unreconciled balance 
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-md-6 col-sm-6">
+							<div class="card card-stats">
+								<div class="card-header card-header-info card-header-icon">
+									<div class="card-icon">
+										<i class="fa fa-money"></i>
+									</div>
+									<p class="card-category">Cash balance</p>
+									<h3 class="card-title">12,800</h3>
+								</div>
+								<div class="card-footer">
+									<div class="stats">
+										<i class="material-icons">update</i> Current balance
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="card" style="margin-top:-20px">
+						
+						
+						
+						<div class="row" style="margin-top:20px">
+							
+							
+							<div class="col-md-2">
+								
+								<div style="width:100%; text-align:center">	   
+									<img src="../assets/piks/dashboardd.png" alt="" style="width:100px;height:100px;">
+									
+									<div class="card-body">
+										<h4 class="card-title">Dashboard</h4>
+										<p class="card-category">
+										Payments & Receipts Overview</p>
+									</div>
+									
+								</div>
+							</div>
+							
+							<div class="col-md-2">
+								
+								
+								<div style="width:100%; text-align:center">	   
+									
+									
+									<a id="defaultModalbtn1" class="nav-link"  href="#">
+										
+										<img src="../assets/piks/fee.jpg" alt=""  style="width:100px;height:100px;">
+
+										<div class="card-body">
+											<h4 class="card-title">Pay fees</h4>
+											<p class="card-category">
+											Fee Payment, Balance Check </p>
+										</div>
+									</a>
+								</div>
+								
+								
+								
+							</div>
+							
+							<div class="col-md-2">
+								
+								<div style="width:100%; text-align:center">	   
+									<a id="defaultModalbtnfeestructure" class="nav-link"  href="#">
+
+										<img src="../assets/piks/Fee_Structure1.jpg" alt=""  style="width:100px;height:100px;">
+
+										<div class="card-body">
+											<h4 class="card-title">Set fee structure</h4>
+											<p class="card-category">
+											Set School Fees Structure </p>
+										</div>
+									</a>
+									
+								</div>
+								
+								
+							</div>
+							
+							<div class="col-md-2">
+								
+								<div style="width:100%; text-align:center">	   
+									<a class="nav-link"  href="pledgelist.html">
+
+										<img src="../assets/piks/pledgeList.png" alt=""  style="width:100px;height:100px;">
+
+										<div class="card-body">
+											<h4 class="card-title">Pledge lists</h4>
+											<p class="card-category">
+											Capture Fees Pledge List </p>
+										</div>
+									</a>
+								</div>
+								
+								
+							</div>
+							
+							<div class="col-md-2">
+								
+								<div style="width:100%; text-align:center">	   
+									<a id="defaultModalbtnfeebalances1" class="nav-link"  href="#">
+
+										<img src="../assets/piks/bal.png" alt=""  style="width:100px;height:100px;">
+
+										<div class="card-body">
+											<h4 class="card-title">Fee balances</h4>
+											<p class="card-category">
+											Generate Fee Balances </p>
+										</div>
+									</a>
+								</div>
+								
+								
+							</div>
+							
+							<div class="col-md-2">
+								
+								<div style="width:100%; text-align:center">	   
+									<a  class="nav-link"  href="payments.html">
+
+										<img src="../assets/piks/petty-cash.png" alt=""  style="width:100px;height:100px;">
+
+										<div class="card-body">
+											<h4 class="card-title">Payments</h4>
+											<p class="card-category">
+											Record other incomes and expenses </p>
+										</div>
+									</a>
+								</div>
+								
+								
+							</div>
+							
+						</div>
+						
+						<div class="row" style="margin-top:20px">
+							
+							
+							<div class="col-md-2">
+								
+								<div style="width:100%; text-align:center">	   
+									
+									<img src="../assets/piks/expenses.png" alt=""  style="width:100px;height:100px;">
+
+									<div class="card-body">
+										<h4 class="card-title">Fee register</h4>
+										<p class="card-category">
+										View Receipts summary </p>
+									</div>
+									
+								</div>
+								
+								
+							</div>
+							
+							<div class="col-md-2">
+								
+								<div style="width:100%; text-align:center">	   
+									
+									<img src="../assets/piks/smsfeebalance.png" alt=""  style="width:100px;height:100px;">
+
+									<div class="card-body">
+										<h4 class="card-title">Send balances</h4>
+										<p class="card-category">
+										Send Fee Balances/Reminders  </p>
+									</div>
+									
+								</div>
+								
+								
+							</div>
+							
+							
+							<div class="col-md-2">
+								
+								<div style="width:100%; text-align:center">	   
+									<a id="defaultModalbtnfeerefunds" class="nav-link"  href="#">
+
+										<img src="../assets/piks/feerefund.png" alt=""  style="width:100px;height:100px;">
+
+										<div class="card-body">
+											<h4 class="card-title">Fee refunds</h4>
+											<p class="card-category">
+											Process Fee Refund </p>
+											
+										</div>
+									</a>
+								</div>
+								
+								
+							</div>
+							
+							<div class="col-md-2">
+								
+								<div style="width:100%; text-align:center">	   
+									<a  class="nav-link"  href="listofaccounts.html">
+
+										<img src="../assets/piks/chartofaccounts.png" alt=""  style="width:100px;height:100px;">
+
+										<div class="card-body">
+											<h4 class="card-title">Accounts</h4>
+											<p class="card-category">
+											Add, Edit, delete voteheads </p>
+										</div>
+									</a>
+								</div>
+								
+								
+							</div>
+							
+							
+							<div class="col-md-2">
+								
+								<div style="width:100%; text-align:center">	   
+									<a  class="nav-link"  href="feegroups.html">
+
+										<img src="../assets/piks/groups.png" alt=""  style="width:100px;height:100px;">
+
+										<div class="card-body">
+											<h4 class="card-title">Fee groups</h4>
+											<p class="card-category">
+											Assign students into categories </p>
+										</div>
+									</a>
+								</div>
+								
+								
+							</div>
+							
+							
+							
+							
+						</div>  
+
+
+
+
+					</div>
+					
+					
+					
+					
+				</div>        		  
+				
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<div id="popup1" class="modal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						
+						<div class="modal-header" style="background-color:#9C27B0; max-height:50px" >
+							<h4 class="modal-title" style="color:white;margin-top:-6px">Fee payment</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						
+						<div class="content">
+							<div class="container-fluid">
+								
+								<div class="row" id="payfeesmainpage" >
+									
+									<div class="col-lg-4 d-flex align-items-stretch">
+										<div class="card card-profile">
+											<div class="card-avatar">
+												<a href="javascript:;">
+													<img class="img" src="../assets/img/faces/marc.jpg" />
+												</a>
+											</div>
+											<div class="card-body">
+												
+												<div class="floating-form-group">
+													<input  id="searchstudentsfeepayment"  class="floating-form-control" type="text"  placeholder=" ">
+													<span class="highlight"></span>
+													<label   class="label1">Admno</label>
+												</div>
+												
+												<h4 id="studentname" class="card-title"></h4>
+												<h6 id="studentclasss"  class="card-category text-gray"></h6>
+												<h2 id="studentamount"  class="card-category text-orange"style="font-weight: bold;text-decoration: underline;">0</h2>
+												
+											</div>
+											
+											<a href="#" style="padding-bottom:10px;color: hotpink;text-decoration:underline;font-size:14px">Previous receipts</a>
+						
+										</div>
+									</div>
+									
+									<div class="col-lg-8 d-flex align-items-stretch">
+	
+										<div class="card">
+											
+											<div class="card-header card-header-primary" style="max-height:30px">
+												<h5 class="card-title" style="margin-top:-14px">Stats</h5>
+											</div>
+											
+											<div class="row">
+												
+												
+												
+												<div class="col-lg-5 d-flex  bg-dark " style="margin-top:30px;margin-left:25px;margin-right:25px;margin-bottom:20px;">
+	
+													<div class="card-body" style="padding-left:25pxpx;">
+														
+															<div class="row">
+																
+																<div class="column" style="width:60%">
+																	<h5 style="color:red;">B/F</h5>																		
+																</div>
+																<div class="column text-center" style="width:40%">
+																	<h5 id="studentbf" style="color:red;"></h5>																											
+																</div>
+																
+															</div>
+																
+															<div class="row">
+																
+																<div class="column" style="width:60%">
+																	<h5 class="card-category" style="color:cyan;">Term fees</h5>																		
+																</div>
+																<div class="column  text-center" style="width:40%">
+																	<h5  id="studenttermfees" class="card-category" style="color:cyan;"></h5>																		
+																</div>
+																
+															</div>
+															<div class="row">
+																
+																<div class="column" style="width:60%">
+																	<h5 class="card-category" style="color:orange;">Total Payable</h5>																		
+																</div> 
+																<div class="column  text-center" style="width:40%">
+																	<h5  id="studenttpayable"  class="card-category" style="color:orange;"></h5>																		
+																</div> 
+
+																
+															</div>
+															<div class="row">
+																
+																<div class="column" style="width:60%">
+																	<h5 class="card-category" style="color:#34FF33;">Paid</h5>																		
+																</div> 
+																<div class="column  text-center" style="width:40%">
+																	<h5  id="studentfeespaid"  class="card-category" style="color:#34FF33;"></h5>																		
+																</div> 
+															</div>
+															<div class="row">
+																
+																<div class="column" style="width:60%">
+																	<h5 class="card-category" style="color:magenta;">Refunds</h5>																		
+																</div> 
+																<div class="column  text-center" style="width:40%">
+																	<h3  id="studentfeesrefunds" class="card-category" style="color:magenta;"></h3>																		
+																</div> 
+																
+															</div>
+															
+															<div class="row">
+																
+																<div class="column" style="width:60%">
+																	<h5 class="card-category" style="color:white;">Balance</h5>																		
+																</div>
+																<div class="column  text-center" style="width:40%">
+																	<h4  id="studentfeebal"   class="card-category" style="color:white;text-decoration:underline"></h4>																		
+																</div>
+																
+															</div>
+															
+															
+															
+													</div>
+												</div> 
+												
+												
+												
+												
+												<div class="col-lg-2 d-flex"  style="margin-top:50px;margin-left:1px;margin-right:1px">
+	
+	
+													<div class="card-body" style="margin-left:-30px;margin-right:-40px">
+															
+															
+															<div class="row justify-content-center">
+								
+							
+																
+																<div class="floating-form-group">
+																	<label class="container">Rct # auto
+																	  <input id="rcyautocheck" type="checkbox" checked="checked" disabled>
+																	  <span class="checkmark"></span>
+																	</label>
+																</div>
+																
+															</div>	
+																
+															<div class="row justify-content-center">
+								
+																<div class="floating-form-group">
+																	<a href="#" style="padding-bottom:10px;color: red;text-decoration:underline;font-size:14px">Clear fees</a>
+																</div>
+																
+															</div>
+																
+															<div class="row justify-content-center">
+									
+																
+																<div class="floating-form-group">
+																	<a href="#" style="padding-bottom:10px;color: green;text-decoration:underline;font-size:14px">Split to multiple</a>
+																</div>
+																
+															</div>	
+															
+													
+															
+													</div>
+	
+													
+													
+												</div> 
+												
+												
+												
+												
+												<div class="col-lg-4 d-flex align-items-stretch"  style="margin-top:30px;margin-bottom:20px;border-color:grey;">
+	
+													<div class="card-body">
+														<form>
+															<div class="floating-form-group">
+																<input id="feepaymentrctamt" class="floating-form-control" type="number"  placeholder=" " required>
+																<span class="highlight"></span>
+																<label   class="label1">Receipt Amount</label>
+															</div>
+
+															<div class="floating-form-group">
+																<input id="studentrctnu" class="floating-form-control" type="text"  placeholder=" " readonly  required>
+																<span class="highlight"></span>
+																<label   class="label1">Record #</label>
+															</div>
+															<div class="floating-form-group">
+																<input  id="feepaymentdate" class="floating-form-control" type="date"  placeholder=" "  required>
+																<span class="highlight"></span>
+																<label   class="label1">Date</label>
+															</div>
+															
+															<div class="floating-form-group" >
+																<select   id="feepaymentpaymentmethod"  name="feepaymentpaymentmethod"  type="select"  class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+																	<option ></option>
+																	<option th:each="student: ${bankaccounts}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('Account').getValue()}"></option>
+																</select>
+																
+																<label id="cclass" class="label2">Payment method</label>
+														    </div>
+															
+															<div class="floating-form-group">
+																<input  id="feepaymentdepodate"  class="floating-form-control" type="date"  placeholder=" ">
+																<span class="highlight"></span>
+																<label   class="label1">Deposit date</label>
+															</div>
+															
+															<div class="floating-form-group">
+																<input  id="feepaymenttransnu"  class="floating-form-control" type="text"  placeholder=" ">
+																<span class="highlight"></span>
+																<label   class="label1">Transaction #</label>
+															</div>
+															
+															
+														</form>
+													</div>
+												</div>
+												
+												
+												
+												
+												
+											</div>
+											
+											
+											
+											
+										</div>
+									</div>
+									
+								</div>
+								
+								<div id ="paayfeespreviousreceipts"  class="card-body" style="display:none">
+										
+											<div id="divpreviousreceipts" class="table-responsive" style="margin-top:-25px">                    
+					
+					
+					
+					
+											</div>
+											
+								</div>
+								
+								
+								<div id ="paayfeesdisplayreceipt"  class="card-body" style="display:none">
+									
+										    <iframe src="http://www.africau.edu/images/default/sample.pdf" width="100%" height="500px">
+											</iframe>
+											
+								</div>
+								
+								
+							</div>
+						</div>
+						
+							
+						
+						<div class="modal-footer">
+							<button type="button" id="feespaymentkbut" class="btn btn-secondary  mr-auto">Back</button>
+							<button id="feepaymentproceedbutt" type="button" class="btn btn-primary"  style="background-color:#9C27B0">Process</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
+			
+			
+			<div id="popupfeerefunds" class="modal">
+				<div class="modal-dialog1">
+					<div class="modal-content">
+						
+						<div class="modal-header">
+							<h5 class="modal-title">Fee Refunds</h5>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						
+						<div class="content">
+							<div class="container-fluid">
+								<div class="row">
+									
+									<div class="col-md-4">
+										<div class="card card-profile">
+											<div class="card-avatar">
+												<a href="javascript:;">
+													<img class="img" src="../assets/img/faces/marc.jpg" />
+												</a>
+											</div>
+											<div class="card-body">
+												<div class="floating-form-group">
+													<input class="floating-form-control" type="text"  placeholder=" ">
+													<span class="highlight"></span>
+													<label   class="label1">Admno</label>
+												</div>
+												
+												
+												<h4 class="card-title">James thuku kamau</h4>
+												<h6 class="card-category text-gray">Form 3 white</h6>
+												<h2 class="card-category text-orange"style="font-weight: bold;text-decoration: underline;">24,456</h2>
+												
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8">
+										<div class="card">
+											<div class="card-header card-header-primary">
+												<h4 class="card-title">Fee Refunds</h4>
+												<p class="card-category">Refund fees to students</p>
+											</div>
+											
+											<div class="row">
+												
+												
+												<div class="col-md-10">
+													
+													<div class="card-body">
+														<form>
+															<div class="row">
+																
+																<div class="col-md-12">                       
+																	<div class="floating-form-group">
+																		<input class="floating-form-control" type="text"  placeholder=" ">
+																		<span class="highlight"></span>
+																		<label   class="label1">Receipt amount</label>
+																	</div>
+																</div>
+
+															</div>
+															<div class="row">
+																
+																
+																<div class="col-md-12">                       
+																	<div class="floating-form-group">
+																		<input class="floating-form-control" type="text"  placeholder=" ">
+																		<span class="highlight"></span>
+																		<label   class="label1">Record #</label>
+																	</div>
+																</div>                      
+															</div>
+															<div class="row">
+																<div class="col-md-12">                       
+																	
+																	<div class="floating-form-group">
+																		<input class="floating-form-control" type="date"  placeholder=" ">
+																		<span class="highlight"></span>
+																		<label   class="label1">Date</label>
+																	</div>
+																	
+																</div>	
+															</div>
+															<div class="row">
+																
+																
+																<div class="col-md-12">                       
+																	<div class="floating-form-group">
+																		<input class="floating-form-control" type="text"  placeholder=" ">
+																		<span class="highlight"></span>
+																		<label   class="label1">Payment method</label>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																
+																<div class="col-md-12">                       
+																	
+																	<div class="floating-form-group">
+																		<input class="floating-form-control" type="date"  placeholder=" ">
+																		<span class="highlight"></span>
+																		<label   class="label1">Deposit date</label>
+																	</div>				  
+																</div>
+															</div>
+															<div class="row">
+																
+																
+																<div class="col-md-12">                       
+																	<div class="floating-form-group">
+																		<input class="floating-form-control" type="text"  placeholder=" ">
+																		<span class="highlight"></span>
+																		<label   class="label1">Transaction #</label>
+																	</div>
+																</div>					  
+															</div>
+															
+															
+														</form>
+													</div>
+												</div>
+												
+												
+												
+												
+												
+											</div>
+											
+											
+											
+											
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Process</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="popupfeestructure" class="modal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							
+							<div class="modal-header" style="background-color:#9C27B0;height:40px">
+								<h5 class="modal-title" style="color:white;margin-top:-7px">Fee structure</h5>
+								<button type="button" class="close" data-dismiss="modal" style="margin-top:-23px">&times;</button>
+							</div>
+							
+							<div  id ="feestructuremaindiv"  class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top:10px">
+										
+									
+									<div class="col-md-3">
+										
+											<div class="floating-form-group" >
+												<select  id="feestructureselectclasscombo" name="feestructureselectclasscombo"  type="select"  class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+													<option ></option>
+													<option th:each="student: ${classes}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}"></option>
+												</select>
+												
+												<label id="cclass" class="label2">Select class</label>
+										    </div>
+										
+									</div>	
+										
+										
+										<div class="col-md-3">
+										
+											<div class="floating-form-group" >
+												<select  id="feestructureterm" name="feestructureterm"  type="select"  class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+													<option ></option>
+													<option th:each="student: ${terms}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('sem').getValue()}"></option>
+												</select>
+												
+												<label id="cclass" class="label2">Select term/sem</label>
+										    </div>
+										
+										</div>
+										
+										<div class="col-md-3">
+											
+											<div class="floating-form-group" >
+										
+												<select  id="feestructureyear"  name="feestructureyear"  type="select"  class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+													<option value=""></option>
+													<option value="2016">2016</option>
+													<option value="2017">2017</option>
+													<option value="2018">2018</option>
+													<option value="2019">2019</option> 
+													<option value="2020">2020</option>
+													<option value="2021">2021</option>
+													<option value="2022">2022</option>
+													<option value="2023">2023</option> 
+												</select>
+												  <label id="cclass" class="label2">Select year</label>
+
+											</div>
+											
+										</div>
+										
+										<div class="col-md-3">
+											<ul class="">
+												
+												<li class="nav-item dropdown">
+													<a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">More actions</a>
+													<ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+														<li><a href="#" id="addinvoiceitem" 	onclick="addinvoiceitem()"   	class="dropdown-item">Add invoice item</a></li>
+														<li><a href="#" id="copyvoteheads" 		onclick="copyvotes()"   		class="dropdown-item">Copy Voteheads</a></li>	
+														<li><a href="#" id="replicatevoteheads" onclick="replicatevotes()"   	class="dropdown-item">Replicate Voteheads</a></li>	
+													</ul>
+												</li>
+											</ul>
+										</div>
+										
+										
+									</div>
+									
+									
+									<div class="row">
+									
+										<div class="card-body" >
+										
+											<div id ="div1feestructure" class="table-responsive" style="margin-top:-25px">                    
+					
+					
+					
+					
+											</div>
+											
+										</div>
+									</div>
+									
+									<div class="row">
+									<div class="col-md-12">
+										<div class="card-header"  >
+											<h5 id="totalfeestructureamt" style="font-size:40px;color:green;"><strong>Total Cash : 0.00</strong></h5>
+										</div>
+									</div>
+									
+								</div>
+									
+								</div>
+							</div>
+								
+							<div id ="divselectstudentsforbilling" class="table-responsive" style="margin-top:0px;display:none">                    
+					
+					
+					
+					
+							</div>	
+							
+							
+								
+								<div class="modal-footer">
+									<button type="button" id="feestructuregobackbut" class="btn btn-secondary  mr-auto">Back</button>
+									<button type="button" id="submitorshowstudentsforfeestructure" class="btn btn-primary">Proceed</button> 									
+								</div>
+								
+							</div>
+						</div>
+					</div>	
+				
+				<div id="popupfeebalances" class="modal">
+					<div class="modal-dialog3">
+						<div class="modal-content">
+							
+							<div class="modal-header" style="background-color:#9C27B0">
+								<h5 class="modal-title" style="color:white">Fee Balances</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							
+							<div class="content">
+								<div class="container-fluid">
+
+									<div class="row" style="margin-top:8px">
+										
+
+										<div class="col-md-2">
+											<div class="floating-form-group">
+												<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+													<option value=""></option>
+													<option value="1">2016</option>
+													<option value="2">2017</option>
+													<option value="3">2018</option>
+													<option value="4">2019</option> 
+													<option value="5">2020</option>
+													<option value="6">2021</option>
+													<option value="7">2022</option>
+													<option value="8">2023</option> 
+												</select>
+												<span class="highlight"></span>
+												<span class="bar"></span>
+												<label class="label2">Year</label>
+											</div>
+											
+										</div>
+										<div class="col-md-2">
+											
+											<div class="floating-form-group">
+												<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+													<option value=""></option>
+													
+													<option value="1">Form 1</option>
+													<option value="2">Form 2</option>
+													<option value="3">Form 3</option>
+													<option value="4">Form 4 </option>
+													<option value="5">Transferred</option>
+													<option value="5">Allumni</option>
+
+												</select>
+												<span class="highlight"></span>
+												<span class="bar"></span>
+												<label class="label2">Class</label>
+
+											</div>
+										</div>
+										
+										<div class="col-md-3">
+											
+										</div>
+										
+										<div class="col-md-2">
+											<div class="floating-form-group">
+												<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+													<option value=""></option>
+													<option value="1">ALL</option>
+													<option value="2">V</option>
+													<option value="3">A</option>
+													<option value="3">W</option>
+													<option value="3">C</option>
+													<option value="3">H</option>
+													<option value="3">Whole School</option>
+												</select>
+												<span class="highlight"></span>
+												<span class="bar"></span>
+												<label class="label2">Stream</label>
+
+											</div>
+										</div>
+										<div class="col-md-2">
+											<div class="floating-form-group">
+												<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+													<option value=""></option>
+													<option value="1">Term 1</option>
+													<option value="2">Term 2</option>
+													<option value="3">Term 3</option>
+												</select>
+												<span class="highlight"></span>
+												<span class="bar"></span>
+												<label class="label2">Semester/Term</label>
+
+											</div>
+										</div>
+										
+										
+									</div>
+									
+									<div class="row" >
+										
+
+										<div class="col-md-2">
+											<div class="floating-form-group">
+												<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+													<option value=""></option>
+													<option value="1">BAL</option>
+													<option value="2">ADM NO</option>
+													<option value="3">NAME</option>
+													
+												</select>
+												<span class="highlight"></span>
+												<span class="bar"></span>
+												<label class="label2">Order by</label>
+											</div>
+											
+										</div>
+										<div class="col-md-2">
+											
+											<div class="floating-form-group">
+												<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+													<option value=""></option>
+													<option value="1">ASC</option>
+													<option value="2">DESC</option>	
+												</select>
+												<span class="highlight"></span>
+												<span class="bar"></span>
+												<label class="label2">DESC</label>
+
+											</div>
+										</div>
+										
+										<div class="col-md-3">
+											<label class="pure-material-checkbox">
+												<input type="checkbox" id="checkboxPrimary2">
+												&nbsp <span>Nil Payment</span>
+											</label>
+										</div>
+										
+										<div class="col-md-2">
+											<div class="floating-form-group">
+												<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+													<option value=""></option>
+													<option value="1">1</option>
+													<option value="2">0.5</option>
+													<option value="3">0.33</option>
+													<option value="4">0.25</option>
+													<option value="5">0.2</option>
+
+												</select>
+												<span class="highlight"></span>
+												<span class="bar"></span>
+												<label class="label2"></label>
+
+											</div>
+										</div>
+										<div class="col-md-2">                       
+											<div class="floating-form-group">
+												<input class="floating-form-control" type="email"  placeholder=" ">
+												<span class="highlight"></span>
+												<label   class="label1">Amount</label>
+											</div>
+										</div>
+										
+										
+									</div>
+									<div class="row" >
+										<div class="card-body" >
+											<table id="example1" class="table  table-striped">
+												<thead>
+													<tr>
+														<th >
+															ADM
+														</th>
+														<th >
+															Name
+														</th>
+														<th >
+															Class
+														</th>
+														<th>
+															Balance B/F
+														</th>
+														<th>
+															T.Fees
+														</th>
+														<th>
+															T.Payable
+														</th>
+														<th>
+															Paid
+														</th>
+														<th>
+															Total Bal
+														</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>
+															fjfj 
+														</td>
+														<td>
+															yjgkjfkfklk,fllkfyhkjhykhy 
+														</td>
+														<td>
+															kjyhkfkuykij 
+														</td>
+														<td>
+															uykiikgtik 
+														</td>
+														<td>
+															tyhtujhtfujfr
+														</td>
+														<td>
+															tujhfrytuj 
+														</td>
+														<td>
+															tufdrgtujhtf  
+														</td>
+														<td>
+															tujfrt6yu  
+														</td>
+													</tr>
+													<tr>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+														<td>
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+													</tr>
+													<tr>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+														<td>
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+														<td>
+															
+														</td>
+													</tr>
+													
+												</tbody>
+											</table>
+										</div>
+									</div>
+									
+									
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary" data-dismiss="modal">Process</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+					</div>
+				</div>
+				
+				<div id="popupfeetextreminders" class="modal">
+					<div class="modal-dialog10">
+						<div class="modal-content">
+							
+							<div class="modal-header" style="background-color:#9C27B0;">
+								<h5 class="modal-title" style="color:white">FEE TEXT REMINDERS</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" >
+										
+										<div class="col-md-12">
+											
+											<div class="card-body">
+												<form>
+													<div class="row" >
+														
+														<div class="col-md-10">                       
+															
+															<div class="form-group purple-border">
+																<textarea class="form-control" id="exampleFormControlTextarea4" rows="16">Kindly note that your student  (student) Adm No (adm) who is in  (class) has a balance of (balance). Kindly clear the balance on or before  (date).
+
+																Thank you. </textarea>
+															</div>
+														</div>
+														<div class="col-md-2">
+															<label class="pure-material-checkbox">
+																<input type="checkbox">
+																<span>Name & ADM Bold</span>
+															</label>
+															<label class="pure-material-checkbox">
+																<input type="checkbox">
+																<span>Class Bold</span>
+															</label>
+															<label class="pure-material-checkbox">
+																<input type="checkbox">
+																<span>Date Bold</span>
+															</label>
+															<label class="pure-material-checkbox">
+																<input type="checkbox">
+																<span>Balance Bold</span>
+															</label>
+															<button type="button" class="btn btn-primary" data-dismiss="modal" style="max-height:25px;min-width:100px;background-color:black;color:white">Name</button>
+															<button type="button" class="btn btn-primary" data-dismiss="modal" style="max-height:25px;min-width:100px;background-color:black;color:white">Adm no</button>
+															<button type="button" class="btn btn-primary" data-dismiss="modal" style="max-height:25px;min-width:100px;background-color:black;color:white">Class</button>
+															<button type="button" class="btn btn-primary" data-dismiss="modal" style="max-height:25px;min-width:100px;background-color:black;color:white">Date</button>
+															<button type="button" class="btn btn-primary" data-dismiss="modal" style="max-height:25px;min-width:100px;background-color:black;color:white">Balance</button>
+
+															
+														</div>
+														
+													</div>
+													
+													<div class="row" >
+														<div class="col-md-4">  
+															<button type="button" class="btn btn-danger" data-dismiss="modal" >Clear All</button>
+															
+														</div>
+														<div class="col-md-4">  
+															<button type="button" class="btn btn-primary" data-dismiss="modal" >Reset</button>
+															
+														</div>
+														<div class="col-md-4">  
+															<button type="button" class="btn btn-success" data-dismiss="modal" >Preview</button>
+															
+														</div>							
+													</div>	
+
+													<div class="row" >
+														<div class="col-md-12">                       
+															
+															<div class="form-group purple-border">
+																<textarea class="form-control" id="exampleFormControlTextarea4" rows="3"> </textarea>
+															</div>
+														</div>
+														
+													</div>
+													
+													
+												</div>
+												
+												
+											</form>
+										</div>
+									</div>
+									
+									
+									
+								</div>
+							</div>
+							
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="popuptransferfunds" class="modal">
+					<div class="modal-dialog11">
+						<div class="modal-content">
+							
+							<div class="modal-header" style="background-color:#9C27B0;">
+								<h5 class="modal-title" style="color:white">TRANSFER FUNDS BETWEEN ACCOUNTS</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top:-30px">
+										
+										
+										<div class="col-md-12">
+											<div class="card">
+												
+												<div class="row">
+													
+													<div class="col-md-12">
+														
+														<div class="card-body">
+															<form>
+																
+																<div class="row">
+																	
+																	
+																	<div class="col-md-12">
+																		<div class="form-group">
+																			
+																			<label class="bmd-label-floating"> Date</label>
+																		</br>
+																		<input type="date" class="form-control" name="day"> 
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-md-12">
+																	<div class="floating-form-group">
+																		<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+																			<option value=""></option>
+																			<option value="1">24::Cash</option>
+																			<option value="2">25::KCB </option>
+																			<option value="3">26::Equity</option>
+																			
+																		</select>
+																		<span class="highlight"></span>
+																		<span class="bar"></span>
+																		<label class="label2">Select Account to transfer from</label>
+
+																	</div>
+																	
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-md-12">
+																	<div class="floating-form-group">
+																		<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+																			<option value=""></option>
+																			<option value="1">24::Cash</option>
+																			<option value="2">25::KCB </option>
+																			<option value="3">26::Equity</option>
+																			
+																		</select>
+																		<span class="highlight"></span>
+																		<span class="bar"></span>
+																		<label class="label2">Select Account to transfer to</label>
+
+																	</div>
+																	
+																</div>
+															</div>
+															<div class="row">
+																
+																
+																<div class="col-md-12">                       
+																	<div class="floating-form-group">
+																		<input class="floating-form-control" type="text"  placeholder=" ">
+																		<span class="highlight"></span>
+																		<label   class="label1">Transaction# / Cheque#</label>
+																	</div>
+																</div>					  
+															</div>
+															<div class="row">
+																
+																
+																<div class="col-md-12">                       
+																	<div class="floating-form-group">
+																		<input class="floating-form-control" type="text"  placeholder=" ">
+																		<span class="highlight"></span>
+																		<label   class="label1">Amount</label>
+																	</div>
+																</div>					  
+															</div>
+															
+															
+														</form>
+													</div>
+												</div>
+												
+											</div>
+											
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" data-dismiss="modal">Process</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="popupupdatefeebalance" class="modal">
+				<div class="modal-dialog12">
+					<div class="modal-content">
+						
+						<div class="modal-header" style="background-color:#9C27B0;">
+							<h5 class="modal-title" style="color:white">UPDATE FEE BALANCE</h5>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						
+						<div class="content">
+							<div class="container-fluid">
+								<div class="row" style="margin-top:-30px">
+									
+									
+									<div class="col-md-12">
+										<div class="card">
+											
+											<div class="row">
+												
+												
+												<div class="col-md-12">
+													
+													<div class="card-body">
+														<form>
+															<div class="row">
+																
+
+																<div class="col-md-12">                       
+																	<div class="floating-form-group">
+																		<input class="floating-form-control" type="text"  placeholder=" ">
+																		<span class="highlight"></span>
+																		<label   class="label1">Search ADM / Name</label>
+																	</div>
+																</div>
+
+															</div>
+															<div class="row">
+																<div class="col-md-12">                       
+																	<div class="floating-form-group">
+																		<input class="floating-form-control" type="text"  placeholder=" ">
+																		<span class="highlight"></span>
+																		<label   class="label1">First Name</label>
+																	</div>
+																</div>
+																
+																
+																
+															</div>
+															<div class="row">
+																
+																
+																<div class="col-md-12">                       
+																	<div class="floating-form-group">
+																		<input class="floating-form-control" type="text"  placeholder=" ">
+																		<span class="highlight"></span>
+																		<label   class="label1">Middle Name</label>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																
+																
+																<div class="col-md-12">                       
+																	<div class="floating-form-group">
+																		<input class="floating-form-control" type="text"  placeholder=" ">
+																		<span class="highlight"></span>
+																		<label   class="label1">Current Balance</label>
+																	</div>
+																</div>					  
+															</div>
+															
+															<div class="row">
+																<div class="col-md-12">
+																	<div class="floating-form-group">
+																		<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+																			<option value=""></option>
+																			<option value="1">16::ACTIVITY</option>
+																			<option value="2">11::ADM COST</option>
+																			<option value="3">1::ARREARS</option>
+																			<option value="4">12::BOARDING</option>
+																			<option value="5">24::CASH</option>
+																			<option value="6">18::DAMAGES</option>
+																			<option value="7">26::EQUITY</option>
+																			<option value="8">15::EW & C</option>
+																			<option value="9">25::KCB</option>
+																			<option value="10">14::LT & T</option>
+																			
+																		</select>
+																		<span class="highlight"></span>
+																		<span class="bar"></span>
+																		<label class="label2">Select Votehead</label>
+
+																	</div>
+																	
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-md-12">
+																	<div class="floating-form-group">
+																		<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+																			<option value=""></option>
+																			<option value="1"></option>
+																			
+																		</select>
+																		<span class="highlight"></span>
+																		<span class="bar"></span>
+																		<label class="label2">Term / Sem</label>
+
+																	</div>
+																	
+																</div>
+															</div>
+															
+															<div class="row">
+																<div class="col-md-12">
+																	<div class="floating-form-group">
+																		<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+																			<option value=""></option>
+																			<option value="1"></option>
+																			
+																		</select>
+																		<span class="highlight"></span>
+																		<span class="bar"></span>
+																		<label class="label2">Select Class</label>
+
+																	</div>
+																	
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-md-2">
+																	<div class="select">
+																		<select class="select-text" required>
+																			<option value=""></option>
+																			<option value="1">2016</option>
+																			<option value="2">2017</option>
+																			<option value="3">2018</option>
+																			<option value="4">2019</option> 
+																			<option value="5">2020</option>
+																			<option value="6">2021</option>
+																			<option value="7">2022</option>
+																			<option value="8">2023</option> 
+																		</select>
+																		<span class="highlight"></span>
+																		<span class="bar"></span>
+																		<label class="label2">Select Academic Year</label>
+																	</div>
+																	
+																</div>
+															</div>
+															<div class="row">
+																
+																
+																<div class="col-md-12">                       
+																	<div class="floating-form-group">
+																		<input class="floating-form-control" type="text"  placeholder=" ">
+																		<span class="highlight"></span>
+																		<label   class="label1">Enter Amount</label>
+																	</div>
+																</div>					  
+															</div>
+															
+														</form>
+													</div>
+												</div>
+												
+											</div>
+											
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" data-dismiss="modal">Process</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div id="popupreceipts" class="modal">
+				<div class="modal-dialog13">
+					<div class="modal-content">
+						
+						<div class="modal-header" style="background-color:#9C27B0">
+							<h5 class="modal-title" style="color:white">RECEIPTS</h5>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						
+						<div class="content">
+							<div class="container-fluid">
+
+								
+								<div class="row" >
+									
+
+									<div class="col-md-3">                       
+										<div class="floating-form-group">
+											<input class="floating-form-control" type="text" onclick="(this.type='date')" placeholder=" ">
+											<span class="highlight"></span>
+											<label   class="label1">Date </label>
+										</div>
+										
+									</div>
+									
+									<div class="col-md-3">                       
+										<div class="floating-form-group">
+											<input class="floating-form-control" type="text"  placeholder=" ">
+											<span class="highlight"></span>
+											<label   class="label1">Filter by Name / ADM</label>
+										</div>
+									</div>
+									
+									
+									
+									<div class="col-md-3">
+										
+										<div class="floating-form-group">
+											<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+												<option value=""></option>
+												<option value="1">Form 1</option>
+												<option value="2">Form 2</option>	
+												<option value="3">Form 3</option>
+												<option value="4">Form 4</option>	
+												
+											</select>
+											<span class="highlight"></span>
+											<span class="bar"></span>
+											<label class="label2">Filter by class</label>
+
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="floating-form-group">
+											<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+												<option value=""></option>
+												<option value="1">24::CASH</option>
+												<option value="2">25::KCB</option>
+												<option value="3">26::EQUITY</option>
+												<option value="4">29::KCB OPERATIONS ACC</option>
+												<option value="5">30::KCB TUITIONS ACC</option>
+												<option value="6">31::TEACHING & LEARNING MATERIALS</option>
+												
+											</select>
+											<span class="highlight"></span>
+											<span class="bar"></span>
+											<label class="label2">Filter by account</label>
+
+										</div>
+										
+									</div>
+									
+									
+								</div>
+								<div class="row" >
+									<div class="card-body" >
+										<table id="example1" class="table  table-striped">
+											<thead>
+												<tr>
+													<th >
+														Student
+													</th>
+													<th >
+														Date
+													</th>
+													<th >
+														Rct no
+													</th>
+													<th>
+														Paid Through
+													</th>
+													<th>
+														Amount
+													</th>
+													<th>
+														Received by
+													</th>
+													<th>
+														Transaction #
+													</th>
+													<th>
+														Deposit date
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														Christine Mutwiri
+													</td>
+													<td>
+														12/02/2000
+													</td>
+													<td>
+														012
+													</td>
+													<td>
+														KCB 
+													</td>
+													<td>
+														12,000
+													</td>
+													<td>
+														Muthoni 
+													</td>
+													<td>
+														tufdrgtujhtf  
+													</td>
+													<td>
+														25/05/2021  
+													</td>
+												</tr>
+												
+											</tbody>
+										</table>
+									</div>
+								</div>
+								
+								
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" data-dismiss="modal">Build data</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+				</div>
+			</div>
+			
+			<div id="popupgroupreceipts" class="modal">
+				<div class="modal-dialog14">
+					<div class="modal-content">
+						
+						<div class="modal-header" style="background-color:#9C27B0">
+							<h5 class="modal-title" style="color:white"> GROUP RECEIPTS</h5>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						
+						<div class="content">
+							<div class="container-fluid">
+
+								
+								
+								<div class="row" >
+									<div class="card-body" >
+										<table id="example1" class="table  table-striped">
+											<thead>
+												<tr>
+													<th >
+														<input type="checkbox">  
+													</th>
+													<th >
+														Date
+													</th>
+													<th >
+														Transaction #
+													</th>
+													<th>
+														Paid Through
+													</th>
+													<th>
+														Amount
+													</th>
+													<th>
+														Received by
+													</th>
+													<th>
+														SOURCE
+													</th>
+													
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													
+													<td>
+														<input type="checkbox"> 
+													</td>
+													<td>
+														GJUUYHTD
+													</td>
+													<td>
+														KCB 
+													</td>
+													<td>
+														12,000
+													</td>
+													<td>
+														Muthoni 
+													</td>
+													<td>
+														tufdrgtujhtf  
+													</td>
+													<td>
+														25/05/2021  
+													</td>
+												</tr>
+												<tr>
+													
+													<td>
+														<input type="checkbox"> 
+													</td>
+													<td>
+														
+													</td>
+													<td>
+														
+													</td>
+													<td>
+													</td>
+													<td>
+														
+													</td>
+													<td>
+														
+													</td>
+													<td>
+														
+													</td>
+												</tr>
+												
+											</tbody>
+										</table>
+									</div>
+								</div>
+								
+								
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" data-dismiss="modal">Process</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+				</div>
+			</div>
+			
+			
+			
+			<div id="popupstudentinvoicing" class="modal">
+				<div class="modal-dialog15">
+					<div class="modal-content">
+						
+						<div class="modal-header" style="background-color:#9C27B0">
+							<h5 class="modal-title" style="color:white">STUDENT INVOICING</h5>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						
+						<div class="content">
+							<div class="container-fluid">
+
+								
+								<div class="row" >
+									
+
+									<div class="col-md-3">
+										<div class="floating-form-group">
+											<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+												<option value=""></option>
+												<option value="1">2016</option>
+												<option value="2">2017</option>
+												<option value="3">2018</option>
+												<option value="4">2019</option> 
+												<option value="5">2020</option>
+												<option value="6">2021</option>
+												<option value="7">2022</option>
+												<option value="8">2023</option> 
+											</select>
+											<span class="highlight"></span>
+											<span class="bar"></span>
+											<label class="label2">Year</label>
+										</div>
+										
+									</div>
+									
+									
+									<div class="col-md-3">
+										
+										<div class="floating-form-group">
+											<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+												<option value=""></option>
+												<option value="1">Form 1</option>
+												<option value="2">Form 2</option>	
+												<option value="3">Form 3</option>
+												<option value="4">Form 4</option>	
+												
+											</select>
+											<span class="highlight"></span>
+											<span class="bar"></span>
+											<label class="label2">Class</label>
+
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="floating-form-group">
+											<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+												<option value=""></option>
+												<option value="1">ALL</option>
+												<option value="2">V</option>
+												<option value="3">A</option>
+												<option value="3">W</option>
+												<option value="3">C</option>
+												<option value="3">H</option>
+												<option value="3">Whole School</option>
+											</select>
+											<span class="highlight"></span>
+											<span class="bar"></span>
+											<label class="label2">Stream</label>
+
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="floating-form-group">
+											<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+												<option value=""></option>
+												
+												<option value="1">Term 1</option>
+												<option value="2">Term 2</option>
+												<option value="3">Term 3</option>
+											</select>
+											<span class="highlight"></span>
+											<span class="bar"></span>
+											<label class="label2">Semester/Term</label>
+
+										</div>
+									</div>
+									
+									
+								</div>
+								<div class="row" >
+									<div class="card-body" >
+										<table id="example1" class="table  table-striped">
+											<thead>
+												<tr>
+													<th >
+														Student
+													</th>
+													<th >
+														Date
+													</th>
+													<th >
+														Rct no
+													</th>
+													<th>
+														Paid Through
+													</th>
+													<th>
+														Amount
+													</th>
+													<th>
+														Received by
+													</th>
+													<th>
+														Transaction #
+													</th>
+													<th>
+														Deposit date
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														Christine Mutwiri
+													</td>
+													<td>
+														12/02/2000
+													</td>
+													<td>
+														012
+													</td>
+													<td>
+														KCB 
+													</td>
+													<td>
+														12,000
+													</td>
+													<td>
+														Muthoni 
+													</td>
+													<td>
+														tufdrgtujhtf  
+													</td>
+													<td>
+														25/05/2021  
+													</td>
+												</tr>
+												
+											</tbody>
+										</table>
+									</div>
+								</div>
+								
+								
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary" data-dismiss="modal">Build data</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+				</div>
+			</div>
+			
+			
+			
+			
+			<div id="popupbankreconciliation" class="modal">
+				<div class="modal-dialog17">
+					<div class="modal-content">
+						
+						<div class="modal-header" style="background-color:#9C27B0">
+							<h5 class="modal-title" style="color:white">BANK RECONCILIATION</h5>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						
+						<div class="content">
+							<div class="container-fluid">
+								<div class="row" >
+									<div class="col-md-12">
+										
+										<span style="font-size:20px"><strong>Please ensure reference/transaction appears as the first column in excel file.</strong> </span>
+									</div>
+								</div>
+								
+								<div class="row" style="margin-top:16px" >
+									
+
+									<div class="col-md-3">
+										<div class="floating-form-group">
+											<select class="floating-select" onclick="this.setAttribute('value', this.value);" value="">
+												<option value=""></option>
+												<option value="1">25::KCB</option>
+												<option value="2">26::EQUITY</option>
+												
+											</select>
+											<span class="highlight"></span>
+											<span class="bar"></span>
+											<label class="label2">Select Account</label>
+										</div>
+										
+									</div>
+									
+									
+									<div class="col-md-4">
+										<div class="row" >
+											<div class="col-md-6">
+												<a href="">Choose file
+												</a>
+											</div>
+											<div class="col-md-6">
+												<p><strong>Excel File</strong></p>
+											</div>
+										</div>
+										
+										<div class="row" >
+											<div class="col-md-6">
+												<p><strong>Import </strong></label>
+												</div>
+												
+												
+												<div class="col-md-6">
+													<a  class="nav-link"  href="#">
+														
+														<img src="../assets/piks/importbtn.png" alt="" >
+
+													</a>
+													
+												</div>
+												
+											</div>
+											
+											
+										</div>
+										
+										
+										<div class="floating-form-group">
+											<input class="floating-form-control" type="text" onclick="(this.type='date')" placeholder=" ">
+											<span class="highlight"></span>
+											<label   class="label1">Date </label>
+										</div>
+										
+										
+										
+									</div>
+									<div class="row" >
+										<div class="col-md-4">
+											
+											<div class="card-body" >
+												<p style="color:#C70039;font-size:20px"><strong> Entries missing in the database</strong></p>
+												<table id="example1" class="table  table-striped">
+													<thead>
+														<tr>
+															<th >
+																Student
+															</th>
+															<th >
+																Date
+															</th>
+															<th >
+																Rct no
+															</th>
+															
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>
+																Christine Mutwiri
+															</td>
+															<td>
+																12/02/2000
+															</td>
+															<td>
+																012
+															</td>
+															
+														</tr>
+														<tr>
+															<td>
+																
+															</td>
+															<td>
+																
+															</td>
+															<td>
+																
+															</td>
+															
+														</tr>
+														<tr>
+															<td>
+																
+															</td>
+															<td>
+																
+															</td>
+															<td>
+																
+															</td>
+															
+														</tr>
+														
+													</tbody>
+												</table>
+											</div>
+										</div>  
+										
+										
+
+										<div class="col-md-4">
+											
+											<div class="card-body" >
+												<p style="color:#581845;font-size:20px"><strong> Entries missing in the bank</strong></p>
+												<table id="example1" class="table  table-striped">
+													<thead>
+														<tr>
+															<th >
+																Student
+															</th>
+															<th >
+																Date
+															</th>
+															<th >
+																Rct no
+															</th>
+															
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>
+																Christine Mutwiri
+															</td>
+															<td>
+																12/02/2000
+															</td>
+															<td>
+																012
+															</td>
+															
+														</tr>
+														<tr>
+															<td>
+																
+															</td>
+															<td>
+																
+															</td>
+															<td>
+																
+															</td>
+															
+														</tr>
+														<tr>
+															<td>
+																
+															</td>
+															<td>
+																
+															</td>
+															<td>
+																
+															</td>
+															
+														</tr>
+														
+													</tbody>
+												</table>
+											</div>
+										</div> 							
+										
+										<div class="col-md-4">
+											<div class="row" >
+												<div class="col-md-8">
+													
+													<p style="color:#FF00FF">Payments in Bank Statements not yet recorded in Cash Journal </p>
+												</div>
+												<div class="col-md-4">
+													
+													<label style="font-size:40px;"> 100</label>
+												</div>
+											</div>
+											<div class="row" >
+												<div class="col-md-8">
+													
+													<p style="color:#00FFFF">Receipts in Cash Journal not yet recorded in Bank Statement </p>
+												</div>
+												<div class="col-md-4">
+													
+													<label style="font-size:40px;"> 100</label>
+												</div>
+											</div>
+											<div class="row" >
+												<div class="col-md-8">
+													
+													<p style="color:#FFC300">Receipts in Bank Statement not yet recorded in Cash Journal </p>
+												</div>
+												<div class="col-md-4">
+													
+													<label style="font-size:40px;"> 100</label>
+												</div>
+											</div>
+											<div class="row" >
+												<div class="col-md-8">
+													
+													<p style="color:#008000">Payment in Cash Journal not yet recorded in Bank Statement (Unpresented Cheques) </p>
+												</div>
+												<div class="col-md-4">
+													
+													<label style="font-size:40px;"> 100</label>
+												</div>
+											</div>
+
+										</div>
+										
+										
+
+										
+									</div>
+									
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" data-dismiss="modal">Print</button>
+							</div>
+							
+						</div>
+						
+						
+						
+					</div>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				<footer class="footer" style="margin-top:-60px">
+					<div class="container-fluid">
+						<nav class="float-left">
+							<ul>
+								
+								
+								<li>
+									<a href="https://www.creative-tim.com/license">
+										Talk to us
+									</a>
+								</li>
+							</ul>
+						</nav>
+						<div class="copyright float-right">
+							&copy;
+							<script>
+								document.write(new Date().getFullYear())
+							</script><i class="material-icons"></i> Powered by
+							<a href="https://www.creative-tim.com" target="_blank">Walgotech solutions</a> 
+						</div>
+					</div>
+				</footer>
+				
+				
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<div id="myModal" class="modal fade" style="z-index: 10000000000000 !important;">
+			<div class="modal-dialog modal-confirm">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div class="icon-box">
+							<i class="material-icons">&#xE876;</i>
+						</div>				
+						<h4 class="modal-title w-100" id="messageid"></h4>	
+					</div>
+					
+					<div class="modal-footer">
+						<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+					</div>
+				</div>
+			</div>
+		</div>  
+		
+		
+		<div id="myModalError" class="modal fade" style="z-index: 10000000000000 !important;">
+			<div class="modal-dialog modal-confirm">
+				<div class="modal-content">
+					<div class="modal-header">								
+						<h4 class="modal-title w-100" id="change-me"></h4>	
+					</div>
+					
+					<div class="modal-footer">
+						<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+					</div>
+				</div>
+			</div>
+		</div>  
+		
+		
+		<div id="myModaldelete" class="modal fade">
+			<div class="modal-dialog modal-confirmmcee">
+				<div class="modal-content">
+					<div class="modal-header flex-column">
+						<div class="icon-box">
+							<i class="material-icons">&#xE5CD;</i>
+						</div>
+						<h4 class="modal-title w-100">Are you sure?</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p>Do you really want to delete these records? This process cannot be undone.</p>
+					</div>
+					<div class="modal-footer justify-content-center">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button type="button" id="confirmdeletebutt" data-dismiss="modal" class="btn btn-danger">Delete</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		
+
+		<div id="myModaladdinvoiceitem" class="modal fade">
+			<div class="modal-dialog modal-confirmmcee">
+				<div class="modal-content">
+					<div class="modal-header flex-column">
+						<div class="icon-box">
+							<i class="material-icons">attach_money</i>
+						</div>
+						<h4 class="modal-title w-100">Add invoice item</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">																			
+						<div class="floating-form-group" >
+							<select   id="feestructureaccount"    type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+								<option ></option>
+								<option th:each="student: ${voteheads}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('Account').getValue()}">Alabama</option>
+							</select>							
+							<label class="label2">Select account/votehead</label>
+						</div>
+						
+						<div class="floating-form-group">
+							<input   id="feestructureamount"  class="floating-form-control" type="number"  placeholder=" " required>							
+							<label   class="label1">Amount</label>
+						</div>
+
+
+					</div>
+					<div class="modal-footer justify-content-center">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button type="button" id="submitaddinvoiceitembutt"  class="btn btn-danger">Submit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div id="copyvotesmodal" class="modal fade">
+			<div class="modal-dialog modal-confirmmcee">
+				<div class="modal-content">
+					<div class="modal-header flex-column">
+						<div class="icon-box">
+							<i class="material-icons">content_copy</i>
+						</div>
+						<h4 class="modal-title w-100">Copy voteheads</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">																			
+						<div class="floating-form-group" >
+							<select   id="classtocpyfromcombo"    type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+								<option ></option>
+								<option th:each="student: ${classes}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}">Alabama</option>
+							</select>							
+							<label class="label2">Class to copy from</label>
+						</div>
+						
+						<div class="floating-form-group" >
+							<select   id="classtocopytocombo"    type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+								<option ></option>
+								<option th:each="student: ${classes}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}">Alabama</option>
+							</select>							
+							<label class="label2">Class to copy to</label>
+						</div>
+
+
+					</div>
+					<div class="modal-footer justify-content-center">
+						<button type="button" id="submitcopyclassbutt"  class="btn btn-danger">Submit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="replicatevotes" class="modal fade">
+			<div class="modal-dialog modal-confirmmcee">
+				<div class="modal-content">
+					<div class="modal-header flex-column">
+						<div class="icon-box">
+							<i class="material-icons">attach_money</i>
+						</div>
+						<h4 class="modal-title w-100">Add invoice item</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">																			
+						<div class="floating-form-group" >
+							<select   id="replicatevotescombo"    type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+								<option ></option>
+								<option th:each="student: ${voteheads}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('Account').getValue()}">Alabama</option>
+							</select>							
+							<label class="label2">Select account/votehead</label>
+						</div>
+						
+						<div class="floating-form-group">
+							<input   id="replicatevotesaddamt"  class="floating-form-control" type="number"  placeholder="0" required>							
+							<label   class="label1">Amount to add to previous term/sem amount</label>
+						</div>
+
+
+					</div>
+					<div class="modal-footer justify-content-center">
+						<button type="button" id="submitreplicatevotes"  class="btn btn-danger">Submit</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="modalprogress" class="modal fade">
+			<div class="modal-dialog modal-confirmloading">
+				<div class="modal-content">
+					
+					<div class="modal-header flex-column">
+						<h4 class="alignleft" style="margin-top:-20px">Please wait..</h4> 
+						
+					</div>
+					
+					
+					<div class="modal-body">
+						
+						<div class="row" >           
+							<div class="column">
+								<div class="main-">
+									<div class="double-lines-spinner" style="margin-left:0px"></div>
+								</div>
+							</div>
+							<div class="column" style="margin-left:30px">
+								<h4 class="modal-title w-100" style="font-size: 20px;">Loading data</h4> 
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="modalshowreport" class="modal">
+			
+			<div class="modal-dialog">
+				
+				<div class="modal-content">
+					
+					<div class="modal-header" style="background-color:#9C27B0 ;max-height:50px" >
+						<h4 id="reporttitlemain" class="modal-title" style="color:white;margin-top:-6px"></h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					
+					<div class="modal-body">
+						
+						<div id="divtoholdreport" class="card-body table-responsive" >
+							
+						</div>		
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+
+		<div id="modalprogress2" class="modal fade">
+			<div class="modal-dialog modal-confirmloading">
+				<div class="modal-content">
+					
+					<div class="modal-header flex-column">
+						<h4 class="alignleft" style="margin-top:-20px">Please wait..</h4>			
+					</div>			
+					
+					<div class="modal-body">
+						
+						<div class="row" >           
+							<div class="column">
+								<div class="main-">
+									<div class="double-lines-spinner" style="margin-left:0px"></div>
+								</div>
+							</div>
+							<div class="column" style="margin-left:30px">
+								<h4 class="modal-title w-100" style="font-size: 20px;">Loading data</h4> 
+							</div>
+						</div>
+						
+					</div>
+					``
+				</div>
+			</div>
+		</div>
+		
+
+		<div id="modalgeneratereports" class="modal fade">
+			<div class="modal-dialog modal-confirmmcee">
+				<div class="modal-content">
+					<div class="modal-header flex-column">                
+						<h5 class="modal-title w-100">Generate</h5>
+						<h5 id="reporttitle" style="color:orange;" class="modal-title w-100"></h5>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						
+						<form  id="showreportForm">            
+
+							<div class="floating-form-group"  id="selectyeardiv"  style="width: 60%; margin: 0 auto; display:none">
+								<input   id="selectyear"  name="date of joining"   type="date"  class="floating-form-control"    required>							
+								<label   class="label1">Select year</label>
+							</div>
+
+							<div class="floating-form-group"  id="selectclassdiv"  style="width: 60%; margin: 0 auto; display:none;">
+								<select  id="selectval"  name="selectreportval" type="select"  class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+									<option ></option>
+									<option th:each="student: ${classesreports}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}"></option>
+								</select>								
+								<label id="cclass" class="label2">Select class</label>
+							</div>
+							
+							<div class="floating-form-group"   id="hosteldiv"  style="width: 60%; margin: 0 auto; display:none;">
+								<select   name="hostel" id="hostel"    type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"required>
+									<option ></option>
+									<option th:each="student: ${hostelreport}" th:value="${student.activeProperty('hostelid').getValue()}" th:text="${student.activeProperty('hostel').getValue()}">Alabama</option>
+								</select>							
+								<label class="label2">Hostel</label>
+							</div>
+							
+							<div class="floating-form-group" id="reservationdiv" style="width: 60%; margin: 0 auto;margin-top:25px; display:none">
+								<input  id="reservation" name="daterange"   class="floating-form-control" required >							
+								<label   class="label1">Daterange</label>
+							</div>
+							
+							<div class="floating-form-group"   id="searchstudentreportdiv"  style="width: 80%; margin: 0 auto; display:none">
+								<input name="searchstudentreport" id="searchstudentreport" class="floating-form-control" type="text"  placeholder=" " required>							
+								<label   class="label1">Search students</label>
+							</div>
+							
+							<div class="floating-form-group"   id="religiondiv"  style="width: 60%; margin: 0 auto; display:none;">
+								<select   name="religionreportselect" id="religionreportselect"    type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);" required>
+									<option ></option>
+									<option th:each="student: ${religions}" th:value="${student.activeProperty('religion').getValue()}" th:text="${student.activeProperty('religion').getValue()}">Alabama</option>
+								</select>							
+								<label class="label2">Select denomination</label>
+							</div>
+							
+						</form>
+						
+					</div>
+					<div class="modal-footer justify-content-center">
+						<button  id="reportmodalbutt" data-toggle="modal" type="submit" class="btn btn-primary"  form="showreportForm" value="Submit" >Show report</button>
+					</div>
+				</div>
+			</div>
+		</div>	
+		
+		
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+		<script type="text/javascript" th:src="@{/assets/js/jquery.autocomplete.js}"></script>
+		<script type="text/javascript" th:src="@{/assets/js/materialize.min.js}"></script>
+		<script src="./assets/js/core/popper.min.js"></script>
+		<script src="./assets/js/core/bootstrap-material-design.min.js"></script>
+		<script src="./assets/js/material-dashboard.js" type="text/javascript"></script>  
+		<script src="./assets/js/plugins/moment.min.js"></script>
+		<script src="./assets/js/plugins/sweetalert2.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+		<script src="./assets/js/plugins/arrive.min.js"></script>
+		<script src="./assets/js/plugins/chartist.min.js"></script>
+		<script src="./assets/js/plugins/bootstrap-notify.js"></script>
+		<script src="./assets/js/core/bootstrap-material-design.min.js"></script>
+		
+		
+		<!-- DataTables  & Plugins -->
+		<script src="./plugins/datatables/jquery.dataTables.min.js"></script>
+		<script src="./plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+		<script src="./plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="./plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+		<script src="./plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="./plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+		<script src="./plugins/jszip/jszip.min.js"></script>
+
+		<script src="./plugins/daterangepicker/daterangepicker.js"></script>
+
+
+		<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.print.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/b-2.0.0/b-html5-2.0.0/b-print-2.0.0/datatables.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+
+		
+		<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+		<script src="./assets/js/libs/jspdf.umd.js"></script>
+		<script src="./assets/js/libs/jspdf.plugin.autotable.js"></script>
+
+		<script src="./assets/dynamicjs/dynamicjs.js"></script>
+		<script src="./assets/js/webcamandregistrationtabs.js"></script>
+
+		<script>
+		
+			$(document).ready(function(){
+			
+			
+				$('#defaultModalbtn').click(function(){
+					$('#popup1').modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+				});				
+				
+				
+				$('#defaultModalbtn1').click(function(){
+					$('#popup1').modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+				});
+				
+				
+				$.ajax({
+				url : '/loadlistofstudents',
+				contentType : "application/json",
+						success: function(data){             
+						listofstudents = JSON.parse(data);
+						dynamictable(listofstudents,'#div1','loadlistofstudents','#example1','#example1');
+					}		
+				});	   
+				
+				
+			});
+			
+			$(document).ready(function(){
+				$('#defaultModalbtnfeerefunds').click(function(){
+					$('#popupfeerefunds').modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+				});
+			});
+			
+			$(document).ready(function(){
+				$('#defaultModalbtnfeestructure').click(function(){
+					$("#divselectstudentsforbilling").hide();
+					$("#feestructuremaindiv").show();
+					$("#example2").DataTable().destroy(true);	
+					$('#feestructureterm').prop('selectedIndex',0);
+					$('#feestructureselectclasscombo').prop('selectedIndex',0);
+					$('#feestructureyear').prop('selectedIndex',0);
+					$("#totalfeestructureamt").html('Total Cash : 0.00');								
+				
+					$('#popupfeestructure').modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+				});
+				
+				$('#defaultModalbtnfeestructure1').click(function(){
+					$('#popupfeestructure').modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+				});
+			});
+			
+			$(document).ready(function(){
+				$('#defaultModalbtnfeebalances').click(function(){
+					$('#popupfeebalances').modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+				});
+				$('#defaultModalbtnfeebalances1').click(function(){
+					$('#popupfeebalances').modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+				});
+				$('#defaultModalbtnfeebalances2').click(function(){
+					$('#popupfeebalances').modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+				});
+				
+			});
+			
+			$(document).ready(function(){
+				$('#defaultModalbtnfeetextreminders').click(function(){
+					$('#popupfeetextreminders').modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+				});
+			});
+			
+			$(document).ready(function(){
+				$('#defaultModalbtntransferfunds').click(function(){
+					$('#popuptransferfunds').modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+				});
+			});
+			
+			$(document).ready(function(){
+				$('#defaultModalbtnupdatefeebalance').click(function(){
+					$('#popupupdatefeebalance').modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+				});
+			});
+			
+			$(document).ready(function(){
+				$('#defaultModalbtnreceipts').click(function(){
+					$('#popupreceipts').modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+				});
+			});
+			
+			$(document).ready(function(){
+				$('#defaultModalbtngroupreceipts').click(function(){
+					$('#popupgroupreceipts').modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+				});
+			});
+			
+			$(document).ready(function(){
+				$('#defaultModalbtnstudentinvoicing').click(function(){
+					$('#popupstudentinvoicing').modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+				});
+			});
+			
+			$(document).ready(function(){
+				$('#defaultModalbtnbankreconciliation').click(function(){
+					$('#popupbankreconciliation').modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+				});
+			});
+			
+		</script>
+		<script>
+			
+			$(function () {
+				$("#example1").DataTable({
+					"responsive": true, "lengthChange": false, "autoWidth": false,pageLength: 6,
+					"buttons": []
+				}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+				
+			});
+		</script>
+
+
+		<script>
+			$(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      md.initDashboardPageCharts();
+
+  });
+</script>
+</body>
+
+</html>

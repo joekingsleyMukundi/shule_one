@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<body class="">
+
+	<div class="wrapper ">
+	
+		<div class="main-panel">
+		
+		
+		
+	<div class="content" th:fragment="examdashboardmain" id="output">
+        <div class="container-fluid">
+          
+
+
+          <div class="row">
+            
+            <div class="col-md-6">
+				
+							
+			   <div class="row">
+			 
+						<div class="col-lg-6 d-flex align-items-stretch">
+				
+							<div class="card card-stats">
+							<div class="card-header card-header-warning card-header-icon">
+							  <div class="card-icon">
+								<i class="material-icons">content_copy</i>
+							  </div>
+							  <p class="card-category">Total # of exams</p>
+							  <h3 class="card-title" th:text="${totalexams}">
+								<small> </small>
+							  </h3>
+							</div>
+							<div class="card-footer">
+							  <div class="stats">
+								<i class="material-icons text-danger">add</i>
+								<a  onclick="loadlistofexams()"  href="#">List of exams</a>
+							  </div>
+							</div>
+						  </div>
+						</div>
+						
+						
+						
+						<div class="col-lg-6 d-flex align-items-stretch">
+							<div class="card card-stats">
+								<div class="card-header card-header-success card-header-icon">
+								  <div class="card-icon">
+									<i class="material-icons">store</i>
+								  </div>
+								  <p class="card-category">Above average</p>
+								  <h3 class="card-title"  th:text="${aboveaverage}"></h3>
+								</div>
+								<div class="card-footer">
+								  <div class="stats">
+									<i class="material-icons text-danger">store</i>
+									<a  onclick="loadlistofexams()" href="#">Show list</a>
+								  </div>
+								</div>
+							  </div>
+						</div>
+				
+				</div>
+				
+				
+				<div class="row">
+			 
+				
+				<div class="col-lg-6 d-flex align-items-stretch">
+						  <div class="card card-stats">
+					<div class="card-header card-header-danger card-header-icon">
+					  <div class="card-icon">
+						<i class="material-icons">info_outline</i>
+					  </div>
+					  <p class="card-category">Below average</p>
+					  <h3 class="card-title"  th:text="${belowaverage}" ></h3>
+					</div>
+					<div class="card-footer">
+					  <div class="stats">
+						<i class="material-icons text-danger">info</i>
+						<a  onclick="loadlistofexams()" href="#">Show list</a>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				
+				<div class="col-lg-6 d-flex align-items-stretch">
+						  <div class="card card-stats">
+					<div class="card-header card-header-info card-header-icon">
+					  <div class="card-icon">
+						<i class="material-icons">list</i>
+					  </div>
+					  <p class="card-category">Active exams</p>
+					  <h3 class="card-title"  th:text="${activeexams}" ></h3>
+					</div>
+					<div class="card-footer">
+					  <div class="stats">
+						<i class="material-icons text-danger">list</i>
+						<a  onclick="loadlistofexams()" href="#">Show list</a>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				
+				
+			  </div>
+			  
+
+			
+			</div>
+            
+           
+            <div class="col-lg-6 d-flex align-items-stretch">
+              <div class="card card-chart"  id="right2">
+			  
+                <div class="card-header card-header-danger"  style="height: 100%;">
+                  <div class="ct-chart" id="chartexamalldashboard"  style="height: 100%;"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">School performance</h4>
+                  <p class="card-category">Last 5 years</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> Last eaxm, TERM1 OPENER 2022
+                  </div>
+                </div>
+				
+              </div>
+            </div>
+
+
+          </div>
+		  
+		  
+		  
+		  <div class="row" style="margin-top:-35px;">
+		  
+		  
+			<div class="col-md-12">
+              
+
+				  <div class="card" id="left">
+				   
+						<div class="row" >
+					
+				   
+							<div class="col-md-4"  style="margin:20 auto;margin-top:20px;margin-left:15px;margin-right:15px;margin-bottom:20px">
+				
+								<div class="floating-form-group"   id="searchstudentreportdiv">
+										<input name="searchstudentreport" id="searchstudentreport" class="floating-form-control" type="text"  placeholder=" " required>							
+										<label   class="label1">Search students</label>
+								</div>
+							
+							</div>
+						
+						</div>
+						
+						<div class="row" >
+							<div class="col-md-12" >
+				
+						 
+								<div class="card-header card-header-tabs card-header-primary">
+								  <h4 class="card-title" >Student performance history</h4>			  				  					  
+								</div>
+								<div class="card-body table-responsive" >
+								  <table class="table table-hover table-dark">
+									<thead class="text-warning">
+									  <th style="width: 40%">Class</th>
+									  <th style="width: 20%">Male</th>
+									  <th style="width: 20%">Female</th>
+									  <th style="width: 20%">Total</th>
+									</thead>
+
+									<tbody>
+									  
+									  <tr th:block th:each="student: ${listofstudentsperclass}">						
+											<th:block th:each="collumn : ${collumns}">								
+											<td  style="width: 40%;"  th:if="${collumn} == class" th:text="${student.activeProperty(collumn).getValue()}" />
+											<td  style="max-width: 15%;color:#d6a3e1;font-size:14px;font-weight:bold;"  th:if="${collumn} == male" th:text="${#numbers.formatDecimal(student.activeProperty(collumn).getValue(), 0, 'COMMA', 0, 'POINT')}" />							
+											<td  style="max-width: 15%;color:#33ff33;font-size:14px;font-weight:bold;"  th:if="${collumn} == female" th:text="${#numbers.formatDecimal(student.activeProperty(collumn).getValue(), 0, 'COMMA', 0, 'POINT')}" />							
+											<td  style="max-width: 15%;color:firebrick;font-size:19px;font-weight:bold;"  th:if="${collumn} == total" th:text="${#numbers.formatDecimal(student.activeProperty(collumn).getValue(), 0, 'COMMA', 0, 'POINT')}" />							
+											</th:block> 							
+									  </tr>                      
+									 
+									</tbody>
+
+								  </table>
+								</div>
+								
+							</div>
+						 
+						 </div>
+					
+				  </div>
+				
+
+			  </div>
+			
+			
+			
+			
+			</div>
+          
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="content" th:fragment="listofexams"  id="output" >
+			
+				<div class="container-fluid" >
+
+					<div class="card" >
+					
+					
+						<div class="row" style="margin-top:20px">
+							<div class="col-md-12">
+
+								<div class="card-header card-header-primary"
+									style="max-height: 55px;">
+
+									<div class="row" style="align-content: center;">
+
+										<div style="width: 70%;">
+											<h4 id="tabletitle" class="card-title" style="color: white; padding-left: 10px">LIST OF EXAMS</h4>
+										</div>
+
+										<div style="text-align: right; width: 30%;">
+											<a id="defaultModalbtncreatenewexam" onclick="opendefaultmodal()" class="nav-link"
+												style="color: white;"> <i class="fa fa-plus"
+												style="font-size: 30px; cursor: pointer; margin-top: -10px;"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						
+						
+						<div class="card-header">
+
+							
+							
+
+							<div  id="filterbyrow" class="row" style="margin-top:15px">
+
+								<div class="col-md-2" id="moreactonscomboboxdiv" style="display:none">
+
+									<div class="floating-form-group">
+										<select  id="exammoreactionscombo" class="floating-select" onchange="exammoreactions()">
+											<option value=""></option>
+											<option value="1">Link</option>
+											<option value="2">Mark as approved</option>
+											<option value="3">Mark as preliminary</option>
+											<option value="5">Refresh Exam</option>
+												
+										</select> 
+										<label	class="label2">More actions</label>
+									</div>
+									
+								</div>
+								
+								
+								<div class="col-md-1">									
+								</div>
+								
+								
+								<div class="col-md-2">
+
+									<div class="floating-form-group">
+										<select  id="filterbyyear" class="floating-select"
+											onchange="filterexamby()">
+											<option value=""></option>
+											<option value="2022">2022</option>
+											<option value="2023">2023</option>
+											<option value="2024">2024</option>
+											<option value="2025">2025</option>
+											<option value="2026">2026</option>
+											<option value="2027">2027</option>
+										</select> 
+										<label	class="label2">Year</label>
+
+									</div>
+								</div>
+								
+								
+								<div class="col-md-1">									
+								</div>
+								
+								<div class="col-md-2">
+									<div class="floating-form-group" >
+										<select  id="filterbyclass" class="floating-select"
+											onchange="filterexamby()" >
+											<option value=""></option>
+											<option th:each="student: ${classeswithall}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}"></option>
+										</select> <span class="highlight"></span> <span class="bar"></span> <label
+											class="label2">Class</label>
+
+									</div>
+								</div>
+								
+								<div class="col-md-1">									
+								</div>
+								
+								<div class="col-md-2">
+									
+									<div class="floating-form-group">
+										<select   id="filterbyterm" class="floating-select"
+											onchange="filterexamby()" >
+											<option value=""></option>
+											<option th:each="student: ${termwithall}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('sem').getValue()}"></option>
+										</select> <span class="highlight"></span> <span class="bar"></span> <label
+											class="label2">Term/Sem</label>
+
+									</div>
+									
+								</div>
+
+							</div>
+							
+
+							<div class="row" style="margin-top: -10px">
+								<div id="div1" class="col-md-12">						
+
+								</div>
+							</div>
+							
+							
+							
+						</div>
+
+					</div>
+
+				</div>
+				
+				
+				
+
+
+				
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<div  class="modal fade"  th:fragment="modalerror"  id="output" style="z-index: 10000000000000 !important;">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">								
+				<h4 class="modal-title w-100" id="change-me"></h4>	
+			</div>
+			
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>  
+  
+  
+	
+	
+	
+	
+	
+	
+	
+	<div class="content" th:fragment="listofavailableexams"  id="output" >
+				<div class="container-fluid">
+
+					<div class="card">
+					
+					
+						<div class="row" style="margin-top:20px">
+						
+							<div class="col-md-12">
+
+								<div class="card-header card-header-primary"
+									style="max-height: 55px;">
+
+									<div class="row" style="align-content: center;">
+
+										<div style="width: 70%;">
+											<h4 id="tabletitle" class="card-title" style="color: white; padding-left: 10px">AVAILABLE EXAMS</h4>
+										</div>
+
+										
+									</div>
+								</div>
+							</div>
+
+						</div>
+						
+						
+						<div class="card-header">
+
+							
+							<div id="moreactionsrow" class="row" style="display: none" >							
+
+								<div  class="col-md-2">
+									
+										<div  class="floating-form-group">
+											<select id="moreactionscombo" class="floating-select"
+												onclick="this.setAttribute('value', this.value);" value="">
+												<option value=""></option>
+												<option value="1">Link</option>
+												<option value="2">Link using priority</option>
+												<option value="3">Mark as Approved</option>
+												<option value="4">Mark as Preliminary</option>
+												<option value="5">Refresh Exam</option>
+												<option value="6">Import Excel File</option>
+
+											</select> 		
+											<label	class="label2">Actions</label>
+
+										</div>
+
+								</div>
+
+							</div>
+
+							<div class="row" style="margin-top: -10px">
+								<div id="div1" class="col-md-12">						
+
+								</div>
+							</div>
+							
+							
+							
+						</div>
+
+					</div>
+
+				</div>
+				
+				
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<div class="content" th:fragment="subjectselection"  id="output" >
+			
+				<div class="container-fluid">
+
+					<div class="card">
+					
+					
+						<div class="row">
+							<div class="col-md-12">
+
+								<div class="card-header card-header-primary"
+									style="max-height: 55px;">
+
+									<div class="row" style="align-content: center;">
+
+										<div style="width: 70%;">
+											<h4 id="tabletitle" class="card-title" style="color: white; padding-left: 10px">Subject selection</h4>
+										</div>
+
+										
+										
+										
+									</div>
+								</div>
+							</div>
+
+						</div>
+						
+						
+						<div class="card-header">
+
+
+							<div class="row">
+							
+								<div class="col-md-3" style="margin-left:20px; margin-top:17px;">
+									
+									<div class="floating-form-group">
+										
+										<select   id="subjectselectionclass" name="subjectselectionclass"  type="select"  class="floating-select" onchange="loadsubjectselectionperclass()"  required>
+											<option th:each="student: ${classes}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}"></option>
+										</select>
+										
+										<label id="cclass" class="label2">Select class</label>
+										
+									</div>								
+											
+								</div>
+								
+							
+							</div>
+
+
+							<div class="row" style="margin-top: -10px">
+								<div id="div1" class="col-md-12">						
+
+								</div>
+							</div>
+							
+								<button  id="buttsubmittsubjectselection" onclick="submitsubjectselection()" class="btn btn-primary" style="float:right;font-size:15px;;text-transform: lowercase;margin-top:7px"   >Submit</button>
+			
+							
+						</div>
+
+					</div>
+
+				</div>
+				
+				
+				
+
+			</div>
+			
+			
+			
+			
+			
+			<div class="content" th:fragment="grades"  id="output" >
+			
+				<div class="container-fluid">
+
+					<div class="card">
+					
+					
+						<div class="row" style="margin-top:20px">
+							<div class="col-md-12">
+
+								<div class="card-header card-header-primary"
+									style="max-height: 55px;">
+
+									<div class="row" style="align-content: center;">
+
+										<div style="width: 70%;">
+											<h4 id="tabletitle" class="card-title" style="color: white; padding-left: 10px">Grades</h4>
+										</div>
+
+										<div style="text-align: right; width: 30%;">
+											<a id="defaultModalbtn"  onclick="opendefaultmodal()" class="nav-link"
+												style="color: white;"> <i class="fa fa-plus"
+												style="font-size: 30px; cursor: pointer; margin-top: -10px;"></i>
+											</a>
+										</div>
+										
+										
+									</div>
+								</div>
+							</div>
+
+						</div>
+						
+						
+						<div class="card-header">
+
+							<div class="row" style="margin-top: -10px">
+								<div id="div1" class="col-md-12">						
+
+								</div>
+							</div>
+							
+							
+							
+						</div>
+
+					</div>
+
+				</div>
+				
+
+
+
+			</div>
+			
+			
+			
+			
+			
+			<div class="content"  th:fragment="subjects"  id="output" >
+			
+				<div class="container-fluid">
+
+					<div class="card">
+					
+					
+						<div class="row" style="margin-top:20px">
+						
+							<div class="col-md-12">
+
+								<div class="card-header card-header-primary" style="max-height: 55px;">
+
+									<div class="row" style="align-content: center;">
+
+										<div style="width: 70%;">
+											<h4 id="tabletitle" class="card-title" style="color: white; padding-left: 10px">LIST OF SUBJECTS</h4>
+										</div>
+
+										<div style="text-align: right; width: 30%;">
+											<a id="defaultModalbtn"  onclick="opendefaultmodal()" class="nav-link"
+												style="color: white;"> <i class="fa fa-plus"
+												style="font-size: 30px; cursor: pointer; margin-top: -10px;"></i>
+											</a>
+										</div>
+										
+										
+									</div>
+								</div>
+							</div>
+
+						</div>
+						
+						
+						<div class="card-header">
+						
+						
+							<div  id="filterbyrow" class="row">
+	
+								<div class="col-md-3">
+									<div class="floating-form-group" >
+										<select  id="filtersubjectsbyclass" class="floating-select"
+											onchange="filtersubjectsbyclass()" value="">
+											<option value=""></option>
+											<option th:each="student: ${classeswithall}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}"></option>
+										</select> <span class="highlight"></span> <span class="bar"></span> <label
+											class="label2">Filter by class</label>
+
+									</div>
+								</div>
+								
+							
+
+							</div>
+						
+
+							<div class="row" style="margin-top: -10px">
+								<div id="div1" class="col-md-12">						
+
+								</div>
+							</div>
+							
+							
+							
+						</div>
+
+					</div>
+
+				</div>
+			
+			</div>
+			
+			
+			
+			
+			<div class="content"  th:fragment="subjectgroups"  id="output" >
+			
+				<div class="container-fluid"> 
+
+					<div class="card">
+					
+					
+						<div class="row" style="margin-top:20px">
+						
+							<div class="col-md-12">
+
+								<div class="card-header card-header-primary"
+									style="max-height: 55px;">
+
+									<div class="row" style="align-content: center;">
+
+										<div style="width: 70%;">
+											<h4 id="tabletitle" class="card-title" style="color: white; padding-left: 10px">Subject groups</h4>
+										</div>
+
+										<div style="text-align: right; width: 30%;">
+											<a id="defaultModalbtn"  onclick="opendefaultmodal()" class="nav-link"
+												style="color: white;"> <i class="fa fa-plus"
+												style="font-size: 30px; cursor: pointer; margin-top: -10px;"></i>
+											</a>
+										</div>
+										
+										
+									</div>
+								</div>
+							</div>
+
+						</div>
+						
+						
+						<div class="card-header">
+
+							<div class="row" style="margin-top: -10px">
+								<div id="div1" class="col-md-12">						
+
+								</div>
+							</div>
+							
+							
+							
+						</div>
+
+					</div>
+
+				</div>
+			
+			</div>
+			
+			
+			
+			<div class="content"  th:fragment="examcategories"  id="output" >
+			
+				<div class="container-fluid">
+
+					<div class="card">
+					
+					
+						<div class="row" style="margin-top:20px">
+							<div class="col-md-12">
+
+								<div class="card-header card-header-primary"
+									style="max-height: 55px;">
+
+									<div class="row" style="align-content: center;">
+
+										<div style="width: 70%;">
+											<h4 id="tabletitle" class="card-title" style="color: white; padding-left: 10px">Exam Categories</h4>
+										</div>
+
+										<div style="text-align: right; width: 30%;">
+											<a id="defaultModalbtn"  onclick="opendefaultmodal()" class="nav-link"
+												style="color: white;"> <i class="fa fa-plus"
+												style="font-size: 30px; cursor: pointer; margin-top: -10px;"></i>
+											</a>
+										</div>
+										
+										
+									</div>
+								</div>
+							</div>
+
+						</div>
+						
+						
+						<div class="card-header">
+
+							<div class="row" style="margin-top: -10px">
+								<div id="div1" class="col-md-12">						
+
+								</div>
+							</div>
+							
+							
+							
+						</div>
+
+					</div>
+
+				</div>
+			
+			
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			<div class="content"  th:fragment="remarks"  id="output">
+			
+				<div class="container-fluid">
+
+					<div class="card">
+					
+					
+						<div class="row" style="margin-top:20px">
+							<div class="col-md-12">
+
+								<div class="card-header card-header-primary"
+									style="max-height: 55px;">
+
+									<div class="row" style="align-content: center;">
+
+										<div style="width: 70%;">
+											<h4 id="tabletitle" class="card-title" style="color: white; padding-left: 10px">Remarks</h4>
+										</div>
+
+										<div style="text-align: right; width: 30%;">
+											<a id="defaultModalbtn" onclick="opendefaultmodal()" class="nav-link"
+												style="color: white;"> <i class="fa fa-plus"
+												style="font-size: 30px; cursor: pointer; margin-top: -10px;"></i>
+											</a>
+										</div>
+										
+										
+									</div>
+								</div>
+							</div>
+
+						</div>
+						
+						
+						<div class="row">
+							
+							<div class="col-md-3" style="margin-left:20px; margin-top:17px;">
+									
+										<div class="floating-form-group">
+												<select   id="selectremarkcategorycombo"   type="select"   class="floating-select" onchange="showselecttechercombo()"  required>
+													<option th:each="student: ${subjectgroups}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('Subject group').getValue()}"></option>
+												</select>												
+												<label class="label2">Select category</label>
+										</div>	
+
+											
+									
+							</div>
+
+							
+
+							<div class="col-md-3" style="margin-left:20px; margin-top:17px; display:none" id="selectteacherremarkdivcombo">
+									
+										<div class="floating-form-group">
+												<select   id="selectremarkteachercombofrommainpage"   type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+													<option th:each="student: ${classteacher}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('teacher').getValue()}"></option>
+												</select>												
+												<label class="label2">Select Teacher</label>
+										</div>									
+									
+							</div>
+							
+							
+							<div class="col-md-2" style="margin-left:20px; margin-top:17px;">
+							
+								<a  href="#" id="gotocopyremarks" onclick="copyremarks()" ><span class="badge badge-sm bg-gradient-success">Copy remarks</span></a>
+							
+							</div>
+
+							
+						</div>
+						
+						
+						<div class="card-header">
+
+							<div class="row" style="margin-top: -10px">
+								<div id="div1" class="col-md-12">						
+
+								</div>
+							</div>
+							
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			
+			
+			
+			
+			<div class="content"  th:fragment="gradingsystem"  id="output">
+			
+				<div class="container-fluid">
+
+					<div class="card">
+					
+					
+						<div class="row" style="margin-top:20px">
+							<div class="col-md-12">
+
+								<div class="card-header card-header-primary"
+									style="max-height: 55px;">
+
+									<div class="row" style="align-content: center;">
+
+										<div style="width: 70%;">
+											<h4 id="tabletitle" class="card-title" style="color: white; padding-left: 10px">Grading system</h4>
+										</div>
+
+										<div style="text-align: right; width: 30%;">
+											<a id="defaultModalbtn" onclick="opendefaultmodal()" class="nav-link"
+												style="color: white;"> <i class="fa fa-plus"
+												style="font-size: 30px; cursor: pointer; margin-top: -10px;"></i>
+											</a>
+										</div>
+										
+										
+									</div>
+								</div>
+							</div>
+
+						</div>
+						
+						
+						<div class="row">
+							
+							<div class="col-md-3" style="margin-left:20px; margin-top:17px;">
+									
+										<div class="floating-form-group">
+												<select   id="selectgradingsystemcategorycombo"   type="select"   class="floating-select" onchange="selectgradingcategory()"  required>
+													<option th:each="student: ${subjectgroups}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('Subject group').getValue()}"></option>
+												</select>												
+												<label class="label2">Select category</label>
+										</div>									
+									
+							</div>
+
+
+							
+
+							<div class="col-md-3" style="margin-left:20px; margin-top:17px;">
+									
+										<div class="floating-form-group">
+												<select   id="selectgradingclasscombo"   type="select"   class="floating-select" onchange="selectgradingclass();"  required>
+													<option th:each="student: ${activecls}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}"></option>
+												</select>												
+												<label class="label2">Select Class</label>
+										</div>									
+									
+							</div>
+							
+							
+							
+							
+							<div class="col-md-3" style="margin-left:20px; margin-top:17px;">
+									
+										<div class="floating-form-group">												
+												<a  href="#" id="gotocopygradingsystem"  onclick="copygradingsystem()"><span class="badge badge-sm bg-gradient-success">Copy grading system</span></a>
+										</div>									
+									
+							</div>
+
+
+							
+						</div>
+						
+						
+						<div class="card-header">
+
+							<div class="row" style="margin-top: -10px">
+								<div id="div1" class="col-md-12">						
+
+								</div>
+							</div>
+							
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			
+			
+			
+			
+			
+			
+	<div class="content"   th:fragment="moresettings"  id="output">
+				
+					<div class="container-fluid" >
+
+					<div class="row" style="margin-top:20px">
+						
+
+
+					<div class="col-lg-4 d-flex align-items-stretch" id="firstdiv">
+
+
+
+					</div>
+
+
+
+            <div class="col-lg-4 d-flex align-items-stretch" id="firstdiv">
+
+
+				  <div class="card" id="left">
+
+					<div class="card-header card-header-tabs card-header-primary">
+					  <h4 class="card-title" >Report form dates</h4>
+					</div>
+					
+					<br>
+					
+					<div class="card-body d-flex flex-column justify-content-between">
+   
+						<div class="floating-form-group" >
+									<select   id="reportformdatesclass" name="reportformdatesclass"  type="select"  class="floating-select" onchange="selectclassreportdates()"  required>
+										<option ></option>
+										<option th:each="student: ${classes}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}"></option>
+									</select>
+									
+									<label id="cclass" class="label2">Select class</label>
+						</div>
+						
+						<br>
+					  
+						<div class="row">
+						
+							<div class="col-md-12">
+
+								<div class="floating-form-group">
+											<input   id="nexttermddates"    type="date"   class="floating-form-control" >									
+											<label  class="label1">Opening date</label>
+								</div>
+
+							</div>
+							
+																								
+							
+						</div>
+						
+						<div class="row">
+						
+							
+							<div class="col-md-12">
+
+								<div class="floating-form-group">
+											<input   id="midtermdate"    type="date"   class="floating-form-control" >									
+											<label  class="label1">Mid-term date</label>
+								</div>
+
+							</div>															
+							
+						</div>
+						
+						<div class="row">
+						
+							
+							<div class="col-md-12">
+
+								<div class="floating-form-group">
+											<input   id="clinicdates"    type="date"   class="floating-form-control" >									
+											<label  class="label1">Clinic date</label>
+								</div>
+
+							</div>															
+							
+						</div>
+						
+						<div class="row">
+						
+							<div class="col-md-12">
+
+								<div class="floating-form-group">
+											<input   id="cloasingdates"    type="date"   class="floating-form-control" >									
+											<label  class="label1">Closing date</label>
+								</div>
+
+							</div>
+							
+																								
+							
+						</div>
+						
+						<br><br>
+						
+						
+						
+						
+						<div class="floating-form-group">
+							<button type="button" id="savereportformdatesbutt" class="btn btn-primary" data-dismiss="modal" 
+								onclick="savereportformdates()" style="width:100px;background-color: #9c27b0;">Save</button>
+						
+						</div>
+						
+						
+						
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+				  </div>
+
+			</div>
+            
+			
+			
+			
+			<div class="col-lg-4 d-flex align-items-stretch" id="firstdiv">
+
+				
+
+			</div>
+
+							
+							
+						</div>	
+
+					</div>
+
+				</div>
+			
+			
+			
+		</div>
+		
+		</div>
+		
+		
+
+
+
+</body>
+
+</html>
+

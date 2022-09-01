@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>Shule one : Exam analysis</title>
+  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+  
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" type="text/css" href="./assets/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="./plugins/fontawesome-free/css/all.min.css">
+  <link href="./assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+  <link href="./assets/css/mainimagecapture.css" rel="stylesheet" />
+  <link type="text/css" rel="stylesheet" href="./assets/css/custom-checkbox-radio.css">		
+  <link rel="stylesheet" href="./dist/css/adminlte.min.css">  
+  <link rel="stylesheet" href="./plugins/daterangepicker/daterangepicker.css"> 
+  <link href="./assets/css/modlacss.css" rel="stylesheet" />
+  <link href="./assets/css/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/css/w3.css">
+    
+  <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css' rel='stylesheet'>
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+ 
+  
+	<link rel="stylesheet" href="./assets/css/dataTables.responsive.css">
+	<link rel="stylesheet" href="./plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="./plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="./plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+	<link rel="stylesheet" href="./assets/css/fixedColumns.dataTables.min.css">
+	<link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.min.css" rel="stylesheet"/>
+  
+	
+   
+		
+<style> 
+.modal { overflow: auto !important; }
+</style>		
+		
+</head>
+
+
+<body class=""  id="" >
+  <div class="wrapper ">
+    
+	<div class="sidebar" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+      
+		<div class="logo"><a href="" class="simple-text logo-normal">SHULE ONE</a></div>
+		
+		<div class="sidebar-wrapper">
+        
+		<ul class="nav">
+			  
+			  
+			  <li class="nav-item active">
+				<a href="#"  class="nav-link"  onclick="loadexamdashboard()">
+				  <i class='material-icons' >dashboard</i>
+				  <p>Dashboard</p>
+				</a>				
+			  </li>	
+			  
+			  
+			  <li class="nav-item" >
+				<a   class="nav-link"  href="#" onclick="loadlistofexams()">
+				  <i class='material-icons' >create</i>
+				  <p>Create & process</p>
+				</a>				
+			  </li>
+			  
+			  <li class="nav-item" >
+				<a   class="nav-link"  href="#" onclick="loadlistofallowedexams()">
+				  <i class='material-icons' >input</i>
+				  <p>Enter marks</p>
+				</a>				
+			  </li>
+			  
+			   <li class="nav-item" >
+				<a   class="nav-link"  href="#" onclick="subjects()">
+				  <i class='material-icons' >subject</i>
+				  <p>Subject</p>				  
+				</a>
+				
+			  </li>
+			  
+			  <li class="nav-item" >
+				<a   class="nav-link"   href="#" onclick="loadsubjectselection()">
+				  <i class='material-icons' >insert_chart</i>
+				  <p>Subject selection</p>
+				  
+				</a>
+				
+			  </li>
+			  
+			
+			  
+			  <li class="nav-item" >
+				<div class="iocn-link">
+				  <a   class="nav-link"   href="#">
+					<i class='material-icons' >settings</i>
+				    <p>Settings</p>
+					
+				  </a>
+				  <i class='bx bxs-chevron-down arrow' ></i>
+				</div>
+				
+				<ul class="sub-menu">
+				  <li><a  id="examcategorieslink"  		href="#" onclick="grades()" 		>Grades</a></li>
+				  <li><a  id="examcategorieslink"  		href="#" onclick="subjectgroups()"	>Subject groups</a></li>
+				  <li><a  id="examcategorieslink"  		href="#" onclick="examcategories()"	>Exam categories</a></li>
+				  <li><a  id="examremarkslink"     		href="#" onclick="remarks()"	 	>Remaks</a></li>
+				  <li><a  id="examgradingsystemlink" 	href="#" onclick="gradingsystem()"  >Grading system</a></li>
+				  <li><a  id="examselectionperiodlink"	href="#" onclick="moresettings()"   >Report dates</a></li>
+				</ul>
+				
+			  </li>
+			  
+			  
+		</ul>
+		
+    </div>
+    </div>
+
+
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        
+		<div class="container-fluid">
+          
+		  
+		  <div class="navbar-wrapper">
+            <a id="regmenuname" class="navbar-brand" href="javascript:;">EXAM ANALYSIS</a>
+			
+			<form id="regsearchbut"  style="margin-left:20px;display:none">
+              <div class="input-group no-border">
+                <input  id="search"  type="text" value="" class="form-control" placeholder="Search...">
+                <button id="searchicon"  type="submit" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+                  <div class="ripple-container"></div>
+                </button>
+              </div>
+            </form>
+			
+          </div>
+
+		  
+          <button id="toglebutt"  class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+		  
+          <div class="collapse navbar-collapse justify-content-end">
+            
+			<form class="navbar-form">
+              
+            </form>
+			
+            <ul class="navbar-nav">
+			
+			
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">person</i>
+                  <p class="d-lg-none d-md-block">
+                    Account
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <div style="width: 50%;margin: 0 auto;">
+						 <img th:src="${image}"  alt=""  style= "width:50px;height:50px;border-radius: 50%;box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24); ">  
+				  </div>  
+				  <a class="dropdown-item" href="#" th:text="${email}" style="width: 50%;margin: 0 auto;" ></a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" th:href="@{/logout}" href="#" style="width: 50%;margin: 0 auto;">Log out</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+
+
+
+      
+      <!-- End Navbar -->
+      <div class="content" id="output">
+        <div class="container-fluid">
+          
+
+
+          <div class="row">
+            
+            <div class="col-md-6">
+				
+							
+			   <div class="row">
+			 
+						<div class="col-lg-6 d-flex align-items-stretch">
+				
+							<div class="card card-stats">
+							<div class="card-header card-header-warning card-header-icon">
+							  <div class="card-icon">
+								<i class="material-icons">content_copy</i>
+							  </div>
+							  <p class="card-category">Total # of exams</p>
+							  <h3 class="card-title" th:text="${totalexams}"><small> </small></h3>
+							</div>
+							<div class="card-footer">
+							  <div class="stats">
+								<i class="material-icons text-danger">add</i>
+								<a  onclick="loadlistofexams()" href="#">List of exams</a>
+							  </div>
+							</div>
+						  </div>
+						</div>
+						
+						
+						
+						<div class="col-lg-6 d-flex align-items-stretch">
+							<div class="card card-stats">
+								<div class="card-header card-header-success card-header-icon">
+								  <div class="card-icon">
+									<i class="material-icons">store</i>
+								  </div>
+								  <p class="card-category">Above average</p>
+								  <h3 class="card-title"  th:text="${aboveaverage}"></h3>
+								</div>
+								<div class="card-footer">
+								  <div class="stats">
+									<i class="material-icons text-danger">store</i>
+									<a  onclick="loadlistofexams()" href="#">Show list</a>
+								  </div>
+								</div>
+							  </div>
+						</div>
+						
+						
+				
+				</div>
+				
+				
+				<div class="row">
+			 
+				
+				<div class="col-lg-6 d-flex align-items-stretch">
+						  <div class="card card-stats">
+					<div class="card-header card-header-danger card-header-icon">
+					  <div class="card-icon">
+						<i class="material-icons">info_outline</i>
+					  </div>
+					  <p class="card-category">Below average</p>
+					  <h3 class="card-title"  th:text="${belowaverage}" ></h3>
+					</div>
+					<div class="card-footer">
+					  <div class="stats">
+						<i class="material-icons text-danger">info</i>
+						<a  onclick="loadlistofexams()" href="#">Show list</a>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				
+				<div class="col-lg-6 d-flex align-items-stretch">
+						  <div class="card card-stats">
+					<div class="card-header card-header-info card-header-icon">
+					  <div class="card-icon">
+						<i class="material-icons">list</i>
+					  </div>
+					  <p class="card-category">Active exams</p>
+					  <h3 class="card-title"  th:text="${activeexams}" ></h3>
+					</div>
+					<div class="card-footer">
+					  <div class="stats">
+						<i class="material-icons text-danger">list</i>
+						<a  onclick="loadlistofexams()" href="#">Show list</a>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				
+				
+			  </div>
+			  
+
+			
+			</div>
+            
+           
+            <div class="col-lg-6 d-flex align-items-stretch">
+              <div class="card card-chart"  id="right2">
+			  
+                 <div class="card-header card-header-danger"  style="height: 100%;">
+                  <div class="ct-chart" id="chartexamalldashboard"  style="height: 100%;"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">School performance</h4>
+                  <p class="card-category">Last 5 years</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> Last eaxm, TERM1 OPENER 2022
+                  </div>
+                </div>
+				
+              </div>
+            </div>
+
+
+          </div>
+		  
+		  
+		  
+		  <div class="row" style="margin-top:-35px;">
+		  
+		  
+			<div class="col-md-12">
+              
+
+				  <div class="card" id="left">
+				   
+						<div class="row" >
+					
+				   
+							<div class="col-md-4"  style="margin:20 auto;margin-top:20px;margin-left:15px;margin-right:15px;margin-bottom:20px">
+				
+								<div class="floating-form-group"   id="searchstudentreportdiv">
+										<input name="searchstudentreport" id="searchstudentreport" class="floating-form-control" type="text"  placeholder=" " required>							
+										<label   class="label1">Search students</label>
+								</div>
+							
+							</div>
+						
+						</div>
+						
+						<div class="row" >
+							<div class="col-md-12" >
+				
+						 
+								<div class="card-header card-header-tabs card-header-primary">
+								  <h4 class="card-title" >Student performance history</h4>			  				  					  
+								</div>
+								<div class="card-body table-responsive" >
+								  <table class="table table-hover table-dark">
+									<thead class="text-warning">
+									  <th style="width: 40%">Class</th>
+									  <th style="width: 20%">Male</th>
+									  <th style="width: 20%">Female</th>
+									  <th style="width: 20%">Total</th>
+									</thead>
+
+									<tbody>
+									  
+									  <tr th:block th:each="student: ${listofstudentsperclass}">						
+											<th:block th:each="collumn : ${collumns}">								
+											<td  style="width: 40%;"  th:if="${collumn} == class" th:text="${student.activeProperty(collumn).getValue()}" />
+											<td  style="max-width: 15%;color:#d6a3e1;font-size:14px;font-weight:bold;"  th:if="${collumn} == male" th:text="${#numbers.formatDecimal(student.activeProperty(collumn).getValue(), 0, 'COMMA', 0, 'POINT')}" />							
+											<td  style="max-width: 15%;color:#33ff33;font-size:14px;font-weight:bold;"  th:if="${collumn} == female" th:text="${#numbers.formatDecimal(student.activeProperty(collumn).getValue(), 0, 'COMMA', 0, 'POINT')}" />							
+											<td  style="max-width: 15%;color:firebrick;font-size:19px;font-weight:bold;"  th:if="${collumn} == total" th:text="${#numbers.formatDecimal(student.activeProperty(collumn).getValue(), 0, 'COMMA', 0, 'POINT')}" />							
+											</th:block> 							
+									  </tr>                      
+									 
+									</tbody>
+
+								  </table>
+								</div>
+								
+							</div>
+						 
+						 </div>
+					
+				  </div>
+				
+
+			  </div>
+			
+			
+			
+			
+			</div>
+          
+
+        </div>
+      </div>
+	  
+	  
+	  
+	  
+	  
+<footer class="footer">
+        <div class="container-fluid">
+         
+
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, All Rights Reserved
+            <a href="https://www.walgotech.co.ke" target="_blank">Walgotech Solutions</a>
+          </div>
+        </div>
+</footer>
+	  
+	  
+	  
+	  
+	  
+	
+
+	
+	  
+  
+  
+<div id="myModal" class="modal fade"  style="z-index: 10000000000000 !important;">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="material-icons">&#xE876;</i>
+				</div>				
+				<h4 class="modal-title w-100" id="messageid"></h4>	
+			</div>
+			
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>  
+  
+  
+  
+  
+  
+<div id="myModalError" class="modal fade" style="z-index: 10000000000000 !important;">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">								
+				<h4 class="modal-title w-100" id="change-me"></h4>	
+			</div>
+			
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>  
+  
+  
+  
+  
+  
+<div id="myModalErrorstop" class="modal fade" style="z-index: 10000000000000 !important;">
+    <div class="modal-dialog modal-confirmmcee">
+        <div class="modal-content">
+            <div class="modal-header flex-column">
+                <div class="icon-box">
+                    <i class="material-icons">&#xE5CD;</i>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+              	<h4 class="modal-title w-100" id="errormessage"></h4>			
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+
+
+  
+<div id="myModaldelete" class="modal fade" style="z-index: 10000000000000 !important;">
+    <div class="modal-dialog modal-confirmmcee">
+        <div class="modal-content">
+            <div class="modal-header flex-column">
+                <div class="icon-box">
+                    <i class="material-icons">&#xE5CD;</i>
+                </div>
+                <h4 class="modal-title w-100">Are you sure?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Do you really want to delete these records? This process cannot be undone.</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" id="confirmdeletebutt" data-dismiss="modal" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="modalprogress" class="modal fade">
+    <div class="modal-dialog modal-confirmloading">
+        <div class="modal-content">
+            
+			<div class="modal-header flex-column">
+					<h4 class="alignleft" style="margin-top:-20px">Please wait..</h4> 
+			
+            </div>
+			
+			
+            <div class="modal-body">
+			
+			<div class="row" >           
+				<div class="column">
+					<div class="main-">
+					  <div class="double-lines-spinner" style="margin-left:0px"></div>
+					</div>
+				</div>
+				<div class="column" style="margin-left:30px">
+					<h4 class="modal-title w-100" style="font-size: 20px;">Loading data</h4> 
+				</div>
+			</div>
+			
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="modalshowreport" class="modal">
+	  
+			<div class="modal-dialog">
+			
+				<div class="modal-content">
+					
+					<div class="modal-header" style="background-color:#9C27B0 ;max-height:50px" >
+						<h4 id="reporttitlemain" class="modal-title" style="color:white;margin-top:-6px"></h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					
+					<div class="modal-body">
+		
+						<div id="divtoholdreport" class="card-body table-responsive" >
+						
+						</div>		
+			
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				  
+				</div>
+			</div>
+</div>
+
+
+
+
+<div id="modalprogresssendsms" class="modal fade" style="z-index: 10000000000000 !important;">
+    <div class="modal-dialog modal-confirmloading">
+        <div class="modal-content">
+            
+			<div class="modal-header flex-column">
+					<h4 class="alignleft" style="margin-top:-20px">Please wait..</h4>			
+            </div>			
+			
+            <div class="modal-body">
+			
+				<div class="row" >           
+					<div class="column">
+						<div class="main-">
+						  <div class="double-lines-spinner" style="margin-left:0px"></div>
+						</div>
+					</div>
+					<div class="column" style="margin-left:30px">
+						<h4 class="modal-title w-100" style="font-size: 20px;">Sending sms</h4> 
+						<h3 class="modal-title w-100" style="font-size: 20px;"></h3> 
+					</div>
+				</div>
+			
+            </div>
+			
+			<div class="modal-footer justify-content-center">
+				<button  id="buttonstopsendingsms" onclick="stopsendexam()" data-toggle="modal" type="submit" class="btn btn-primary"  form="showreportForm" value="Submit" >Stop</button>
+			</div>
+                                                                                                                              ``
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="modalprogress2" class="modal fade" style="z-index: 10000000000000 !important;">
+    <div class="modal-dialog modal-confirmloading">
+        <div class="modal-content">
+            
+			<div class="modal-header flex-column">
+					<h4 class="alignleft" style="margin-top:-20px">Please wait..</h4>			
+            </div>			
+			
+            <div class="modal-body">
+			
+				<div class="row" >           
+					<div class="column">
+						<div class="main-">
+						  <div class="double-lines-spinner" style="margin-left:0px"></div>
+						</div>
+					</div>
+					<div class="column" style="margin-left:30px">
+						<h4 class="modal-title w-100" style="font-size: 20px;">Loading data</h4> 
+					</div>
+				</div>
+			
+            </div>					
+                                                                                                                              ``
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="modalgeneratereports" class="modal fade" style="z-index: 10000000000000 !important;">
+    <div class="modal-dialog modal-confirmmcee">
+        <div class="modal-content">
+            <div class="modal-header flex-column">                
+                <h5 class="modal-title w-100">Generate</h5>
+                <h5 id="reporttitle" style="color:orange;" class="modal-title w-100"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                
+				<form  id="showreportForm">            
+
+					<div class="floating-form-group"  id="selectyeardiv"  style="width: 60%; margin: 0 auto; display:none">
+							<input   id="selectyear"  name="date of joining"   type="date"  class="floating-form-control"    required>							
+							<label   class="label1">Select year</label>
+					</div>
+
+					<div class="floating-form-group"  id="selectclassdiv"  style="width: 60%; margin: 0 auto; display:none;">
+								<select  id="selectval"  name="selectreportval" type="select"  class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+									<option ></option>
+									<option th:each="student: ${classesreports}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}"></option>
+								</select>								
+								<label id="cclass" class="label2">Select class</label>
+					</div>
+					
+					<div class="floating-form-group"   id="hosteldiv"  style="width: 60%; margin: 0 auto; display:none;">
+							<select   name="hostel" id="hostel"    type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"required>
+								<option ></option>
+								<option th:each="student: ${hostelreport}" th:value="${student.activeProperty('hostelid').getValue()}" th:text="${student.activeProperty('hostel').getValue()}">Alabama</option>
+							</select>							
+							<label class="label2">Hostel</label>
+					</div>
+					
+					<div class="floating-form-group" id="reservationdiv" style="width: 60%; margin: 0 auto;margin-top:25px; display:none">
+							<input  id="reservation" name="daterange"   class="floating-form-control" required >							
+							<label   class="label1">Daterange</label>
+					</div>
+					
+					 <div class="floating-form-group"   id="searchstudentreportdiv"  style="width: 80%; margin: 0 auto; display:none">
+							<input name="searchstudentreport" id="searchstudentreport" class="floating-form-control" type="text"  placeholder=" " required>							
+							<label   class="label1">Search students</label>
+					 </div>
+					 
+					 <div class="floating-form-group"   id="religiondiv"  style="width: 60%; margin: 0 auto; display:none;">
+							<select   name="religionreportselect" id="religionreportselect"    type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);" required>
+								<option ></option>
+								<option th:each="student: ${religions}" th:value="${student.activeProperty('religion').getValue()}" th:text="${student.activeProperty('religion').getValue()}">Alabama</option>
+							</select>							
+							<label class="label2">Select denomination</label>
+					</div>
+				
+				</form>
+				
+            </div>
+            <div class="modal-footer justify-content-center">
+				<button  id="reportmodalbutt" data-toggle="modal" type="submit" class="btn btn-primary"  form="showreportForm" value="Submit" >Show report</button>
+			</div>
+        </div>
+    </div>
+</div>		
+
+
+
+
+
+<div id="popupcreatenewexam" class="modal">
+					<div class="modal-medium">
+						<div class="modal-content">
+
+							<div class="modal-header"
+								style="background-color: #9C27B0; max-height: 50px">
+								<h5 "createtitle" class="modal-title" style="color: white; margin-top: -6px">CREATE NEW EXAM</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top: -15px">
+
+
+										<div class="col-md-12">
+
+											<div class="row">
+
+
+												<div class="col-md-12">
+
+													<div class="card-body">
+														
+														<form  id="customerFormexam" onsubmit="submitForm(event)"> 
+														
+															</br>
+															
+																
+																<div class="floating-form-group">
+																		<input id="examdate" name="examdate" class="floating-form-control" type="text"
+																			onclick="(this.type='date')" placeholder=" " required >
+																		<span class="highlight"></span> <label class="label1">Date
+																		</label>
+																</div>
+																
+																<div class="floating-form-group" >
+																	<select   id="examcategory" name="examcategory"   type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+																		<option ></option>
+																		<option th:each="student: ${examcategory}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('Category').getValue()}">Alabama</option>
+																		</select>
+																	<label class="label2">Exam category</label>
+																</div>
+																
+																<div class="floating-form-group" >
+																	<select   name="examclass" id="examclass"    type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+																		<option ></option>
+																		<option th:each="student: ${classes}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}">Alabama</option>
+																		</select>
+																	<label class="label2">Select class</label>
+																</div>
+																
+																<div class="floating-form-group" >
+																	<select   id="examterm"  name="examterm"    type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+																		<option ></option>
+																		<option th:each="student: ${term}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('sem').getValue()}">Alabama</option>
+																		</select>
+																	<label class="label2">Select Term/sem</label>
+																</div>
+																
+																
+																<div id="customexamnamediv" class="floating-form-group" style="display:none">
+																			<input   id="customexamname" name="customexamname" class="floating-form-control" type="text"  placeholder=" " >							
+																			<label   class="label1">Custom exam name</label>
+																</div>
+																
+															
+
+															<div class="row">
+
+																<div class="col-md-6">
+																	<div class="floating-form-group">
+																		<label class="container">Create for all active classes
+																		  <input id="includeallclassescheck" type="checkbox"  >
+																		  <span class="checkmark"></span>
+																		</label>
+																	</div>
+																</div>	
+
+																<div class="col-md-6">
+																	<div class="floating-form-group">
+																		<label class="container">Check for custom exam name.(appends class infront) 
+																		  <input id="customexamnamecheck" type="checkbox"  >
+																		  <span class="checkmark"></span>
+																		</label>
+																	</div>
+																</div>	
+
+															</div>																																										
+															
+															<div class="row">																
+
+															</div>
+															
+														</form>	
+														
+													</div>
+
+
+														
+														
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+								
+							</div>
+
+							<div class="modal-footer">
+							
+								<button type="button" id="saveexambutt" class="btn btn-primary" data-dismiss="modal" 
+								style="width:160px;background-color: #9c27b0;"></button>
+
+								<button type="button" style="width:100px" class="btn btn-default"	data-dismiss="modal">Cancel</button>
+								
+							</div>
+						</div>
+					</div>
+</div>
+
+				
+
+
+
+
+<div id="popupcreatenewgrade" class="modal">
+					<div class="modal-small">
+						<div class="modal-content">
+
+							<div class="modal-header"
+								style="background-color: #9C27B0; max-height: 50px">
+								<h5 "createtitle" class="modal-title" style="color: white; margin-top: -6px">Add new grade</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top: -15px">
+
+
+										<div class="col-md-12">
+
+												<div class="row">
+
+
+													<div class="col-md-12">
+
+														<div class="card-body">
+															
+																</br>
+																
+																
+																<form  id="customerFormnewgrade" onsubmit="submitForm(event)">            
+																
+																	
+																	
+																	<div class="floating-form-group">
+																			<input  id="examgrade" name="grade"  class="floating-form-control" type="text"  placeholder=" ">							
+																			<label   class="label1">Grade</label>
+																	</div>
+																	
+																	
+																</form>	
+															
+														</div>
+
+
+															
+															
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+								
+							</div>
+
+							<div class="modal-footer">
+							
+								<button  id="formsubmitbuttgrade" data-toggle="modal" type="submit" class="btn btn-primary"  form="customerFormnewgrade" value="Submit" 
+								style="width:160px;background-color: #9c27b0;"></button>
+
+								<button type="button" class="btn btn-default"	data-dismiss="modal">Cancel</button>
+								
+							</div>
+							
+							
+						</div>
+					</div>
+</div>
+
+
+
+
+
+<div id="popupentermarks" class="modal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+
+							<div class="modal-header"
+								style="background-color: #9C27B0; max-height: 50px">
+								<h5 class="modal-title" style="color: white; margin-top: -6px">ENTER MARKS</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top: -15px">
+
+
+
+
+										<div class="col-md-12">
+
+											<div class="card-body">
+												<form>
+													</br>
+													<div class="row">
+														<div class="col-md-3">
+															<div class="form-group">
+																<label class="bmd-label-floating">Out of</label>
+																<input id="outofbox" type="number" class="form-control" required>
+															</div>
+														</div>
+
+													</div>
+
+
+
+													<div class="row">
+														<div  id="div1entermarks" class="col-md-12">
+
+															
+
+
+														</div>
+
+													</div>
+
+
+												</form>
+											</div>
+
+
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" style="background-color:#9C27B0"
+									data-dismiss="modal" onclick="submitmarks()" >Submit</button>
+
+							</div>
+						</div>
+					</div>
+</div>
+
+
+
+
+
+
+
+
+
+<div id="popupeexamdetails" class="modal" >
+	  
+			<div class="modal-dialog">
+			
+				<div class="modal-content">
+					
+					<div class="modal-header" style="background-color:#9C27B0 ;max-height:60px" >
+						<h5 id="examdetails" class="modal-title" style="color:white;margin-top:-9px"></h5>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					
+					<div class="modal-body">
+		
+		
+						<div class="content">
+						  <div class="container-fluid">
+
+						
+							<div class="row" style="margin-left:-33px;margin-right:-33px;">
+								<div class="col-sm-12 table-responsive">
+
+											  <div class="w3-container">
+									 
+														 
+
+														<div class="w3-bar w3-grey">
+														  <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'cityanalysis')">Analysis</button>
+														  <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'citymarks')">Marks & Reports</button>
+														</div>
+														
+														
+														<div id="cityanalysis" class="w3-container  city w3-animate-left">
+																
+																
+																<div class="row">
+																		
+																	<div  class="col-lg-2 d-flex align-items-stretch">
+																	
+																	<div class="row">
+																																				
+																		<div  class="col-md-12" style="margin-top:30px">																			
+																			
+																				<div  class="col-md-12">
+																					<p style="text-align:center">Mean Marks</p>
+																				</div>				
+																				<div  class="col-md-12" style="margin-top:-19px">
+																						<h3  id="exammeanmarks" style="color:#30df30;text-align:center;font-weight:bold"></h3>
+																				</div>	
+																			
+																		</div>
+																			
+																		
+																	<div  class="col-md-12" style="">
+																			<hr style="width:100%;text-align:left;margin-left:0">
+																	</div>
+																	
+																	
+																	<div  class="col-md-12" style="">
+																			
+																			
+																				<div  class="col-md-12">
+																					<p style="text-align:center">Mean Grade</p>
+																				</div>				
+																				<div  class="col-md-12" style="margin-top:-19px">
+																						<h2 id="exammeangrade"  style="width:100%;text-align:center;font-weight:bold"></h2>
+																				</div>	
+																			
+																	</div>
+															
+																	</div>
+																	
+																	
+																	</div>
+																	
+																	<div  class="col-lg-2 d-flex align-items-stretch">																	
+																			<h5  style="margin:auto;">Mean points</h5>
+																			<h3  id="exammeanpoints"  style="margin:auto;color:orange;font-weight:bold"></h3>
+																		
+																	</div>
+																	
+																	<div  class="col-lg-6 d-flex align-items-stretch">
+																	
+																		<div class="card card-chart"  id="right2">
+			  
+																			<div class="card-header card-header-danger"  style="height: 100%;">
+																			  <div class="ct-chart" id="charteaxmscoreperstream"  style="height: 100%;"></div>
+																			</div>
+																			<div class="card-body">
+																			  <h4 class="card-title">Score per stream (Points)</h4>
+																			</div>
+																			
+																		
+																		</div>
+																		
+																	</div>
+																	
+																	
+																	<div  class="col-lg-2 d-flex align-items-stretch">																		
+																		<h3  id="examnumberofstudents"  style="margin:auto;color:grey;font-weight:bold"></h3>	
+													
+																	</div>
+																
+																	
+																</div>
+																
+																
+																
+																
+																<div class="row">
+																
+																	<div  class="col-lg-8 d-flex align-items-stretch">
+																			<div id="div1scoreperstream" class="col-md-12">					
+
+																			</div>
+																	</div>
+																	
+																	
+																	<div  class="col-lg-4 d-flex align-items-stretch">
+																	
+																		<div class="card card-chart"  id="right2">
+			  
+																			<div class="card-header card-header-success"  style="height: 100%;">
+																			  <div class="ct-chart" id="scorepersubbarchart"  style="height: 100%;"></div>
+																			</div>
+																			<div class="card-body">
+																			  <h4 class="card-title">Score per subject</h4>
+																			</div>
+																			
+																		
+																		</div>
+																	
+																	
+																	</div>
+																
+																</div>
+																
+														</div>
+													
+														<div id="citymarks" class="w3-container city  w3-animate-left" style="display:none;">					
+															
+															<div class="row">
+							
+																<div class="col-md-2" style="margin-top:17px;margin-bottom:-10px;">																	
+																	<div class="floating-form-group">																		
+																		<select   id="selectexamstreams"   type="select"  class="floating-select" onchange="selectexammarksbystream()"  required>
+																		</select>																		
+																		<label id="cclass" class="label2">Select stream</label>																		
+																	</div>																									
+																</div>
+
+																<div class="col-md-2" style="margin-top:17px;margin-bottom:-10px;">																	
+																																										
+																</div>
+																<div class="col-md-2" style="margin-top:17px;margin-bottom:-10px;">																	
+																																										
+																</div>
+
+																<div class="col-md-2" style="margin-top:17px;margin-bottom:-10px;">																	
+																																										
+																</div>
+																<div class="col-md-2" style="margin-top:17px;margin-bottom:-10px;">																	
+																																										
+																</div>
+																
+																
+																<div class="col-md-2" style="margin-top:17px;margin-bottom:-10px;">																	
+																	<div class="floating-form-group">																		
+																		<select   id="selectgetexamreports"   type="select"  class="floating-select" onchange="selectgetexamreposrts()"  required>
+																		<option value=""></option>
+																		<option value="rawmarks">Raw marks</option>
+																		<option value="meritlist">Merit list</option>
+																		<option value="bestclass">Performance per stream</option>
+																		<option value="subjectanalysis">Subject analysis</option>
+																		<option value="meangradeanalysis">Mean grade analysis</option>
+																		<option value="subjectranking">Subject ranking</option>
+																		<option value="reportform">Report form</option>
+																		<option value="mostimproved">Most improved</option>
+																		<option value="mostdeclined">Most declined</option>
+																		<option value="topnstudents">Top n students</option>
+																		<option value="studentpositionpersub">Student position per sub</option>
+																		<option value="beststudentpersub">Best student per sub</option>
+																		<option value="bestclaspersub">Best class per sub</option>
+																		<option value="classperformanceprogress">Class perfomance progress</option>
+																		</select>																		
+																		<label id="cclass" class="label2">Select report</label>																		
+																	</div>																									
+																</div>	
+															
+															
+															</div>
+															
+															
+															
+															<div class="row">
+																<div  id="div1marksasadmin" class="col-md-12">
+																
+																</div>																														
+																
+															</div>
+
+														</div>
+														
+														
+											
+															
+															
+												</div>
+
+									</div>
+								  </div>
+
+
+								</div>
+							</div>
+					
+				
+						</div>
+						
+			  <div class="modal-footer">
+					<button id="buttonsubmitmarksasadmin" type="button" class="btn btn-primary" style="background-color:#9C27B0;display:none" data-dismiss="modal" onclick="submitmarksadmin()" >Submit</button>
+			  </div>
+			  
+			</div>
+			
+		   </div>
+		   
+		</div>
+
+
+
+
+
+
+
+<div id="popupcreatenewsubjectgroup" class="modal">
+					<div class="modal-small">
+						<div class="modal-content">
+
+							<div class="modal-header"
+								style="background-color: #9C27B0; max-height: 50px">
+								<h5 "createtitle" class="modal-title" style="color: white; margin-top: -6px">Add new group</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top: -15px">
+
+
+										<div class="col-md-12">
+
+												<div class="row">
+
+
+													<div class="col-md-12">
+
+														<div class="card-body">
+															
+																</br>
+																
+																
+																<form  id="customerFormsubjectgroup" onsubmit="submitForm(event)">            
+																
+																	
+																	
+																	<div class="floating-form-group">
+																			<input   name="subject group"  class="floating-form-control" type="text"  placeholder=" ">							
+																			<label   class="label1">Group</label>
+																	</div>
+																	
+																	
+																</form>	
+															
+														</div>
+
+
+															
+															
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+								
+							</div>
+
+							<div class="modal-footer">
+							
+								<button  id="formsubmitbuttsubjectgroup" data-toggle="modal" type="submit" class="btn btn-primary"  form="customerFormsubjectgroup" value="Submit" 
+								style="width:160px;background-color: #9c27b0;"></button>
+
+								<button type="button" class="btn btn-default"	data-dismiss="modal">Cancel</button>
+								
+							</div>
+							
+							
+						</div>
+					</div>
+</div>
+
+
+
+
+<div id="popupcreatenewexamcategory" class="modal">
+					<div class="modal-small">
+						<div class="modal-content">
+
+							<div class="modal-header"
+								style="background-color: #9C27B0; max-height: 50px">
+								<h5 "createtitle" class="modal-title" style="color: white; margin-top: -6px">Add new category</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top: -15px">
+
+
+										<div class="col-md-12">
+
+												<div class="row">
+
+
+													<div class="col-md-12">
+
+														<div class="card-body">
+															
+																</br>
+																
+																
+																<form  id="customerFormexamcategory" onsubmit="submitForm(event)">            
+																																	
+																	
+																	<div class="floating-form-group">
+																			<input   name="category"  class="floating-form-control" type="text"  placeholder=" ">							
+																			<label   class="label1">Category</label>
+																	</div>
+																	
+																	
+																</form>	
+															
+														</div>
+
+
+															
+															
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+								
+							</div>
+
+							<div class="modal-footer">
+							
+								<button  id="formsubmitbuttexamcategory" data-toggle="modal" type="submit" class="btn btn-primary"  form="customerFormexamcategory" value="Submit" 
+								style="width:160px;background-color: #9c27b0;"></button>
+
+								<button type="button" class="btn btn-default"	data-dismiss="modal">Cancel</button>
+								
+							</div>
+							
+							
+						</div>
+					</div>
+				</div>
+
+
+
+
+	<div id="popupcreatenewremark" class="modal">
+	
+					<div class="modal-small">
+						<div class="modal-content">
+
+							<div class="modal-header"
+								style="background-color: #9C27B0; max-height: 50px">
+								<h5 "createtitle" class="modal-title" style="color: white; margin-top: -6px">Add new</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top: -15px">
+
+
+										<div class="col-md-12">
+
+												<div class="row">
+
+
+													<div class="col-md-12">
+
+														<div class="card-body">
+															
+																</br>
+																
+																
+																<form  id="customerFormremark" onsubmit="submitForm(event)">  
+
+
+																	<input type="hidden" name="Category" id="myInput">
+
+																
+																	<div class="floating-form-group" id="remarksteacherdiv" style="display:none" >
+																		<select   name="teacher"   required  type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"  >
+																			<option th:each="student: ${teacher}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('teacher').getValue()}"></option>
+																		</select>																		
+																		<label class="label2">Select Teacher</label>
+																	</div>
+																
+																
+																	<div class="floating-form-group">
+																		<select  name="grade"   type="select"  required  class="floating-select" onclick="this.setAttribute('value', this.value);"  >
+																			<option ></option>
+																			<option th:each="student: ${grades}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('Grade').getValue()}"></option>
+																		</select>
+																		
+																		<label class="label2">Select grade</label>
+																	</div>
+																	
+																	<div class="floating-form-group">
+																			<input   name="remark" required class="floating-form-control" type="text"  placeholder=" ">							
+																			<label   class="label1">Remark</label>
+																	</div>
+																	
+																	
+																</form>	
+															
+														</div>
+
+															
+													</div>
+													
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+								
+							</div>
+
+							<div class="modal-footer">
+							
+								<button  id="formsubmitbuttremark" data-toggle="modal" type="submit" class="btn btn-primary"  form="customerFormremark" value="Submit" 
+										style="width:160px;background-color: #9c27b0;"></button>
+
+								<button type="button" class="btn btn-default"	data-dismiss="modal">Cancel</button>
+								
+							</div>
+							
+							
+						</div>
+					</div>
+</div>
+
+
+
+
+<div id="popupcopygradingsystem" class="modal">
+	
+					<div class="modal-small">
+						<div class="modal-content">
+
+							<div class="modal-header"
+								style="background-color: #9C27B0; max-height: 50px">
+								<h5 "createtitle" class="modal-title" style="color: white; margin-top: -6px">Copy grading system</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top: -15px">
+
+
+										<div class="col-md-12">
+
+												<div class="row">
+
+
+													<div class="col-md-12">
+
+														<div class="card-body">
+															
+																</br>
+																
+																	<div class="floating-form-group">
+																			<select   id="categorytocopygradingto"   type="select"   class="floating-select"  required>
+																				<option th:each="student: ${subjectgroupswithall}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('Subject group').getValue()}"></option>
+																			</select>												
+																			<label class="label2">Select category to copy to</label>
+																	</div>	
+																
+																	
+															
+														</div>
+
+															
+													</div>
+													
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+								
+							</div>
+
+							<div class="modal-footer">
+							
+								<button  id="formsubmitbuttcopygrading" data-toggle="modal" type="submit" onclick="submitcopygradingsystem()" class="btn btn-primary"   
+										style="width:160px;background-color: #9c27b0;">Save</button>
+
+								
+							</div>
+							
+							
+						</div>
+					</div>
+</div>
+
+
+
+<div id="popupcopyremarks" class="modal">
+	
+					<div class="modal-small">
+						<div class="modal-content">
+
+							<div class="modal-header"
+								style="background-color: #9C27B0; max-height: 50px">
+								<h5 "createtitle" class="modal-title" style="color: white; margin-top: -6px">Copy remarks</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top: -15px">
+
+
+										<div class="col-md-12">
+
+												<div class="row">
+
+
+													<div class="col-md-12">
+
+														<div class="card-body">
+															
+																</br>
+																
+																	<div class="floating-form-group" id="selectteacherremarkdivcategory">
+																			<select   id="categorytocopyremarkto"   type="select"   class="floating-select"  required>
+																				<option th:each="student: ${subjectgroupswithallremarks}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('Subject group').getValue()}"></option>
+																			</select>												
+																			<label class="label2">Select category to copy to</label>
+																	</div>
+
+																	<div class="floating-form-group" style="display:none" id="selectteacherremarkdivteacher">
+																			<select   id="selectremarkteachercombo"   type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+																				<option th:each="student: ${classteacher}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('teacher').getValue()}"></option>
+																			</select>												
+																			<label class="label2">Select Teacher</label>
+																	</div>																	
+																
+																	
+															
+														</div>
+
+															
+													</div>
+													
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+								
+							</div>
+
+							<div class="modal-footer">
+							
+								<button  id="formsubmitbuttcopygrading" data-toggle="modal" type="submit" onclick="submitremark()" class="btn btn-primary"   
+										style="width:160px;background-color: #9c27b0;">Save</button>
+
+								
+							</div>
+							
+							
+						</div>
+					</div>
+</div>
+
+
+
+<div id="popupcreatenewgradingsystem" class="modal">
+					<div class="modal-small">
+						<div class="modal-content">
+
+							<div class="modal-header"
+								style="background-color: #9C27B0; max-height: 50px">
+								<h5 "createtitle" class="modal-title" style="color: white; margin-top: -6px">Add new</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top: -15px">
+
+
+										<div class="col-md-12">
+
+												<div class="row">
+
+
+													<div class="col-md-12">
+
+														<div class="card-body">
+															
+																</br>
+																
+																
+																<form  id="customerFormgradingsystem" onsubmit="submitForm(event)">  
+
+
+																	<input type="hidden" name="Category" id="myInputcategory">
+																	<input type="hidden" name="Class" id="myInputclass">
+
+																
+																	<div class="floating-form-group">
+																		<select  name="grade"   type="select"  required  class="floating-select" onclick="this.setAttribute('value', this.value);"  >
+																			<option ></option>
+																			<option th:each="student: ${grades}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('Grade').getValue()}"></option>
+																		</select>
+																		
+																		<label class="label2">Select grade</label>
+																	</div>
+																	
+																	<div class="floating-form-group">
+																			<input   name="start" required class="floating-form-control" type="number"  placeholder=" ">							
+																			<label   class="label1">start</label>
+																	</div>
+																	
+																	<div class="floating-form-group">
+																			<input   name="end" required class="floating-form-control" type="number"  placeholder=" ">							
+																			<label   class="label1">end</label>
+																	</div>
+																	
+																	
+																</form>	
+															
+														</div>
+
+
+															
+															
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+								
+							</div>
+
+							<div class="modal-footer">
+							
+								<button  id="formsubmitbuttgradingsystem" data-toggle="modal" type="submit" class="btn btn-primary"  form="customerFormgradingsystem" value="Submit" 
+										style="width:160px;background-color: #9c27b0;"></button>
+
+								<button type="button" class="btn btn-default"	data-dismiss="modal">Cancel</button>
+								
+							</div>
+							
+							
+						</div>
+					</div>
+</div>
+				
+				
+				
+				
+<div id="popupcreatenewsubject" class="modal">
+					<div class="modal-small">
+						<div class="modal-content">
+
+							<div class="modal-header"
+								style="background-color: #9C27B0; max-height: 50px">
+								<h5 "createtitle" class="modal-title" style="color: white; margin-top: -6px">Add new subject</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top: -15px">
+
+
+										<div class="col-md-12">
+
+												<div class="row">
+
+
+													<div class="col-md-12">
+
+														<div class="card-body">
+															
+																</br>
+																
+																
+																<form  id="customerFormsubject"  onsubmit="submitForm(event)">            
+																
+																	
+																	
+																	<div class="floating-form-group">
+																			<input   name="code"  class="floating-form-control" type="text"  placeholder=" "   required>							
+																			<label   class="label1">Subject code</label>
+																	</div>
+																	<div class="floating-form-group">
+																			<input   name="sub"  class="floating-form-control" type="text"  placeholder=" "   required>							
+																			<label   class="label1">Subject name</label>
+																	</div>
+																	
+																	<div class="floating-form-group" >
+																		<select   name="class"  type="select"  class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+																			<option ></option>
+																			<option th:each="student: ${classes}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}"></option>
+																		</select>
+																		
+																		<label id="cclass" class="label2">Class</label>
+																    </div>
+																	
+																	<div class="floating-form-group" >
+																		<select   name="category"  type="select"  class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+																			<option ></option>
+																			<option th:each="student: ${subjectgroups}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('Subject group').getValue()}"></option>
+																		</select>
+																		
+																		<label id="cclass" class="label2">Subject category</label>
+																    </div>
+																	
+																	
+																</form>	
+															
+														</div>
+
+
+															
+															
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+								
+							</div>
+
+							<div class="modal-footer">
+							
+								<button  id="formsubmitbuttsubject" data-toggle="modal" type="submit" class="btn btn-primary"  form="customerFormsubject" value="Submit" 
+								style="width:160px;background-color: #9c27b0;"></button>
+
+								<button type="button" class="btn btn-default"	data-dismiss="modal">Cancel</button>
+								
+							</div>
+							
+							
+						</div>
+					</div>
+</div>				
+				
+				
+				
+				
+
+
+ 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+		<script src="./assets/js/jquery.autocomplete.js"></script>
+		<script src="./assets/js/core/popper.min.js"></script>
+		<script src="./assets/js/core/bootstrap-material-design.min.js"></script>
+  	    <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+	    <script src="./assets/js/libs/jspdf.umd.js"></script>
+	    <script src="./assets/js/libs/jspdf.plugin.autotable.js"></script>
+		<script src="./assets/js/plugins/chartist.min.js"></script>  
+		
+		<script src="./assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
+		<script src="./assets/js/plugins/moment.min.js"></script>
+		<script src="./plugins/daterangepicker/daterangepicker.js"></script>
+  
+		<script src="./assets/dynamicjs/dynamicjs.js"></script>
+		<script src="./assets/dynamicjs/script.js"></script>
+		<script src="./assets/js/nprogress.js"></script>
+ 		<script src="./assets/js/webcamandregistrationtabs.js"></script>
+		
+		
+		<script src="./assets/js/plugins/jquery.dataTables.min.js"></script>
+		<script src="./plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="./plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+	
+		<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>  
+		<script src="https://cdn.datatables.net/plug-ins/725b2a2115b/api/fnFilterClear.js"></script>
+		<script src="https://cdn.jsdelivr.net/jquery.ui-contextmenu/1.7.0/jquery.ui-contextmenu.min.js"></script>
+		<script src="https://cdn.datatables.net/fixedcolumns/4.1.0/js/dataTables.fixedColumns.min.js"></script>
+		
+		<script src="./assets/js/jquery-ui.min.js"></script>
+  	    <script src="./assets/js/fnFilterClear.js"></script>
+  	    <script src="./assets/js/jquery.ui-contextmenu.min.js"></script>
+  	    <script src="./assets/js/dataTables.fixedColumns.min.js"></script>
+  	    
+
+
+		
+		
+		
+
+
+
+<script>  
+
+$(document).ready(function() {
+ 	 
+	 dataCompletedTasksChart  = {
+        labels: ['12p', '3p', '6p', '9p', '12p', '3a', '6a', '9a'],
+        series: [
+          [230, 750, 450, 300, 280, 240, 200, 190]
+        ]
+      };
+	 
+	 
+	  var chartexamalldashboard = new Chartist.Line('#chartexamalldashboard', dataCompletedTasksChart, null);
+      md.startAnimationForLineChart(chartexamalldashboard);
+
+	 
+});
+
+
+
+</script>
+
+
+ 
+</body>
+
+</html>

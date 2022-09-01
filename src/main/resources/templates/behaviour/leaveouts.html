@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Shule one : Leaveouts & Suspensions
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  
+  <link rel="stylesheet" href="./plugins/fontawesome-free/css/all.min.css">
+  
+  
+  <!-- CSS Files -->
+  <link href="./assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+  <link href="./assets/css/mainimagecapture.css" rel="stylesheet" />
+  <link type="text/css" rel="stylesheet" href="./assets/css/custom-checkbox-radio.css">
+		
+  <link rel="stylesheet" href="./dist/css/adminlte.min.css">
+
+  
+  <link rel="stylesheet" href="./plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="./plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="./plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="./plugins/daterangepicker/daterangepicker.css">
+  
+  
+  <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css' rel='stylesheet'>
+  <link href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.min.css" rel="stylesheet"/>
+
+  <link href="./assets/css/modlacss.css" rel="stylesheet" />	
+	
+<style> 
+.modal { overflow: auto !important; }
+</style>
+  
+</head>
+
+<body class="bdbody"  style="zoom:90%">
+  <div class="wrapper ">
+    
+	
+	
+	<div class="sidebar" data-color="purple" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+      -->
+      <div class="logo"><a href="" class="simple-text logo-normal">
+        Registration
+      </a></div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          
+		   <li class="nav-item  ">
+            <a class="nav-link"  th:href="@{/registration}">
+              <i class="material-icons">dashboard</i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link"  th:href="@{/students}">
+					  <i class="material-icons">person</i>
+              <p>Students</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link"  th:href="@{/teachers}">
+					  <i class="material-icons">group</i>
+              <p>Teachers</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link"  th:href="@{/staff}">
+					 <i class="material-icons">library_books</i>
+             <p>Support Staff</p>
+           </a>
+         </li>
+
+         <li class="nav-item ">
+          <a class="nav-link"  th:href="@{/board}">
+					  <i class="material-icons">bubble_chart</i>
+            <p>Board Members</p>
+          </a>
+        </li>
+		
+		<li class="nav-item active">
+          <a class="nav-link"  th:href="@{/leaveouts}">
+					  <i class="material-icons">content_paste</i>
+            <p>Leave outs & Suspension</p>
+          </a>
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+    
+	
+	<div class="main-panel">
+      
+	  <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute  ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <form class="navbar-form" style="margin-left:25px">
+              <div  class="input-group no-border">
+                <input id="search" type="text" value="" class="form-control" placeholder="Search...">
+                <button  id="searchicon" type="submit" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+                  <div class="ripple-container"></div>
+                </button>
+              </div>
+            </form>
+          </div>
+          
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+		  
+          <div class="collapse navbar-collapse justify-content-end">
+            
+            <ul class="navbar-nav">
+			
+				<li class="nav-item dropdown">
+								<a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Reports</a>
+							  
+							  <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+								  <li><a  href="#" id="clsreport" onclick="myFunction(document.getElementById('clsreport').text)"  class="dropdown-item">class lists report</a></li>
+								  <li><a  href="#" id="clsreport1" onclick="myFunction(document.getElementById('clsreport1').text)"  class="dropdown-item">empty class lists</a></li>	
+								  <li><a  href="#" id="clsreport2" onclick="myFunction(document.getElementById('clsreport2').text)"  class="dropdown-item">detailed list of students</a></li>
+								  <li><a  href="#" id="clsreport3" onclick="myFunction(document.getElementById('clsreport3').text)"  class="dropdown-item">Transfered students</a></li>
+								  <li><a  href="#" id="clsreport4" onclick="myFunction(document.getElementById('clsreport4').text)"  class="dropdown-item">List of teachers</a></li>
+								  <li><a  href="#" id="clsreport5" onclick="myFunction(document.getElementById('clsreport5').text)"  class="dropdown-item">Support staff</a></li>
+								  <li><a  href="#" id="clsreport6" onclick="myFunction(document.getElementById('clsreport6').text)"  class="dropdown-item">List of allumni</a></li>
+								  <li><a  href="#" id="clsreport7" onclick="myFunction(document.getElementById('clsreport7').text)"  class="dropdown-item">Hostel</a></li>
+								  <li><a  href="#" id="clsreport8" onclick="myFunction(document.getElementById('clsreport8').text)"  class="dropdown-item">Generate leaving cert</a></li>
+								  <li><a  href="#" id="clsreport9" onclick="myFunction(document.getElementById('clsreport9').text)"  class="dropdown-item">parents list</a></li>
+								  <li><a  href="#" id="clsreport10" onclick="myFunction(document.getElementById('clsreport10').text)"  class="dropdown-item">group list</a></li>
+								  <li><a  href="#" id="clsreport11"  class="dropdown-item">print student ids</a></li>
+			
+							   </ul>
+				</li>
+			
+			
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:;">
+                  <i class="material-icons">dashboard</i>
+                  <p class="d-lg-none d-md-block">
+                    Stats
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">notifications</i>
+                  <span class="notification">5</span>
+                  <p class="d-lg-none d-md-block">
+                    Some Actions
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Mike John responded to your email</a>
+                  <a class="dropdown-item" href="#">You have 5 new tasks</a>
+                  <a class="dropdown-item" href="#">You're now friend with Andrew</a>
+                  <a class="dropdown-item" href="#">Another Notification</a>
+                  <a class="dropdown-item" href="#">Another One</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">person</i>
+                  <p class="d-lg-none d-md-block">
+                    Account
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="#">Settings</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Log out</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+	  
+	  
+	  <div class="content">
+        <div class="container-fluid">
+          
+		  
+		  <div class="row" style="margin-top:-33px;">
+            <div class="col-md-12">
+              <div class="card">
+			  
+                <div class="card-header card-header-primary" style="max-height:55px;">
+				
+				<div class="row" style="align-content: center;">
+               
+				<div style="width: 90%; ">        
+                  <h4 class="card-title" style="color: white;padding-left:10px">LEAVE OUTS & SUSPENSIONS</h4>
+                </div>
+				  
+				 <div style="text-align: right;width: 10%; ">
+                  <a id="defaultModalbtn" class="nav-link" style="color:white;">
+                    <i class="fa fa-plus" style="font-size:30px;cursor: pointer;margin-top:-10px;"></i> 
+                  </a>              
+                </div>  
+				  </div> 
+                </div>
+                
+				<div class="card-body">
+                  <div id ="div1" class="table-responsive">                    
+					
+					
+					
+					
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+	  
+	  
+	  
+	  
+	  
+	  <div id="popup1" class="modal">
+	  
+			<div class="modal-dialog">
+			
+				<div class="modal-content">
+					
+					<div class="modal-header" style="background-color:#9C27B0 ;max-height:50px" >
+						<h4 class="modal-title" style="color:white;margin-top:-6px">Issue new leaveout / suspension</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					
+					<div class="modal-body">
+		
+	<div class="content">
+      <div class="container-fluid">
+
+        
+      <div class="row" style="margin-left:-33px;margin-right:-33px;">
+        <div class="col-sm-12 table-responsive">
+
+          <div class="w3-container">
+ 
+			         
+
+            <div class="w3-bar w3-grey">
+              <button class="w3-bar-item w3-button tablink w3-red" onclick="openCity(event,'London')">Issue</button>
+              <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'Tokyo')">Reasons</button>
+            </div>
+			
+			<form  id="customerForm" >            
+
+            <div id="London" class="w3-container  city w3-animate-left">
+              <div class="row" style="margin-right:-23px;margin-left:-25px">
+
+                <div class="col-lg-4 d-flex align-items-stretch">
+
+
+                  <div class="card" id="left">
+
+                    <div class="card-header card-header-tabs card-header-primary">
+                      <h4 class="card-title" >Details</h4>
+                    </div>
+                    
+					<div class="card-body table-responsive" >
+                     
+					  
+					  <div class="floating-form-group">
+							<select   name="gender"    type="select"  class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+								<option ></option>
+								<option value="Male">Leave out</option>
+								<option value="Female">Suspension</option>
+							</select>
+							
+							<label class="label2">Gender</label>
+						</div>
+						
+						<div class="form-check">
+                                <label class="form-check-label">Leave out
+                                  <input class="form-check-input" type="checkbox" value="" checked>
+                                  <span class="form-check-sign">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                        </div>
+						
+						<div class="form-check">
+                                <label class="form-check-label">Suspension
+                                  <input class="form-check-input" type="checkbox" value="" checked>
+                                  <span class="form-check-sign">
+                                    <span class="check"></span>
+                                  </span>
+                                </label>
+                        </div>
+						
+						<br><br>
+					  
+					  <div class="floating-form-group">
+							<textarea rows="5"   name="reason"  type="text" class="floating-form-control floating-textarea" placeholder=" "></textarea>							
+							<label   class="label1">Reason</label>
+					   </div>
+					  
+						<div class="floating-form-group">
+							<input   name="date of birth"    type="datetime-local"   class="floating-form-control"    required>
+							
+							<label  class="label1">Time out</label>
+					   </div>
+					  
+					  
+					  <div class="floating-form-group">
+							<input   name="date of joining"   type="datetime-local"  class="floating-form-control"    required>
+							
+							<label   class="label1">Expected time in</label>
+					   </div>
+					
+                    
+                  </div>
+                </div>
+
+
+              </div>
+              
+			  <div class="col-lg-8 d-flex align-items-stretch">
+
+                <div class="card" id="left">
+
+                  <div class="card-header card-header-tabs card-header-primary">
+                    <h4 class="card-title" >Students</h4>
+                  </div>
+                  <div class="card-body table-responsive" >
+                   
+				   <div class="row" style="">
+      
+						<div class="col-md-6">
+
+						<div class="floating-form-group">
+							<input   name="ward"  class="floating-form-control" type="text"  placeholder=" ">							
+							<label   class="label1">Search student</label>
+					   </div>
+
+
+						</div> 
+						
+						<div class="col-md-6">
+
+							<div class="floating-form-group" >
+								<select   name="class joined"    type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+									<option ></option>
+									<option th:each="student: ${classes}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}">Alabama</option>
+									</select>
+								
+								<label class="label2">Select student group</label>
+						   </div>
+
+					   </div> 
+					   
+					</div>
+
+						<div class="row" id="leaveoutdetailsrow" style="">
+      
+
+						</div>
+			
+                  
+                </div>
+
+              </div>
+
+
+            </div>
+            
+			
+
+          </div>
+        </div>
+        
+	
+
+			<div id="Tokyo" class="w3-container city w3-animate-left" style="display:none">
+
+			  <div class="row">
+
+				<div class="col-lg-4 d-flex align-items-stretch" >
+
+
+				  <div class="card" id="left">
+
+					<div class="card-header card-header-tabs card-header-primary">
+					  <h4 class="card-title" >New reason</h4>
+					</div>                
+					<div class="card-body table-responsive" >
+					  
+					 <div class="floating-form-group">
+							<input   name="ward"  class="floating-form-control" type="text"  placeholder=" ">							
+							<label   class="label1">Reason title</label>
+					</div> 
+					
+					
+					<div class="floating-form-group">
+							<textarea rows="5"   name="reason"  type="text" class="floating-form-control floating-textarea" placeholder=" "></textarea>							
+							<label   class="label1">Reason (begin with HAS)</label>
+					</div>
+					  
+					  <br><br><br><br><br>
+					<button type="submit" class="btn btn-primary pull-right">Save</button>
+                      
+					  
+					</div>
+				  </div>
+
+				</div>
+				
+				<div class="col-lg-8 d-flex align-items-stretch" >
+
+
+				  <div class="card" id="left">
+
+					<div class="card-header card-header-tabs card-header-primary">
+					  <h4 class="card-title" >List of reasons</h4>
+					</div>
+					<div class="card-body table-responsive" id="listofleavoutreasonsrow">
+						
+							
+						
+					  
+					</div>
+				  </div>
+
+
+				</div>
+
+
+			  </div>
+
+
+			</div>
+		
+		</form>
+		
+      </div>
+
+      
+
+
+
+
+    </div>
+  </div>
+
+
+  
+
+
+  
+
+
+
+
+</div>
+</div>
+				
+			  </div>
+			  <div class="modal-footer">
+				<button  id="formsubmitbutt" data-toggle="modal" type="submit" class="btn btn-primary"  form="customerForm" value="Submit" ></button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			  </div>
+			</div>
+		   </div>
+		</div>
+		
+		
+
+	  
+	   
+	  
+	  <footer class="footer">
+        <div class="container-fluid">
+         
+
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, All Rights Reserved
+            <a href="https://www.walgotech.co.ke" target="_blank">Walgotech Solutions</a>
+          </div>
+        </div>
+      </footer>
+      
+	  
+    </div>
+  </div>
+  
+  
+<div id="myModal" class="modal fade"  style="z-index: 10000000000000 !important;">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="material-icons">&#xE876;</i>
+				</div>				
+				<h4 class="modal-title w-100" id="messageid"></h4>	
+			</div>
+			
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>  
+  
+  
+<div id="myModalError" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">								
+				<h4 class="modal-title w-100" id="change-me"></h4>	
+			</div>
+			
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>  
+  
+  
+<div id="myModaldelete" class="modal fade">
+    <div class="modal-dialog modal-confirmmcee">
+        <div class="modal-content">
+            <div class="modal-header flex-column">
+                <div class="icon-box">
+                    <i class="material-icons">&#xE5CD;</i>
+                </div>
+                <h4 class="modal-title w-100">Are you sure?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Do you really want to delete these records? This process cannot be undone.</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" id="confirmdeletebutt" data-dismiss="modal" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modalprogress" class="modal fade">
+    <div class="modal-dialog modal-confirmloading">
+        <div class="modal-content">
+            
+			<div class="modal-header flex-column">
+					<h4 class="alignleft" style="margin-top:-20px">Please wait..</h4>			
+            </div>			
+			
+            <div class="modal-body">
+			
+			<div class="row" >           
+				<div class="column">
+					<div class="main-">
+					  <div class="double-lines-spinner" style="margin-left:0px"></div>
+					</div>
+				</div>
+				<div class="column" style="margin-left:30px">
+					<h4 class="modal-title w-100" style="font-size: 20px;">Loading data</h4> 
+				</div>
+			</div>
+			
+            </div>
+                                                                                                                              ``
+        </div>
+    </div>
+</div>
+
+<div id="modalshowreport" class="modal">
+	  
+			<div class="modal-dialog">
+			
+				<div class="modal-content">
+					
+					<div class="modal-header" style="background-color:#9C27B0 ;max-height:50px" >
+						<h4 id="reporttitlemain" class="modal-title" style="color:white;margin-top:-6px"></h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					
+					<div class="modal-body">
+		
+						<div id="divtoholdreport" class="card-body table-responsive" >
+						
+						</div>		
+			
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				  
+				</div>
+			</div>
+	</div>
+
+<div id="modalprogress2" class="modal fade">
+    <div class="modal-dialog modal-confirmloading">
+        <div class="modal-content">
+            
+			<div class="modal-header flex-column">
+					<h4 class="alignleft" style="margin-top:-20px">Please wait..</h4>			
+            </div>			
+			
+            <div class="modal-body">
+			
+			<div class="row" >           
+				<div class="column">
+					<div class="main-">
+					  <div class="double-lines-spinner" style="margin-left:0px"></div>
+					</div>
+				</div>
+				<div class="column" style="margin-left:30px">
+					<h4 class="modal-title w-100" style="font-size: 20px;">Loading data</h4> 
+				</div>
+			</div>
+			
+            </div>
+                                                                                                                              ``
+        </div>
+    </div>
+</div>
+ 
+<div id="modalgeneratereports" class="modal fade">
+    <div class="modal-dialog modal-confirmmcee">
+        <div class="modal-content">
+            <div class="modal-header flex-column">                
+                <h5 class="modal-title w-100">Generate</h5>
+                <h5 id="reporttitle" style="color:orange;" class="modal-title w-100"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                
+				<form  id="showreportForm">            
+
+					<div class="floating-form-group"  id="selectyeardiv"  style="width: 60%; margin: 0 auto; display:none">
+							<input   id="selectyear"  name="date of joining"   type="date"  class="floating-form-control"    required>							
+							<label   class="label1">Select year</label>
+					</div>
+
+					<div class="floating-form-group"  id="selectclassdiv"  style="width: 60%; margin: 0 auto; display:none;">
+								<select  id="selectval"  name="selectreportval" type="select"  class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+									<option ></option>
+									<option th:each="student: ${classesreports}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}"></option>
+								</select>								
+								<label id="cclass" class="label2">Select class</label>
+					</div>
+					
+					<div class="floating-form-group"   id="hosteldiv"  style="width: 60%; margin: 0 auto; display:none;">
+							<select   name="hostel" id="hostel"    type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"required>
+								<option ></option>
+								<option th:each="student: ${hostelreport}" th:value="${student.activeProperty('hostelid').getValue()}" th:text="${student.activeProperty('hostel').getValue()}">Alabama</option>
+							</select>							
+							<label class="label2">Hostel</label>
+					</div>
+					
+					<div class="floating-form-group" id="reservationdiv" style="width: 60%; margin: 0 auto;margin-top:25px; display:none">
+							<input  id="reservation" name="daterange"   class="floating-form-control" required >							
+							<label   class="label1">Daterange</label>
+					</div>
+					
+					 <div class="floating-form-group"   id="searchstudentreportdiv"  style="width: 80%; margin: 0 auto; display:none">
+							<input name="searchstudentreport" id="searchstudentreport" class="floating-form-control" type="text"  placeholder=" " required>							
+							<label   class="label1">Search students</label>
+					 </div>
+					 
+					 <div class="floating-form-group"   id="religiondiv"  style="width: 60%; margin: 0 auto; display:none;">
+							<select   name="religionreportselect" id="religionreportselect"    type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);" required>
+								<option ></option>
+								<option th:each="student: ${religions}" th:value="${student.activeProperty('religion').getValue()}" th:text="${student.activeProperty('religion').getValue()}">Alabama</option>
+							</select>							
+							<label class="label2">Select denomination</label>
+					</div>
+				
+				</form>
+				
+            </div>
+            <div class="modal-footer justify-content-center">
+				<button  id="reportmodalbutt" data-toggle="modal" type="submit" class="btn btn-primary"  form="showreportForm" value="Submit" >Show report</button>
+			</div>
+        </div>
+    </div>
+</div>
+  
+  
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+  <script type="text/javascript" th:src="@{/assets/js/jquery.autocomplete.js}"></script>
+  <script type="text/javascript" th:src="@{/assets/js/materialize.min.js}"></script>
+  <script src="./assets/js/core/popper.min.js"></script>
+  <script src="./assets/js/core/bootstrap-material-design.min.js"></script>
+  <script src="./assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>  
+  <script src="./assets/js/plugins/moment.min.js"></script>
+  <script src="./assets/js/plugins/sweetalert2.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+  <script src="./assets/js/plugins/arrive.min.js"></script>
+  <script src="./assets/js/plugins/chartist.min.js"></script>
+  <script src="./assets/js/plugins/bootstrap-notify.js"></script>
+  <script src="./assets/js/core/bootstrap-material-design.min.js"></script>
+  
+  
+<!-- DataTables  & Plugins -->
+<script src="./plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="./plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="./plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="./plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+<script src="./plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="./plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="./plugins/jszip/jszip.min.js"></script>
+
+<script src="./plugins/daterangepicker/daterangepicker.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/b-2.0.0/b-html5-2.0.0/b-print-2.0.0/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+	
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+<script src="./assets/js/libs/jspdf.umd.js"></script>
+<script src="./assets/js/libs/jspdf.plugin.autotable.js"></script>
+
+<script src="./assets/dynamicjs/dynamicjs.js"></script>
+<script src="./assets/js/webcamandregistrationtabs.js"></script>  
+  
+<script> 
+    
+var uniqueid='trnu';
+ 
+var listofstudents;
+   
+         $("#modalprogress").modal("show");
+         $('#modalprogress').on('shown.bs.modal', function (e) {
+			  $.ajax({
+				url : '/loadregistrationleaveouts',
+				contentType : "application/json",
+						success: function(data){             
+						listofstudents = JSON.parse(data);
+						dynamictable(listofstudents,'#div1','postleavoutdataforreg','#example1','#example1');
+						$("#modalprogress").modal("hide");
+				 
+					}		
+				});	  
+		});
+
+	
+	
+$( document ).ready(function() {	
+    dynamicformsubmit('#customerForm','postleavoutdataforreg',listofstudents,'save'); 	
+})	
+
+
+</script>
+
+
+</body>
+
+</html>

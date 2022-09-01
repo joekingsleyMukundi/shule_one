@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<body class="">
+
+	<div class="wrapper ">
+	
+		<div class="main-panel">
+		
+		
+		
+	<div class="content" th:fragment="examdashboardmain" id="output">
+        <div class="container-fluid">
+          
+
+
+          <div class="row">
+            
+            <div class="col-md-4">
+				
+							
+			   <div class="row">
+			 
+						<div class="col-lg-6 d-flex align-items-stretch">
+				
+							<div class="card card-stats">
+							<div class="card-header card-header-warning card-header-icon">
+							  <div class="card-icon">
+								<i class="material-icons">content_copy</i>
+							  </div>
+							  <p class="card-category">Total # of exams</p>
+							  <h3 class="card-title" th:text="${totalexams}">
+								<small> </small>
+							  </h3>
+							</div>
+							<div class="card-footer">
+							  <div class="stats">
+								<i class="material-icons text-danger">add</i>
+								<a  th:href="@{/students}" href="showNewStudentForm">List of exams</a>
+							  </div>
+							</div>
+						  </div>
+						</div>
+						
+						
+						
+						<div class="col-lg-6 d-flex align-items-stretch">
+							<div class="card card-stats">
+								<div class="card-header card-header-success card-header-icon">
+								  <div class="card-icon">
+									<i class="material-icons">store</i>
+								  </div>
+								  <p class="card-category">Above average</p>
+								  <h3 class="card-title"  th:text="${aboveaverage}"></h3>
+								</div>
+								<div class="card-footer">
+								  <div class="stats">
+									<i class="material-icons text-danger">store</i>
+									<a  th:href="@{/teachers}" href="javascript:;">Show list</a>
+								  </div>
+								</div>
+							  </div>
+						</div>
+				
+				</div>
+				
+				
+				<div class="row">
+			 
+				
+				<div class="col-lg-6 d-flex align-items-stretch">
+						  <div class="card card-stats">
+					<div class="card-header card-header-danger card-header-icon">
+					  <div class="card-icon">
+						<i class="material-icons">info_outline</i>
+					  </div>
+					  <p class="card-category">Below average</p>
+					  <h3 class="card-title"  th:text="${belowaverage}" ></h3>
+					</div>
+					<div class="card-footer">
+					  <div class="stats">
+						<i class="material-icons text-danger">info</i>
+						<a  th:href="@{/staff}" href="javascript:;">Show list</a>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				
+				<div class="col-lg-6 d-flex align-items-stretch">
+						  <div class="card card-stats">
+					<div class="card-header card-header-info card-header-icon">
+					  <div class="card-icon">
+						<i class="material-icons">list</i>
+					  </div>
+					  <p class="card-category">Active exams</p>
+					  <h3 class="card-title"  th:text="${activeexams}" ></h3>
+					</div>
+					<div class="card-footer">
+					  <div class="stats">
+						<i class="material-icons text-danger">list</i>
+						<a  th:href="@{/board}" href="javascript:;">Show list</a>
+					  </div>
+					</div>
+				  </div>
+				</div>
+				
+				
+			  </div>
+			  
+
+			
+			</div>
+            
+           
+            <div class="col-lg-8 d-flex align-items-stretch">
+              <div class="card card-chart"  id="right2">
+			  
+                <div class="card-header card-header-danger"  style="height: 100%;">
+                  <div class="ct-chart" id="completedTasksChart"  style="height: 100%;"></div>
+                </div>
+                <div class="card-body">
+                  <h4 class="card-title">School performance</h4>
+                  <p class="card-category">Last 5 years</p>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">access_time</i> Last eaxm, TERM1 OPENER 2022
+                  </div>
+                </div>
+				
+              </div>
+            </div>
+
+
+          </div>
+		  
+		  
+		  
+		  <div class="row" style="margin-top:-35px;">
+		  
+		  
+			<div class="col-md-12">
+              
+
+				  <div class="card" id="left">
+				   
+						<div class="row" >
+					
+				   
+							<div class="col-md-4"  style="margin:20 auto;margin-top:20px;margin-left:15px;margin-right:15px;margin-bottom:20px">
+				
+								<div class="floating-form-group"   id="searchstudentreportdiv">
+										<input name="searchstudentreport" id="searchstudentreport" class="floating-form-control" type="text"  placeholder=" " required>							
+										<label   class="label1">Search students</label>
+								</div>
+							
+							</div>
+						
+						</div>
+						
+						<div class="row" >
+							<div class="col-md-12" >
+				
+						 
+								<div class="card-header card-header-tabs card-header-primary">
+								  <h4 class="card-title" >Student performance history</h4>			  				  					  
+								</div>
+								<div class="card-body table-responsive" >
+								  <table class="table table-hover table-dark">
+									<thead class="text-warning">
+									  <th style="width: 40%">Class</th>
+									  <th style="width: 20%">Male</th>
+									  <th style="width: 20%">Female</th>
+									  <th style="width: 20%">Total</th>
+									</thead>
+
+									<tbody>
+									  
+									  <tr th:block th:each="student: ${listofstudentsperclass}">						
+											<th:block th:each="collumn : ${collumns}">								
+											<td  style="width: 40%;"  th:if="${collumn} == class" th:text="${student.activeProperty(collumn).getValue()}" />
+											<td  style="max-width: 15%;color:#d6a3e1;font-size:14px;font-weight:bold;"  th:if="${collumn} == male" th:text="${#numbers.formatDecimal(student.activeProperty(collumn).getValue(), 0, 'COMMA', 0, 'POINT')}" />							
+											<td  style="max-width: 15%;color:#33ff33;font-size:14px;font-weight:bold;"  th:if="${collumn} == female" th:text="${#numbers.formatDecimal(student.activeProperty(collumn).getValue(), 0, 'COMMA', 0, 'POINT')}" />							
+											<td  style="max-width: 15%;color:firebrick;font-size:19px;font-weight:bold;"  th:if="${collumn} == total" th:text="${#numbers.formatDecimal(student.activeProperty(collumn).getValue(), 0, 'COMMA', 0, 'POINT')}" />							
+											</th:block> 							
+									  </tr>                      
+									 
+									</tbody>
+
+								  </table>
+								</div>
+								
+							</div>
+						 
+						 </div>
+					
+				  </div>
+				
+
+			  </div>
+			
+			
+			
+			
+			</div>
+          
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div class="content" th:fragment="listofexams"  id="output" >
+			
+				<div class="container-fluid" >
+
+					<div class="card" >
+					
+					
+						<div class="row" style="margin-top:20px">
+							<div class="col-md-12">
+
+								<div class="card-header card-header-primary"
+									style="max-height: 55px;">
+
+									<div class="row" style="align-content: center;">
+
+										<div style="width: 70%;">
+											<h4 id="tabletitle" class="card-title" style="color: white; padding-left: 10px">LIST OF EXAMS</h4>
+										</div>
+
+										<div style="text-align: right; width: 30%;">
+											<a id="defaultModalbtncreatenewexam" class="nav-link"
+												style="color: white;"> <i class="fa fa-plus"
+												style="font-size: 30px; cursor: pointer; margin-top: -10px;"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						
+						
+						<div class="card-header">
+
+							
+							<div id="moreactionsrow" class="row" style="display: none" >							
+
+								<div  class="col-md-2">
+									
+										<div  class="floating-form-group">
+											<select id="moreactionscombo" class="floating-select"
+												onclick="this.setAttribute('value', this.value);" value="">
+												<option value=""></option>
+												<option value="1">Link</option>
+												<option value="2">Link using priority</option>
+												<option value="3">Mark as Approved</option>
+												<option value="4">Mark as Preliminary</option>
+												<option value="5">Refresh Exam</option>
+												<option value="6">Import Excel File</option>
+
+											</select> 		
+											<label	class="label2">Actions</label>
+
+										</div>
+
+								</div>
+
+							</div>
+
+
+							<div  id="filterbyrow" class="row">
+
+
+								<div class="col-md-1">
+									<div class="floating-form-group">
+											<h5>Filter by:</h5>			
+									</div>
+								</div>
+								
+								<div class="col-md-2">
+
+									<div class="floating-form-group">
+										<select  id="filterbyyear" class="floating-select"
+											onclick="this.setAttribute('value', this.value);" value="">
+											<option value=""></option>
+											<option value="2018">2018</option>
+											<option value="2019">2019</option>
+											<option value="2020">2020</option>
+											<option value="2021">2021</option>
+											<option value="2022">2022</option>
+											<option value="2023">2023</option>
+											<option value="2024">2024</option>
+											<option value="2025">2025</option>
+											<option value="2026">2026</option>
+											<option value="2027">2027</option>
+										</select> 
+										<label	class="label2">Year</label>
+
+									</div>
+								</div>
+								
+								
+								<div class="col-md-1">
+									
+								</div>
+								
+								<div class="col-md-2">
+									<div class="floating-form-group" >
+										<select  id="filterbyclass" class="floating-select"
+											onclick="this.setAttribute('value', this.value);" value="">
+											<option value=""></option>
+											<option th:each="student: ${classeswithall}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}"></option>
+										</select> <span class="highlight"></span> <span class="bar"></span> <label
+											class="label2">Class</label>
+
+									</div>
+								</div>
+								
+								<div class="col-md-1">
+									
+								</div>
+								
+								<div class="col-md-2">
+									
+									<div class="floating-form-group">
+										<select   id="filterbyterm" class="floating-select"
+											onclick="this.setAttribute('value', this.value);" value="">
+											<option value=""></option>
+											<option th:each="student: ${termwithall}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('sem').getValue()}"></option>
+										</select> <span class="highlight"></span> <span class="bar"></span> <label
+											class="label2">Term/Sem</label>
+
+									</div>
+									
+								</div>
+
+							</div>
+							
+
+							<div class="row" style="margin-top: -10px">
+								<div id="div1" class="col-md-12">						
+
+								</div>
+							</div>
+							
+							
+							
+						</div>
+
+					</div>
+
+				</div>
+				
+				
+				
+
+				<div id="popupcreatenewexam" class="modal">
+					<div class="modal-small">
+						<div class="modal-content">
+
+							<div class="modal-header"
+								style="background-color: #9C27B0; max-height: 50px">
+								<h5 "createtitle" class="modal-title" style="color: white; margin-top: -6px">CREATE NEW EXAM</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top: -15px">
+
+
+										<div class="col-md-12">
+
+											<div class="row">
+
+
+												<div class="col-md-12">
+
+													<div class="card-body">
+														
+														<form  id="customerForm" > 
+														
+															</br>
+															
+																
+																<div class="floating-form-group">
+																		<input id="examdate" name="examdate" class="floating-form-control" type="text"
+																			onclick="(this.type='date')" placeholder=" " required >
+																		<span class="highlight"></span> <label class="label1">Date
+																		</label>
+																</div>
+																
+																<div class="floating-form-group" >
+																	<select   id="examcategory" name="examcategory"   type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+																		<option ></option>
+																		<option th:each="student: ${examcategory}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('Category').getValue()}">Alabama</option>
+																		</select>
+																	<label class="label2">Exam category</label>
+																</div>
+																
+																<div class="floating-form-group" >
+																	<select   name="examclass" id="examclass"    type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+																		<option ></option>
+																		<option th:each="student: ${classes}" th:value="${student.activeProperty('no').getValue()}" th:text="${student.activeProperty('class').getValue()}">Alabama</option>
+																		</select>
+																	<label class="label2">Select class</label>
+																</div>
+																
+																<div class="floating-form-group" >
+																	<select   id="examterm"  name="examterm"    type="select"   class="floating-select" onclick="this.setAttribute('value', this.value);"  required>
+																		<option ></option>
+																		<option th:each="student: ${term}" th:value="${student.activeProperty('id').getValue()}" th:text="${student.activeProperty('sem').getValue()}">Alabama</option>
+																		</select>
+																	<label class="label2">Select Term/sem</label>
+																</div>
+																
+																
+																<div id="customexamnamediv" class="floating-form-group" style="display:none">
+																			<input   id="customexamname" name="customexamname" class="floating-form-control" type="text"  placeholder=" " >							
+																			<label   class="label1">Custom exam name</label>
+																</div>
+																
+															
+
+															<div class="row">
+
+																<div class="col-md-6">
+																	<div class="floating-form-group">
+																		<label class="container">Create for all active classes
+																		  <input id="includeallclassescheck" type="checkbox"  >
+																		  <span class="checkmark"></span>
+																		</label>
+																	</div>
+																</div>	
+
+																<div class="col-md-6">
+																	<div class="floating-form-group">
+																		<label class="container">Check for custom exam name.(appends class infront) 
+																		  <input id="customexamnamecheck" type="checkbox"  >
+																		  <span class="checkmark"></span>
+																		</label>
+																	</div>
+																</div>	
+
+															</div>																																										
+															
+															<div class="row">																
+
+															</div>
+															
+														</form>	
+														
+													</div>
+
+
+														
+														
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+								
+							</div>
+
+							<div class="modal-footer">
+							
+								<button type="button" id="saveexambutt" class="btn btn-primary" data-dismiss="modal" 
+								style="width:160px;background-color: #9c27b0;"></button>
+
+								<button type="button" style="width:100px" class="btn btn-default"	data-dismiss="modal">Cancel</button>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+				<div id="popupentermarks" class="modal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+
+							<div class="modal-header"
+								style="background-color: #9C27B0; max-height: 50px">
+								<h5 class="modal-title" style="color: white; margin-top: -6px">PLEASE
+									CLICK ON THE EXAM YOU WANT TO EDIT</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top: -15px">
+
+
+
+
+										<div class="col-md-12">
+
+											<div class="card-body">
+												<form>
+													</br>
+													<div class="row">
+														<div class="col-md-4">
+															<a href=""><p style="color: #008000">LIST OF
+																	ACTIVE EXAMS</p> </a>
+
+														</div>
+														<div class="col-md-4" style="margin-top: -20px">
+															<div class="form-group">
+																<label class="bmd-label-floating">Out of</label> <input
+																	type="text" class="form-control">
+															</div>
+														</div>
+
+													</div>
+
+
+
+													<div class="row">
+														<div class="col-md-12">
+
+															<table id="example1"
+																class="table table-bordered table-striped">
+																<thead>
+																	<tr>
+																		<th
+																			style="width: 3%; background-color: #D7DBDD; color: black">
+																			<input type="checkbox">
+																		</th>
+																		<th>Exam name</th>
+
+																		<th>Status</th>
+
+																	</tr>
+																</thead>
+																<tbody>
+																	<tr>
+																		<td><input type="checkbox"></td>
+
+																		<td></td>
+																		<td>ARREARS</td>
+																	</tr>
+																	<tr>
+																		<td><input type="checkbox"></td>
+
+																		<td></td>
+																		<td>ARREARS</td>
+																	</tr>
+																	<tr>
+																		<td><input type="checkbox"></td>
+
+																		<td></td>
+																		<td>ARREARS</td>
+																	</tr>
+																</tbody>
+															</table>
+
+
+														</div>
+
+													</div>
+
+
+												</form>
+											</div>
+
+
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal">Process</button>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				
+
+				
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="content" th:fragment="listofavailableexams"  id="output" >
+				<div class="container-fluid">
+
+					<div class="card">
+					
+					
+						<div class="row" style="margin-top:20px">
+						
+							<div class="col-md-12">
+
+								<div class="card-header card-header-primary"
+									style="max-height: 55px;">
+
+									<div class="row" style="align-content: center;">
+
+										<div style="width: 70%;">
+											<h4 id="tabletitle" class="card-title" style="color: white; padding-left: 10px">AVAILABLE EXAMS</h4>
+										</div>
+
+										
+									</div>
+								</div>
+							</div>
+
+						</div>
+						
+						
+						<div class="card-header">
+
+							
+							<div id="moreactionsrow" class="row" style="display: none" >							
+
+								<div  class="col-md-2">
+									
+										<div  class="floating-form-group">
+											<select id="moreactionscombo" class="floating-select"
+												onclick="this.setAttribute('value', this.value);" value="">
+												<option value=""></option>
+												<option value="1">Link</option>
+												<option value="2">Link using priority</option>
+												<option value="3">Mark as Approved</option>
+												<option value="4">Mark as Preliminary</option>
+												<option value="5">Refresh Exam</option>
+												<option value="6">Import Excel File</option>
+
+											</select> 		
+											<label	class="label2">Actions</label>
+
+										</div>
+
+								</div>
+
+							</div>
+
+
+						
+							
+
+							<div class="row" style="margin-top: -10px">
+								<div id="div1" class="col-md-12">						
+
+								</div>
+							</div>
+							
+							
+							
+						</div>
+
+					</div>
+
+				</div>
+				
+				
+				
+
+			
+
+
+
+
+
+				<div id="popupentermarks" class="modal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+
+							<div class="modal-header"
+								style="background-color: #9C27B0; max-height: 50px">
+								<h5 class="modal-title" style="color: white; margin-top: -6px">ENTER MARKS</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top: -15px">
+
+
+
+
+										<div class="col-md-12">
+
+											<div class="card-body">
+												<form>
+													</br>
+													<div class="row">
+														<div class="col-md-3">
+															<div class="form-group">
+																<label class="bmd-label-floating">Out of</label>
+																<input id="outofbox" type="number" class="form-control" required>
+															</div>
+														</div>
+
+													</div>
+
+
+
+													<div class="row">
+														<div  id="div1entermarks" class="col-md-12">
+
+															
+
+
+														</div>
+
+													</div>
+
+
+												</form>
+											</div>
+
+
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" style="background-color:#9C27B0"
+									data-dismiss="modal" onclick="submitmarks()" >Submit</button>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				
+
+				
+
+
+			</div>
+			
+			
+			
+			
+		</div>
+		
+		</div>
+		
+		
+
+
+
+</body>
+
+</html>
+

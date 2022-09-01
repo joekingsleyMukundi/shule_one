@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.10.0.final using JasperReports Library version 6.10.0-unknown  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ChequeRegister" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ad539130-7070-4522-8b15-1e7747ee08c1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="secdataadapters.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ExamName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{ExamName}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="schid" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT IFNULL(s.stream,d.stream) AS stream,`MN MKS`,`MN PTS`,g.Grade,Case when s.streanid IS NOT NULL then RANK() OVER (
+ORDER BY Case when s.streanid IS NOT NULL then `MN MKS` ELSE 0 end DESC) ELSE '' END as Pos,ENTRY  FROM (
+SELECT Stream,ROUND(AVG(`MN PTS`),2) AS 'MN PTS',ROUND(AVG(`MN MKS`),2) AS 'MN MKS',ROUND(AVG(`MN PTS`)) AS avgforgrade,COUNT(studentid) AS ENTRY FROM (SELECT d.*,stream,case when cutofforx=1  then RANK() OVER (PARTITION BY stream ORDER BY `MN PTS` DESC) ELSE 0 END as  CP,
+case when cutofforx=1  then RANK() OVER (ORDER BY `MN PTS` DESC) ELSE 0 END as FP
+FROM (SELECT t.*,CASE  WHEN cutofforx=1 THEN g.grade   ELSE '' END AS GRD FROM (
+
+SELECT *,ROUND(`TOT MKS`/avgandtotalformula,2) AS 'MN MKS' ,
+ROUND(`TOT PTS`/avgandtotalformula,2) AS 'MN PTS'   FROM (SELECT studentid,avgandtotalformula,
+sum(if(score>0,1,0)) AS CNT,CASE WHEN (sum(if(CODE='ENG',score,0))>0 
+&& sum(if(CODE='KISW',score,0))>0  && sum(if(CODE='Math',score,0))>0 ) then 1 else 0 end   cutofforx,
+
+GREATEST((CASE  WHEN sum(if(code='Hist' AND score>0,score,0))>=sum(if(code='Geog' AND score>0,score,0)) && sum(if(code='Hist' AND score>0,score,0))>=sum(if(code='Cre' AND score>0,score,0)) && 
+sum(if(code='Geog' AND score>0,score,0))>=sum(if(code='Cre' AND score>0,score,0)) THEN sum(if(code='Geog' AND score>0,score,0))  WHEN sum(if(code='Hist' AND score>0,score,0))>=sum(if(code='Geog' AND score>0,score,0)) && sum(if(code='Hist' AND score>0,score,0))>=sum(if(code='Cre' AND score>0,score,0)) && sum(if(code='Cre' AND score>0,score,0))>=sum(if(code='Geog' AND score>0,score,0)) 
+THEN sum(if(code='Cre' AND score>0,score,0)) WHEN sum(if(code='Geog' AND score>0,score,0))>=sum(if(code='Hist' AND score>0,score,0)) && sum(if(code='Geog' AND score>0,score,0))>=sum(if(code='Cre' AND score>0,score,0)) && sum(if(code='Hist' AND score>0,score,0))>=sum(if(code='Cre' AND score>0,score,0)) THEN sum(if(code='Hist' AND score>0,score,0)) 
+WHEN sum(if(code='Geog' AND score>0,score,0))>=sum(if(code='Hist' AND score>0,score,0)) && sum(if(code='Geog' AND score>0,score,0))>=sum(if(code='Cre' AND score>0,score,0)) && sum(if(code='Cre' AND score>0,score,0))>=sum(if(code='Hist' AND score>0,score,0)) THEN sum(if(code='Cre' AND score>0,score,0)) WHEN sum(if(code='Cre' AND score>0,score,0))>=sum(if(code='Hist' AND score>0,score,0)) && 
+sum(if(code='Cre' AND score>0,score,0))>=sum(if(code='Geog' AND score>0,score,0)) && sum(if(code='Geog' AND score>0,score,0))>=sum(if(code='Hist' AND score>0,score,0)) THEN sum(if(code='Geog' AND score>0,score,0)) WHEN sum(if(code='Cre' AND score>0,score,0))>=sum(if(code='Hist' AND score>0,score,0)) && sum(if(code='Cre' AND score>0,score,0))>=sum(if(code='Geog' AND score>0,score,0)) 
+&& sum(if(code='Hist' AND score>0,score,0))>=sum(if(code='Geog' AND score>0,score,0)) THEN sum(if(code='Hist' AND score>0,score,0)) END),GREATEST(GREATEST(sum(if(code='Bs' AND score>0,score,0)),sum(if(code='H/sci' AND score>0,score,0))),GREATEST(sum(if(code='Agri' AND score>0,score,0)),
+GREATEST((LEAST((sum(if(code='Phy' AND score>0,score,0))),LEAST((sum(if(code='Chem' AND score>0,score,0))),(sum(if(code='Bio' AND score>0,score,0)))))),
+sum(if(code='Comp' AND score>0,score,0))))))+(((sum(if(code='Eng' AND score>0,score,0)))+(sum(if(code='Kisw' AND score>0,score,0)))+(sum(if(code='Math' AND score>0,score,0)))+
+(sum(if(code='Phy' AND score>0,score,0)))+(sum(if(code='Chem' AND score>0,score,0)))+(sum(if(code='Bio' AND score>0,score,0))))-(LEAST((sum(if(code='Phy' AND score>0,score,0))),
+LEAST((sum(if(code='Chem' AND score>0,score,0))),(sum(if(code='Bio' AND score>0,score,0))))))+GREATEST((sum(if(code='Hist' AND score>0,score,0))),
+GREATEST((sum(if(code='Geog' AND score>0,score,0))),(sum(if(code='Cre' AND score>0,score,0)))))) AS 'TOT MKS', 
+
+
+GREATEST((CASE  WHEN sum(if(code='Hist' AND score>0,Points,0))>=sum(if(code='Geog' AND score>0,Points,0)) && sum(if(code='Hist' AND score>0,Points,0))>=sum(if(code='Cre' AND score>0,Points,0)) && 
+sum(if(code='Geog' AND score>0,Points,0))>=sum(if(code='Cre' AND score>0,Points,0)) THEN sum(if(code='Geog' AND score>0,Points,0))  WHEN sum(if(code='Hist' AND score>0,Points,0))>=sum(if(code='Geog' AND score>0,Points,0)) && sum(if(code='Hist' AND score>0,Points,0))>=sum(if(code='Cre' AND score>0,Points,0)) && sum(if(code='Cre' AND score>0,Points,0))>=sum(if(code='Geog' AND score>0,Points,0)) 
+THEN sum(if(code='Cre' AND score>0,Points,0)) WHEN sum(if(code='Geog' AND score>0,Points,0))>=sum(if(code='Hist' AND score>0,Points,0)) && sum(if(code='Geog' AND score>0,Points,0))>=sum(if(code='Cre' AND score>0,Points,0)) && sum(if(code='Hist' AND score>0,Points,0))>=sum(if(code='Cre' AND score>0,Points,0)) THEN sum(if(code='Hist' AND score>0,Points,0)) 
+WHEN sum(if(code='Geog' AND score>0,Points,0))>=sum(if(code='Hist' AND score>0,Points,0)) && sum(if(code='Geog' AND score>0,Points,0))>=sum(if(code='Cre' AND score>0,Points,0)) && sum(if(code='Cre' AND score>0,Points,0))>=sum(if(code='Hist' AND score>0,Points,0)) THEN sum(if(code='Cre' AND score>0,Points,0)) WHEN sum(if(code='Cre' AND score>0,Points,0))>=sum(if(code='Hist' AND score>0,Points,0)) && 
+sum(if(code='Cre' AND score>0,Points,0))>=sum(if(code='Geog' AND score>0,Points,0)) && sum(if(code='Geog' AND score>0,Points,0))>=sum(if(code='Hist' AND score>0,Points,0)) THEN sum(if(code='Geog' AND score>0,Points,0)) WHEN sum(if(code='Cre' AND score>0,Points,0))>=sum(if(code='Hist' AND score>0,Points,0)) && sum(if(code='Cre' AND score>0,Points,0))>=sum(if(code='Geog' AND score>0,Points,0)) 
+&& sum(if(code='Hist' AND score>0,Points,0))>=sum(if(code='Geog' AND score>0,Points,0)) THEN sum(if(code='Hist' AND score>0,Points,0)) END),GREATEST(GREATEST(sum(if(code='Bs' AND score>0,Points,0)),sum(if(code='H/sci' AND score>0,Points,0))),GREATEST(sum(if(code='Agri' AND score>0,Points,0)),
+GREATEST((LEAST((sum(if(code='Phy' AND score>0,Points,0))),LEAST((sum(if(code='Chem' AND score>0,Points,0))),(sum(if(code='Bio' AND score>0,Points,0)))))),
+sum(if(code='Comp' AND score>0,Points,0))))))+(((sum(if(code='Eng' AND score>0,Points,0)))+(sum(if(code='Kisw' AND score>0,Points,0)))+(sum(if(code='Math' AND score>0,Points,0)))+
+(sum(if(code='Phy' AND score>0,Points,0)))+(sum(if(code='Chem' AND score>0,Points,0)))+(sum(if(code='Bio' AND score>0,Points,0))))-(LEAST((sum(if(code='Phy' AND score>0,Points,0))),
+LEAST((sum(if(code='Chem' AND score>0,Points,0))),(sum(if(code='Bio' AND score>0,Points,0))))))+GREATEST((sum(if(code='Hist' AND score>0,Points,0))),
+GREATEST((sum(if(code='Geog' AND score>0,Points,0))),(sum(if(code='Cre' AND score>0,Points,0)))))) AS 'TOT PTS' 
+
+FROM (
+SELECT studentid,code,subid,ROUND((Score/outof)*100) score,outof,g.Points FROM exams e 
+inner JOIN (SELECT * FROM subjects1 WHERE  class=8 and  school=2 )s ON subid=e.sub  		
+inner JOIN (SELECT * FROM gradingsystem   WHERE class=8 and   school=2 )t ON t.Category=s.category
+left JOIN grades g ON g.id=t.grade  		
+WHERE  exam=19 AND ROUND((Score/outof)*100) BETWEEN `START` AND `end` and s.class=t.class	
+GROUP BY studentid,e.sub)d
+LEFT JOIN analysisformulaandreportformdatesdates a ON a.Class=8
+GROUP BY studentid)f
+
+)t
+LEFT JOIN grades g ON g.Points=ROUND(`MN PTS`)
+GROUP BY studentid)d
+INNER JOIN registration r ON id=studentid)h WHERE cutofforx=1
+GROUP BY stream
+UNION ALL
+SELECT 'Aggregate' AS Stream,ROUND(AVG(`MN PTS`),2) AS 'MN PTS',ROUND(AVG(`MN MKS`),2) AS 'MN MKS',ROUND(AVG(`MN PTS`)) AS avgforgrade,COUNT(studentid) AS ENTRY FROM (SELECT d.*,stream,case when cutofforx=1  then RANK() OVER (PARTITION BY stream ORDER BY `MN PTS` DESC) ELSE 0 END as  CP,
+case when cutofforx=1  then RANK() OVER (ORDER BY `MN PTS` DESC) ELSE 0 END as FP
+FROM (SELECT t.*,CASE  WHEN cutofforx=1 THEN g.grade   ELSE '' END AS GRD FROM (
+
+SELECT *,ROUND(`TOT MKS`/avgandtotalformula,2) AS 'MN MKS' ,
+ROUND(`TOT PTS`/avgandtotalformula,2) AS 'MN PTS'   FROM (SELECT studentid,avgandtotalformula,
+sum(if(score>0,1,0)) AS CNT,CASE WHEN (sum(if(CODE='ENG',score,0))>0 
+&& sum(if(CODE='KISW',score,0))>0  && sum(if(CODE='Math',score,0))>0 ) then 1 else 0 end   cutofforx,
+
+GREATEST((CASE  WHEN sum(if(code='Hist' AND score>0,score,0))>=sum(if(code='Geog' AND score>0,score,0)) && sum(if(code='Hist' AND score>0,score,0))>=sum(if(code='Cre' AND score>0,score,0)) && 
+sum(if(code='Geog' AND score>0,score,0))>=sum(if(code='Cre' AND score>0,score,0)) THEN sum(if(code='Geog' AND score>0,score,0))  WHEN sum(if(code='Hist' AND score>0,score,0))>=sum(if(code='Geog' AND score>0,score,0)) && sum(if(code='Hist' AND score>0,score,0))>=sum(if(code='Cre' AND score>0,score,0)) && sum(if(code='Cre' AND score>0,score,0))>=sum(if(code='Geog' AND score>0,score,0)) 
+THEN sum(if(code='Cre' AND score>0,score,0)) WHEN sum(if(code='Geog' AND score>0,score,0))>=sum(if(code='Hist' AND score>0,score,0)) && sum(if(code='Geog' AND score>0,score,0))>=sum(if(code='Cre' AND score>0,score,0)) && sum(if(code='Hist' AND score>0,score,0))>=sum(if(code='Cre' AND score>0,score,0)) THEN sum(if(code='Hist' AND score>0,score,0)) 
+WHEN sum(if(code='Geog' AND score>0,score,0))>=sum(if(code='Hist' AND score>0,score,0)) && sum(if(code='Geog' AND score>0,score,0))>=sum(if(code='Cre' AND score>0,score,0)) && sum(if(code='Cre' AND score>0,score,0))>=sum(if(code='Hist' AND score>0,score,0)) THEN sum(if(code='Cre' AND score>0,score,0)) WHEN sum(if(code='Cre' AND score>0,score,0))>=sum(if(code='Hist' AND score>0,score,0)) && 
+sum(if(code='Cre' AND score>0,score,0))>=sum(if(code='Geog' AND score>0,score,0)) && sum(if(code='Geog' AND score>0,score,0))>=sum(if(code='Hist' AND score>0,score,0)) THEN sum(if(code='Geog' AND score>0,score,0)) WHEN sum(if(code='Cre' AND score>0,score,0))>=sum(if(code='Hist' AND score>0,score,0)) && sum(if(code='Cre' AND score>0,score,0))>=sum(if(code='Geog' AND score>0,score,0)) 
+&& sum(if(code='Hist' AND score>0,score,0))>=sum(if(code='Geog' AND score>0,score,0)) THEN sum(if(code='Hist' AND score>0,score,0)) END),GREATEST(GREATEST(sum(if(code='Bs' AND score>0,score,0)),sum(if(code='H/sci' AND score>0,score,0))),GREATEST(sum(if(code='Agri' AND score>0,score,0)),
+GREATEST((LEAST((sum(if(code='Phy' AND score>0,score,0))),LEAST((sum(if(code='Chem' AND score>0,score,0))),(sum(if(code='Bio' AND score>0,score,0)))))),
+sum(if(code='Comp' AND score>0,score,0))))))+(((sum(if(code='Eng' AND score>0,score,0)))+(sum(if(code='Kisw' AND score>0,score,0)))+(sum(if(code='Math' AND score>0,score,0)))+
+(sum(if(code='Phy' AND score>0,score,0)))+(sum(if(code='Chem' AND score>0,score,0)))+(sum(if(code='Bio' AND score>0,score,0))))-(LEAST((sum(if(code='Phy' AND score>0,score,0))),
+LEAST((sum(if(code='Chem' AND score>0,score,0))),(sum(if(code='Bio' AND score>0,score,0))))))+GREATEST((sum(if(code='Hist' AND score>0,score,0))),
+GREATEST((sum(if(code='Geog' AND score>0,score,0))),(sum(if(code='Cre' AND score>0,score,0)))))) AS 'TOT MKS', 
+
+
+GREATEST((CASE  WHEN sum(if(code='Hist' AND score>0,Points,0))>=sum(if(code='Geog' AND score>0,Points,0)) && sum(if(code='Hist' AND score>0,Points,0))>=sum(if(code='Cre' AND score>0,Points,0)) && 
+sum(if(code='Geog' AND score>0,Points,0))>=sum(if(code='Cre' AND score>0,Points,0)) THEN sum(if(code='Geog' AND score>0,Points,0))  WHEN sum(if(code='Hist' AND score>0,Points,0))>=sum(if(code='Geog' AND score>0,Points,0)) && sum(if(code='Hist' AND score>0,Points,0))>=sum(if(code='Cre' AND score>0,Points,0)) && sum(if(code='Cre' AND score>0,Points,0))>=sum(if(code='Geog' AND score>0,Points,0)) 
+THEN sum(if(code='Cre' AND score>0,Points,0)) WHEN sum(if(code='Geog' AND score>0,Points,0))>=sum(if(code='Hist' AND score>0,Points,0)) && sum(if(code='Geog' AND score>0,Points,0))>=sum(if(code='Cre' AND score>0,Points,0)) && sum(if(code='Hist' AND score>0,Points,0))>=sum(if(code='Cre' AND score>0,Points,0)) THEN sum(if(code='Hist' AND score>0,Points,0)) 
+WHEN sum(if(code='Geog' AND score>0,Points,0))>=sum(if(code='Hist' AND score>0,Points,0)) && sum(if(code='Geog' AND score>0,Points,0))>=sum(if(code='Cre' AND score>0,Points,0)) && sum(if(code='Cre' AND score>0,Points,0))>=sum(if(code='Hist' AND score>0,Points,0)) THEN sum(if(code='Cre' AND score>0,Points,0)) WHEN sum(if(code='Cre' AND score>0,Points,0))>=sum(if(code='Hist' AND score>0,Points,0)) && 
+sum(if(code='Cre' AND score>0,Points,0))>=sum(if(code='Geog' AND score>0,Points,0)) && sum(if(code='Geog' AND score>0,Points,0))>=sum(if(code='Hist' AND score>0,Points,0)) THEN sum(if(code='Geog' AND score>0,Points,0)) WHEN sum(if(code='Cre' AND score>0,Points,0))>=sum(if(code='Hist' AND score>0,Points,0)) && sum(if(code='Cre' AND score>0,Points,0))>=sum(if(code='Geog' AND score>0,Points,0)) 
+&& sum(if(code='Hist' AND score>0,Points,0))>=sum(if(code='Geog' AND score>0,Points,0)) THEN sum(if(code='Hist' AND score>0,Points,0)) END),GREATEST(GREATEST(sum(if(code='Bs' AND score>0,Points,0)),sum(if(code='H/sci' AND score>0,Points,0))),GREATEST(sum(if(code='Agri' AND score>0,Points,0)),
+GREATEST((LEAST((sum(if(code='Phy' AND score>0,Points,0))),LEAST((sum(if(code='Chem' AND score>0,Points,0))),(sum(if(code='Bio' AND score>0,Points,0)))))),
+sum(if(code='Comp' AND score>0,Points,0))))))+(((sum(if(code='Eng' AND score>0,Points,0)))+(sum(if(code='Kisw' AND score>0,Points,0)))+(sum(if(code='Math' AND score>0,Points,0)))+
+(sum(if(code='Phy' AND score>0,Points,0)))+(sum(if(code='Chem' AND score>0,Points,0)))+(sum(if(code='Bio' AND score>0,Points,0))))-(LEAST((sum(if(code='Phy' AND score>0,Points,0))),
+LEAST((sum(if(code='Chem' AND score>0,Points,0))),(sum(if(code='Bio' AND score>0,Points,0))))))+GREATEST((sum(if(code='Hist' AND score>0,Points,0))),
+GREATEST((sum(if(code='Geog' AND score>0,Points,0))),(sum(if(code='Cre' AND score>0,Points,0)))))) AS 'TOT PTS' 
+
+FROM (
+SELECT studentid,code,subid,ROUND((Score/outof)*100) score,outof,g.Points FROM exams e 
+inner JOIN (SELECT * FROM subjects1 WHERE  class=8 and  school=2 )s ON subid=e.sub  		
+inner JOIN (SELECT * FROM gradingsystem   WHERE class=8 and   school=2 )t ON t.Category=s.category
+left JOIN grades g ON g.id=t.grade  		
+WHERE  exam=19 AND ROUND((Score/outof)*100) BETWEEN `START` AND `end` and s.class=t.class	
+GROUP BY studentid,e.sub)d
+LEFT JOIN analysisformulaandreportformdatesdates a ON a.Class=8
+GROUP BY studentid)f
+
+)t
+LEFT JOIN grades g ON g.Points=ROUND(`MN PTS`)
+GROUP BY studentid)d
+INNER JOIN registration r ON id=studentid)h WHERE cutofforx=1
+)d
+left JOIN grades g ON avgforgrade=g.Points
+LEFT JOIN studentstreams s ON s.streanid=d.stream
+GROUP BY streanid
+ORDER BY case when d.stream!='Aggregate' then 1 ELSE 2 END,pos]]>
+	</queryString>
+	<field name="stream" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="stream"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="studentstreams"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MN MKS" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="MN MKS"/>
+	</field>
+	<field name="MN PTS" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="MN PTS"/>
+	</field>
+	<field name="Grade" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Grade"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="grades"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Pos" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Pos"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ENTRY" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ENTRY"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="27" splitType="Stretch">
+			<subreport>
+				<reportElement x="40" y="0" width="60" height="27" uuid="51b234e5-64b8-48ba-be8f-36bcb7013acf"/>
+				<subreportParameter name="schid">
+					<subreportParameterExpression><![CDATA[$P{schid}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reports/SCHOOLLOGO.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="73" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="1" width="555" height="20" forecolor="#000000" backcolor="#000000" uuid="4d18933e-e758-4c30-bd1e-94bf42c0e5fd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[BEST CLASS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="29" width="553" height="20" uuid="59bee68a-d4d4-46bc-aaa2-c83750260627"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ExamName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="392" y="53" width="162" height="20" uuid="a620fe16-7e8d-4cb3-8a2b-9027f5122a17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PREVIOUS EXAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="53" width="144" height="20" uuid="b504564a-0075-45fb-a108-51a969cf1089"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CURRENT  EXAM]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="19" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="19" forecolor="#D0B48E" backcolor="#333333" uuid="0ffbc86c-826c-48bd-9f70-1ee0ca6087d4"/>
+				<staticText>
+					<reportElement x="4" y="0" width="80" height="19" forecolor="#FFFFFF" uuid="233612e9-2c95-4b51-8d2f-2175db424ce7"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[STREAM]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="84" y="0" width="61" height="19" forecolor="#FFFFFF" uuid="7adf31d1-9d64-4adc-a0cc-32a1313032a3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MN MKS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="227" y="0" width="52" height="19" forecolor="#FFFFFF" uuid="37aa4b4e-4811-4ee3-b5ce-53fef468e7ca"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[GRADE]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="0" width="1" height="1" forecolor="#333333" uuid="30f25078-7737-4e80-92eb-6a32c7b7b0e1"/>
+				</line>
+				<staticText>
+					<reportElement x="392" y="0" width="41" height="19" forecolor="#FFFFFF" uuid="917b2aa2-7694-4d12-b55e-2aabf64a9ef6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SCORE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="438" y="0" width="34" height="19" forecolor="#FFFFFF" uuid="f7f4eb16-611f-407b-ac91-a5262f3212f5"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[GRD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="476" y="0" width="34" height="19" forecolor="#FFFFFF" uuid="4355ffe1-8bde-4952-8a54-7460093b375e"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DEV]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="517" y="0" width="34" height="19" forecolor="#FFFFFF" uuid="34067558-edc0-46be-bca4-5cae2914f237"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[POS]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement x="350" y="0" width="38" height="18" forecolor="#FFFFFF" uuid="1491262c-6cec-4073-9147-da0b24eb77f4"/>
+				</rectangle>
+				<staticText>
+					<reportElement x="156" y="0" width="61" height="19" forecolor="#FFFFFF" uuid="d34557ad-daa4-4384-afc1-dbd29f5bee47"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MN PTS]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement x="290" y="0" width="58" height="19" forecolor="#FFFFFF" uuid="0ffc01cd-41fa-4c67-844b-713d2f8b89cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[POS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="2" width="80" height="14" uuid="571d1098-6cdd-4ecf-a29e-683880e573c8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{stream}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="85" y="2" width="56" height="14" uuid="4a8e3b86-0cc0-4ce9-821a-d0e819f8ce2a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MN MKS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="229" y="2" width="52" height="14" uuid="e7c541da-3316-44c5-8b94-a345e1e6a170"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Grade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="2" width="58" height="14" uuid="5a920c60-3c5b-4ead-90fa-6e1522b2492f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Pos}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="19" width="554" height="1" uuid="3769951a-2dbc-47a1-95ae-c83160986aa1"/>
+			</line>
+			<line>
+				<reportElement x="84" y="-1" width="1" height="20" uuid="49fdb923-65ad-425e-86dc-ceaadd9aa732"/>
+			</line>
+			<line>
+				<reportElement x="145" y="0" width="1" height="20" uuid="0a20597c-117b-422e-b034-8cfde748fd20"/>
+			</line>
+			<line>
+				<reportElement x="554" y="-1" width="1" height="20" uuid="d21d590c-ca38-4754-9958-2d3629febc98"/>
+			</line>
+			<line>
+				<reportElement x="0" y="-1" width="1" height="20" uuid="eebd18a7-01ce-405b-983a-8b4d4b2af09c"/>
+			</line>
+			<line>
+				<reportElement x="287" y="-1" width="1" height="20" uuid="93eed5eb-2377-45e9-bf01-f66ea8349e3e"/>
+			</line>
+			<line>
+				<reportElement x="389" y="0" width="1" height="20" uuid="95a285f8-00af-4987-8729-aaf599ca0a7c"/>
+			</line>
+			<line>
+				<reportElement x="435" y="0" width="1" height="20" uuid="9f271cb1-0d76-4441-ba30-afcee7b5fcf8"/>
+			</line>
+			<line>
+				<reportElement x="474" y="0" width="1" height="20" uuid="8fa69033-37d3-4b70-94ad-3ecb7b63ed20"/>
+			</line>
+			<line>
+				<reportElement x="513" y="0" width="1" height="20" uuid="50d1073b-d0c6-4306-9e2f-e4ad0f4020d3"/>
+			</line>
+			<line>
+				<reportElement x="348" y="0" width="1" height="20" uuid="2fe2beee-8c07-44b0-950c-fc5c39ab4f48"/>
+			</line>
+			<staticText>
+				<reportElement x="519" y="2" width="34" height="14" uuid="23a9fce0-7b8c-45f6-a38e-924078cd2221"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<line>
+				<reportElement x="223" y="0" width="1" height="20" uuid="0d262abe-2b52-4309-84ed-61f4cd48b90c"/>
+			</line>
+			<textField>
+				<reportElement x="160" y="2" width="56" height="14" uuid="949ec9b0-5e9e-450d-bc34-edf461602035"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MN PTS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="22" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="2" y="0" width="207" height="20" uuid="0fa546f7-7129-47c8-9547-f0871aa749ec"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="452" y="2" width="80" height="20" uuid="e8399a10-6171-417c-99ab-3d6b766cfc2e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="532" y="2" width="40" height="20" uuid="e06c2608-9a3e-4514-b862-1283c79c82ff"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,580 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/piks/apple-icon.png">
+  <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    SMS main page
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+  
+  
+  
+	  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+	  <link href="./assets/css/font-awesome.min.css" rel="stylesheet" />
+	  <link href="./assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+	  <link rel="stylesheet" href="./plugins/fontawesome-free/css/all.min.css">
+	  <link rel="stylesheet" href="./dist/css/adminlte.min.css">
+	  <link rel="stylesheet" type="text/css" href="./assets/css/custom-checkbox-radio.css">		
+	  <link rel="stylesheet" href="./plugins/daterangepicker/daterangepicker.css"> 
+      <link rel="stylesheet" href="./assets/css/w3.css">
+	  <link href="./assets/css/modlacss.css" rel="stylesheet" />
+	  <link href="./assets/css/nprogress.css" rel="stylesheet" />
+	  <link href="./assets/css/style.css" rel="stylesheet" />
+	  <link href="./assets/css/mainimagecapture.css" rel="stylesheet" />
+      
+  
+	  <link rel="stylesheet" href="./assets/css/dataTables.responsive.css">
+	<link rel="stylesheet" href="./plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" href="./plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="./plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+	<link rel="stylesheet" href="./assets/css/fixedColumns.dataTables.min.css">
+	<link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.min.css" rel="stylesheet"/>
+  
+  
+</head>
+
+
+<body class="" style="zoom:90%">
+
+  <div class="wrapper ">
+   
+   
+   
+   <div class="sidebar" data-color="purple" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
+       
+	  
+      <div class="logo"><a href="" class="simple-text logo-normal">
+          Shule one
+        </a></div>
+		
+      <div class="sidebar-wrapper">
+        
+		<ul class="nav">			 		 
+		  
+		  <li class="active">
+				<a href="#" class="nav-link"  onclick="loadsmsdashboard()" >
+				  <i class="material-icons">dashboard</i>
+				  <span class="link_name">Dashboard</span>
+				</a>
+          </li>
+		  
+          <li>
+				<a href="#"  class="nav-link"   onclick="loadnewsms()" >
+				  <i class="material-icons">message</i>
+				  <span class="link_name">New Message</span>
+				</a>
+          </li>
+		  
+		  <li>
+				<a id="defaultModalbtnsearchstudent" class="nav-link" href="#">
+				  <i class="material-icons">search</i>
+				  <span class="link_name">Search Students</span>
+				</a>
+          </li>
+         
+        </ul>
+      </div>
+    </div>
+	
+
+
+    <div class="main-panel">
+      <!-- Navbar -->
+      
+      
+	  <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        
+		<div class="container-fluid">
+          
+		  
+		  <div class="navbar-wrapper">
+            <a id="regmenuname" class="navbar-brand" href="javascript:;">BULK SMS</a>
+			
+			<form id="regsearchbut"  style="margin-left:20px;display:none">
+              <div class="input-group no-border">
+                <input  id="search"  type="text" value="" class="form-control" placeholder="Search...">
+                <button id="searchicon"  type="submit" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+                  <div class="ripple-container"></div>
+                </button>
+              </div>
+            </form>
+			
+          </div>
+
+		  
+          <button id="toglebutt"  class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+		  
+          <div class="collapse navbar-collapse justify-content-end">
+            
+			<form class="navbar-form">
+              
+            </form>
+			
+            <ul class="navbar-nav">
+			
+              
+              <li class="nav-item dropdown">
+               
+              </li>
+			  <li class="nav-item dropdown">
+               
+              </li>
+			  <li class="nav-item dropdown">
+               
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">person</i>
+                  <p class="d-lg-none d-md-block">
+                    Account
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <div style="width: 50%;margin: 0 auto;">
+						 <img th:src="${image}"  alt=""  style= "width:50px;height:50px;border-radius: 50%;box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24); ">  
+				  </div>  
+				  <a class="dropdown-item" href="#" th:text="${email}" style="width: 50%;margin: 0 auto;" ></a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" th:href="@{/logout}" href="#" style="width: 50%;margin: 0 auto;">Log out</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+	  
+	  
+	  
+	  <!-- End Navbar -->
+      <div class="content"  id="output">
+	  
+        <div class="container-fluid">
+          
+			<div class="row">
+			
+				<div class="floating-form-group" id="reservationdiv" style="margin-left:20px;margin-top:-20px">
+							<input  id="reservation" name="daterange"   class="floating-form-control" required >							
+							<label   class="label1">Filter by daterange</label>
+				</div>
+          
+			</div>
+		  
+			<div class="row">
+            
+					<div class="col-md-12">
+					  
+
+					  <div class="card" id="left">
+					  
+					  
+					  <div class="row">
+							<div class="col-md-12">
+
+								<div class="card-header card-header-primary"
+									style="max-height: 55px;">
+
+									<div class="row" style="align-content: center;">
+
+										<div style="width: 60%;">
+											<h4 id="tabletitle" class="card-title" style="color: white; padding-left: 10px">Sms history</h4>
+										</div>
+
+										<div style="text-align: right; width: 40%;">
+											  <button type="button"  id="accountbal" style=" color:white;font-size: 13px;background-color: transparent;background-repeat: no-repeat;border: none;cursor: pointer;overflow: hidden;outline: none;"></button>
+										</div>
+										
+										
+									</div>
+									
+								</div>
+							</div>
+
+						</div>
+						
+						
+						
+						
+						<div class="card-body table-responsive" >
+						 
+						 <div id="table-wrapper">
+							<div id="table-scroll">
+ 
+						 
+								 <table class="table table-hover table-dark">
+									<thead class="text-warning">
+									  <th style="max-width: 15%">Date</th>
+									  <th style="max-width: 15%">To</th>
+									  <th style="max-width: 40%">Msg</th>
+									  <th style="max-width: 10%">Sent</th>
+									  <th style="max-width: 10%">Dlvd</th>
+									  <th style="max-width: 10%">Failed</th>
+									</thead>
+
+										<tbody>
+										  
+										  <tr th:block th:each="student: ${smssenthistory}">						
+												<th:block th:each="collumn : ${collumns}">								
+												<td  						  												                    th:if="${collumn} == Date_sent"  th:text="${student.activeProperty(collumn).getValue()}" />
+												<td  style="color:#d6a3e1;  font-size:14px;font-weight:bold;"  th:if="${collumn} == Recipients" th:text="${student.activeProperty(collumn).getValue()}" />							
+												<td  style="color:#33ff33;  font-size:14px;font-weight:bold;"  th:if="${collumn} == Message"    th:text="${student.activeProperty(collumn).getValue()}" />							
+												<td  style="color:firebrick;font-size:19px;font-weight:bold;"  th:if="${collumn} == Sent" 	    th:text="${#numbers.formatDecimal(student.activeProperty(collumn).getValue(), 0, 'COMMA', 0, 'POINT')}" />							
+												<td  style="color:#33ff33;  font-size:14px;font-weight:bold;"  th:if="${collumn} == Delivered"  th:text="${#numbers.formatDecimal(student.activeProperty(collumn).getValue(), 0, 'COMMA', 0, 'POINT')}" />							
+												<td  style="color:firebrick;font-size:19px;font-weight:bold;"  th:if="${collumn} == Failed" 	    th:text="${#numbers.formatDecimal(student.activeProperty(collumn).getValue(), 0, 'COMMA', 0, 'POINT')}" />							
+												</th:block> 							
+										  </tr>                      
+										 
+										</tbody>
+
+								  </table>
+						  
+							</div>
+						</div>
+					  
+					  
+					  </div>
+					  </div>
+					
+
+					</div>
+					
+					
+
+
+          </div>
+		  
+
+	  
+	  
+    </div>
+  </div>
+  
+  
+   <footer class="footer">
+        <div class="container-fluid">
+         
+
+          <div class="copyright float-right">
+            &copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script>, All Rights Reserved
+            <a href="https://www.walgotech.co.ke" target="_blank">Walgotech Solutions</a>
+          </div>
+        </div>
+      </footer>
+	  
+	  
+  
+  <div id="popupsendingmsg" class="modal"  >
+			<div class="modal-dialog">
+				<div class="modal-content">
+					
+					<div class="modal-header" style="background-color:#9C27B0">
+						<h5 class="modal-title" style="color:white">Send text</h5>
+						<button id="closesearchstudentsmsbut" type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					
+					
+					
+					
+					<div class="content">
+						<div class="container-fluid">
+						  
+							
+										
+										
+								<div class="row" style="margin-top:15px">
+									<div class="col-md-12">                       
+										<div class="form-group purple-border">
+											<label>Type Message </label>
+												</br>
+											<textarea class="form-control" id="messagetextarea" rows="3" placeholder="Enter ..."> </textarea>
+										</div>
+									</div>
+										   
+								</div>
+						  
+								<div class="row">
+									
+									
+									<div class="col-md-4">
+									  <div class="card card-stats">
+										<div class="card-header card-header-warning card-header-icon" >
+										  <div class="card-icon" style="margin-top:0">
+											<i class="material-icons">message</i>
+										  </div>
+											<p class="card-category">Sms per person</p>
+										  <h3  id="smsperperson"  class="card-title"></h3>
+										</div>
+									   
+									  </div>
+									</div>
+									
+									
+									<div class="col-md-4">
+									  <div class="card card-stats">
+										<div class="card-header card-header-danger card-header-icon">
+										  <div class="card-icon"  style="margin-top:0">
+											<i class="material-icons">group</i>
+										  </div>
+										  <p class="card-category">Total Recipients</p>
+										  <h3 id="smstotalrecipients" class="card-title"></h3>
+										</div>
+									   
+									  </div>
+									</div>
+									
+									<div class="col-md-4">
+									  <div class="card card-stats">
+										<div class="card-header card-header-success card-header-icon">
+										  <div class="card-icon"  style="margin-top:0">
+											<i class="material-icons">send</i>
+										  </div>
+										  <p class="card-category">Total sms Sent</p>
+										  <h3  id="smstotalsent"  class="card-title"></h3>
+										</div>
+									   
+									  </div>
+									</div>
+									
+								</div>
+							
+						</div>
+						
+					</div>
+					 
+					<div class="modal-footer">
+								<button type="button" id="sendthattextbutt" class="btn btn-primary"  style="width:100px;background-color: #9c27b0;">Send</button>
+					</div>
+					
+				</div>
+			</div>
+	</div>
+  
+  
+  
+  <div id="popupsearchstudent" class="modal"  >
+			<div class="modal-dialog">
+				<div class="modal-content">
+					
+					<div class="modal-header" style="background-color:#9C27B0">
+						<h5 class="modal-title" style="color:white">Search student</h5>
+						<button id="closesearchstudentsmsbut" type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					
+					<div class="content">
+						<div class="container-fluid">
+						  
+							<div class="container-fluid">
+						  
+							<div class="row" style="margin-top:10px">
+								<div class="col-md-5">                       
+									<div class="form-group">
+										<label class="bmd-label-floating">Search student</label>
+										<input id="searchstudents" type="text" class="form-control">
+									</div>
+								</div>
+							</div>
+						  
+						  
+							<div class="row">
+								<div id ="searchstudentsdiv" class="table-responsive">                    
+						
+											
+								</div>
+							</div>
+						</div>
+										
+								
+										   
+						</div>
+						  
+							
+						
+					</div>
+					 
+					<div class="modal-footer">
+							<button type="button" id="getsearchedstudentsbutt" class="btn btn-primary" data-dismiss="modal" style="background-color: #9c27b0;">Submit</button>
+				</div>
+					
+				</div>
+			</div>
+	</div>
+  
+  
+  
+ 
+  
+  
+  
+  
+  <div id="modalprogress" class="modal fade">
+    <div class="modal-dialog modal-confirmloading">
+        <div class="modal-content">
+            
+			<div class="modal-header flex-column">
+					<h4 class="alignleft" style="margin-top:-20px">Please wait..</h4> 
+			
+            </div>
+			
+			
+            <div class="modal-body">
+			
+			<div class="row" >           
+				<div class="column">
+					<div class="main-">
+					  <div class="double-lines-spinner" style="margin-left:0px"></div>
+					</div>
+				</div>
+				<div class="column" style="margin-left:30px">
+					<h4 class="modal-title w-100" style="font-size: 20px;">Loading data</h4> 
+				</div>
+			</div>
+			
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modalprogress2" class="modal fade">
+    <div class="modal-dialog modal-confirmloading">
+        <div class="modal-content">
+            
+			<div class="modal-header flex-column">
+					<h4 class="alignleft" style="margin-top:-20px">Please wait..</h4>			
+            </div>			
+			
+            <div class="modal-body">
+			
+				<div class="row" >           
+					<div class="column">
+						<div class="main-">
+						  <div class="double-lines-spinner" style="margin-left:0px"></div>
+						</div>
+					</div>
+					<div class="column" style="margin-left:30px">
+						<h4 class="modal-title w-100" style="font-size: 20px;">Loading data</h4> 
+					</div>
+				</div>
+			
+            </div>
+                                                                                                                              ``
+        </div>
+    </div>
+</div>
+
+
+
+<div id="myModal" class="modal fade"  style="z-index: 10000000000000 !important;">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="material-icons">&#xE876;</i>
+				</div>				
+				<h4 class="modal-title w-100" id="messageid"></h4>	
+			</div>
+			
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div> 
+
+
+<div id="myModalErrorstop" class="modal fade" style="z-index: 10000000000000 !important;">
+    <div class="modal-dialog modal-confirmmcee">
+        <div class="modal-content">
+            <div class="modal-header flex-column">
+                <div class="icon-box">
+                    <i class="material-icons">&#xE5CD;</i>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+              	<h4 class="modal-title w-100" id="errormessage"></h4>			
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+
+<div id="myModalError" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">								
+				<h4 class="modal-title w-100" id="change-me"></h4>	
+			</div>
+			
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div> 
+
+  
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+		<script src="./assets/js/jquery.autocomplete.js"></script>
+		<script src="./assets/js/core/popper.min.js"></script>
+		<script src="./assets/js/core/bootstrap-material-design.min.js"></script>
+  	    <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+	    <script src="./assets/js/libs/jspdf.umd.js"></script>
+	    <script src="./assets/js/libs/jspdf.plugin.autotable.js"></script>
+		<script src="./assets/js/flot.js"></script>
+  
+		<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>  
+		<script src="./assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
+		<script src="./assets/js/plugins/moment.min.js"></script>
+		<script src="./plugins/daterangepicker/daterangepicker.js"></script>
+  
+		<script src="./assets/dynamicjs/dynamicjs.js"></script>
+		<script src="./assets/js/webcamandregistrationtabs.js"></script>
+		<script src="./assets/dynamicjs/script.js"></script>
+		<script src="./assets/js/nprogress.js"></script>
+ 		<script src="./assets/js/plugins/chartist.min.js"></script>  
+		
+		
+		<script src="./assets/js/plugins/jquery.dataTables.min.js"></script>
+		<script src="./plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="./plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+		
+		<script src="./assets/js/jquery-ui.min.js"></script>
+  	    <script src="./assets/js/fnFilterClear.js"></script>
+  	    <script src="./assets/js/jquery.ui-contextmenu.min.js"></script>
+  	    <script src="./assets/js/dataTables.fixedColumns.min.js"></script>
+  	   
+
+<script>
+
+
+			$.ajax({
+				url : '/api/sms/getaccoutbal',
+				contentType : "application/json",
+				success: function(data){		
+					 $('#accountbal').html('BAL | '+JSON.parse(data)[0].smsaccbal);
+				}		
+			});	
+		   
+			
+
+</script>
+
+
+</body>
+
+</html>

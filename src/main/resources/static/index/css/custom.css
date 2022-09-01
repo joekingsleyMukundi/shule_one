@@ -1,0 +1,18 @@
+
+
+.slogan {
+  color: #2F2958;
+  font-size: 36px;
+  align-self: flex-end;
+}
+.slogan2 {
+  color: Green;
+  font-size: 36px;
+  align-self: flex-end;
+}
+
+
+.poweredby { 
+ float:right;
+ font:13px
+} 

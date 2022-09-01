@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8" />
+<link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="./assets/img/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>Subject groups</title>
+  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  
+  <link rel="stylesheet" href="./plugins/fontawesome-free/css/all.min.css">
+  
+  
+  <!-- CSS Files -->
+  <link href="./assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+  <link href="./assets/css/mainimagecapture.css" rel="stylesheet" />
+  <link type="text/css" rel="stylesheet" href="./assets/css/custom-checkbox-radio.css">
+		
+  <link rel="stylesheet" href="./dist/css/adminlte.min.css">
+
+  
+  <link rel="stylesheet" href="./plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="./plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="./plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="./plugins/daterangepicker/daterangepicker.css">
+  
+  
+  <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css' rel='stylesheet'>
+  <link href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.min.css" rel="stylesheet"/>
+
+  <link href="./assets/css/modlacss.css" rel="stylesheet" />
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    
+	
+<style> 
+.modal { overflow: auto !important; }
+</style>
+
+
+<link href="./assets/css/style.css" rel="stylesheet" />
+  
+</head>
+
+
+<body class="bdbody" id="mybody" style="zoom: 85%">
+
+	<div class="wrapper ">
+		
+		
+		
+<div class="sidebar"   style="height 5700px" data-color="purple" data-background-color="white"
+			data-image="../assets/img/sidebar-1.jpg">
+
+    <div class="logo">
+				<a href=""
+					class="simple-text logo-normal"> Shule one </a>
+	</div>
+	<div class="sidebar-wrapper">
+		
+		<ul class="nav-links">
+			  
+			  
+			 <li >
+				<a th:href="@{/exam}">
+				  <i class='bx bx-grid-alt' ></i>
+				  <span class="link_name">Dashboard</span>
+				</a>
+				<ul class="sub-menu blank">
+				  <li><a class="link_name" href="#">Category</a></li>
+				</ul>
+			  </li>
+			  
+			  
+			  <li>
+				<a th:href="@{/listofexams}">
+				  <i class="material-icons">create</i>
+				  <span class="link_name">Create & process</span>
+				</a>				
+			  </li>
+			  
+			  <li>
+				<a th:href="@{/allowedexams}">
+				  <i	class="material-icons">input</i>
+				  <span class="link_name">Enter marks</span>
+				</a>				
+			  </li>
+			  
+			   <li>
+				<a th:href="@{/subjectselection}">
+				  <i	class="material-icons">insert_chart</i>
+				  <span class="link_name">Subject selection</span>
+				</a>
+				
+			  </li>
+			  
+			  <li>
+				<div class="iocn-link">
+					<a href="#">
+						  <i class="material-icons">domain</i>
+					  <span class="link_name">Materials</span>
+					</a>
+					  <i class='bx bxs-chevron-down arrow' ></i>
+				</div>
+				
+				<ul class="sub-menu">
+				  <li><a  id="examcategorieslink"  		th:href="@{/grades}" >Model exams</a></li>
+				  <li><a  id="examcategorieslink"  		th:href="@{/subjectgroups}" >Past papers</a></li>
+				</ul>
+				
+			  </li>	  
+			  
+			  
+			  <li>
+				<div class="iocn-link">
+				  <a href="#">
+					<i class="material-icons">settings</i>
+					<span class="link_name">Settings</span>
+				  </a>
+				  <i class='bx bxs-chevron-down arrow' ></i>
+				</div>
+				
+				<ul class="sub-menu">
+				  <li><a  id="examcategorieslink"  		th:href="@{/grades}" >Grades</a></li>
+				  <li><a  id="examcategorieslink"  		th:href="@{/subjectgroups}" >Subject groups</a></li>
+				  <li><a  id="examcategorieslink"  		th:href="@{/subjects}" >Subjects</a></li>
+				  <li><a  id="examcategorieslink"  		th:href="@{/examcategories}" >Exam categories</a></li>
+				  <li><a  id="examremarkslink"     		th:href="@{/remarks}" >Remaks</a></li>
+				  <li><a  id="examgradingsystemlink"   	th:href="@{/gradingsystem}" >Grading system</a></li>
+				  <li><a  id="examselectionperiodlink" 	th:href="@{/moresettings}" >Other settings</a></li>
+				</ul>
+				
+			  </li>
+			  
+		</ul>
+  </div>
+</div>
+
+
+		<div class="main-panel">
+			<!-- Navbar -->
+			<nav
+				class="navbar navbar-expand-lg navbar-transparent navbar-absolute  ">
+				<div class="container-fluid">
+
+					<div class="navbar-wrapper">
+						<a class="navbar-brand" href="javascript:;">SUBJECT GROUPS</a>
+					</div>
+
+
+
+					<div class="collapse navbar-collapse justify-content-start">
+						
+
+					</div>
+
+
+
+
+
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						aria-controls="navigation-index" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="navbar-toggler-icon icon-bar"></span> <span
+							class="navbar-toggler-icon icon-bar"></span> <span
+							class="navbar-toggler-icon icon-bar"></span>
+					</button>
+
+					<div class="collapse navbar-collapse justify-content-end">
+						<form class="navbar-form">
+							<div class="input-group no-border">
+								<input type="text" value="" class="form-control"
+									placeholder="Search...">
+								<button type="submit"
+									class="btn btn-white btn-round btn-just-icon">
+									<i class="material-icons">search</i>
+									<div class="ripple-container"></div>
+								</button>
+							</div>
+						</form>
+
+						<ul class="navbar-nav">
+							<li class="nav-item"><a class="nav-link" href="javascript:;">
+									<i class="material-icons">dashboard</i>
+									<p class="d-lg-none d-md-block">Stats</p>
+							</a></li>
+							<li class="nav-item dropdown"><a class="nav-link"
+								href="http://example.com" id="navbarDropdownMenuLink"
+								data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> <i class="material-icons">notifications</i>
+									<span class="notification">5</span>
+									<p class="d-lg-none d-md-block">Some Actions</p>
+							</a>
+								<div class="dropdown-menu dropdown-menu-right"
+									aria-labelledby="navbarDropdownMenuLink">
+									<a class="dropdown-item" href="#">Mike John responded to
+										your email</a> <a class="dropdown-item" href="#">You have 5
+										new tasks</a> <a class="dropdown-item" href="#">You're now
+										friend with Andrew</a> <a class="dropdown-item" href="#">Another
+										Notification</a> <a class="dropdown-item" href="#">Another One</a>
+								</div></li>
+							<li class="nav-item dropdown"><a class="nav-link"
+								href="javascript:;" id="navbarDropdownProfile"
+								data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false"> <i class="material-icons">person</i>
+									<p class="d-lg-none d-md-block">Account</p>
+							</a>
+								<div class="dropdown-menu dropdown-menu-right"
+									aria-labelledby="navbarDropdownProfile">
+									<a class="dropdown-item" href="#">Profile</a> <a
+										class="dropdown-item" href="#">Settings</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="#">Log out</a>
+								</div></li>
+
+						</ul>
+
+					</div>
+				</div>
+			</nav>
+
+
+
+
+
+
+
+			<!-- End Navbar -->
+			<div class="content">
+			
+				<div class="container-fluid">
+
+					<div class="card">
+					
+					
+						<div class="row">
+							<div class="col-md-12">
+
+								<div class="card-header card-header-primary"
+									style="max-height: 55px;">
+
+									<div class="row" style="align-content: center;">
+
+										<div style="width: 70%;">
+											<h4 id="tabletitle" class="card-title" style="color: white; padding-left: 10px">Subject groups</h4>
+										</div>
+
+										<div style="text-align: right; width: 30%;">
+											<a id="defaultModalbtn"  class="nav-link"
+												style="color: white;"> <i class="fa fa-plus"
+												style="font-size: 30px; cursor: pointer; margin-top: -10px;"></i>
+											</a>
+										</div>
+										
+										
+									</div>
+								</div>
+							</div>
+
+						</div>
+						
+						
+						<div class="card-header">
+
+							<div class="row" style="margin-top: -10px">
+								<div id="div1" class="col-md-12">						
+
+								</div>
+							</div>
+							
+							
+							
+						</div>
+
+					</div>
+
+				</div>
+				
+				
+				
+
+				<div id="popupcreatenewexamcategory" class="modal">
+					<div class="modal-small">
+						<div class="modal-content">
+
+							<div class="modal-header"
+								style="background-color: #9C27B0; max-height: 50px">
+								<h5 "createtitle" class="modal-title" style="color: white; margin-top: -6px">Add new group</h5>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+
+							<div class="content">
+								<div class="container-fluid">
+									<div class="row" style="margin-top: -15px">
+
+
+										<div class="col-md-12">
+
+												<div class="row">
+
+
+													<div class="col-md-12">
+
+														<div class="card-body">
+															
+																</br>
+																
+																
+																<form  id="customerForm" >            
+																
+																	
+																	
+																	<div class="floating-form-group">
+																			<input   name="subject group"  class="floating-form-control" type="text"  placeholder=" ">							
+																			<label   class="label1">Group</label>
+																	</div>
+																	
+																	
+																</form>	
+															
+														</div>
+
+
+															
+															
+													</div>
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+								
+							</div>
+
+							<div class="modal-footer">
+							
+								<button  id="formsubmitbutt" data-toggle="modal" type="submit" class="btn btn-primary"  form="customerForm" value="Submit" 
+								style="width:160px;background-color: #9c27b0;"></button>
+
+								<button type="button" class="btn btn-default"	data-dismiss="modal">Cancel</button>
+								
+							</div>
+							
+							
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+				
+				
+
+				<footer class="footer" style="margin-top: -60px">
+					<div class="container-fluid">
+						<nav class="float-left">
+							<ul>
+
+
+								<li><a href="https://www.creative-tim.com/license">
+										Talk to us </a></li>
+							</ul>
+						</nav>
+						<div class="copyright float-right">
+							&copy;
+							<script>
+								document.write(new Date().getFullYear())
+							</script>
+							<i class="material-icons"></i> Powered by <a
+								href="https://www.creative-tim.com" target="_blank">Walgotech
+								solutions</a>
+						</div>
+					</div>
+				</footer>
+
+
+			</div>
+			
+			
+			
+			
+</div>
+		
+		
+		
+		
+<div id="myModal" class="modal fade"  style="z-index: 10000000000000 !important;">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div class="icon-box">
+					<i class="material-icons">&#xE876;</i>
+				</div>				
+				<h4 class="modal-title w-100" id="messageid"></h4>	
+			</div>
+			
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>  
+  
+  
+<div id="myModalError" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header">								
+				<h4 class="modal-title w-100" id="change-me"></h4>	
+			</div>
+			
+			<div class="modal-footer">
+				<button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
+			</div>
+		</div>
+	</div>
+</div>  
+  
+  
+<div id="myModaldelete" class="modal fade">
+    <div class="modal-dialog modal-confirmmcee">
+        <div class="modal-content">
+            <div class="modal-header flex-column">
+                <div class="icon-box">
+                    <i class="material-icons">&#xE5CD;</i>
+                </div>
+                <h4 class="modal-title w-100">Are you sure?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Do you really want to delete these records? This process cannot be undone.</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" id="confirmdeletebutt" data-dismiss="modal" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modalprogress" class="modal fade">
+    <div class="modal-dialog modal-confirmloading">
+        <div class="modal-content">
+            
+			<div class="modal-header flex-column">
+					<h4 class="alignleft" style="margin-top:-20px">Please wait..</h4> 
+			
+            </div>
+			
+			
+            <div class="modal-body">
+			
+			<div class="row" >           
+				<div class="column">
+					<div class="main-">
+					  <div class="double-lines-spinner" style="margin-left:0px"></div>
+					</div>
+				</div>
+				<div class="column" style="margin-left:30px">
+					<h4 class="modal-title w-100" style="font-size: 20px;">Loading data</h4> 
+				</div>
+			</div>
+			
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modalshowreport" class="modal">
+	  
+			<div class="modal-dialog">
+			
+				<div class="modal-content">
+					
+					<div class="modal-header" style="background-color:#9C27B0 ;max-height:50px" >
+						<h4 id="reporttitlemain" class="modal-title" style="color:white;margin-top:-6px"></h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					
+					<div class="modal-body">
+		
+						<div id="divtoholdreport" class="card-body table-responsive" >
+						
+						</div>		
+			
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				  
+				</div>
+			</div>
+	</div>
+
+
+<div id="modalprogress2" class="modal fade">
+    <div class="modal-dialog modal-confirmloading">
+        <div class="modal-content">
+            
+			<div class="modal-header flex-column">
+					<h4 class="alignleft" style="margin-top:-20px">Please wait..</h4>			
+            </div>			
+			
+            <div class="modal-body">
+			
+				<div class="row" >           
+					<div class="column">
+						<div class="main-">
+						  <div class="double-lines-spinner" style="margin-left:0px"></div>
+						</div>
+					</div>
+					<div class="column" style="margin-left:30px">
+						<h4 class="modal-title w-100" style="font-size: 20px;">Loading data</h4> 
+					</div>
+				</div>
+			
+            </div>
+                                                                                                                              ``
+        </div>
+    </div>
+</div>
+
+	
+		
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+  <script type="text/javascript" th:src="@{/assets/js/jquery.autocomplete.js}"></script>
+  <script type="text/javascript" th:src="@{/assets/js/materialize.min.js}"></script>
+  <script src="./assets/js/core/popper.min.js"></script>
+  <script src="./assets/js/core/bootstrap-material-design.min.js"></script>
+  <script src="./assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>  
+  <script src="./assets/js/plugins/moment.min.js"></script>
+  <script src="./assets/js/plugins/sweetalert2.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+  <script src="./assets/js/plugins/arrive.min.js"></script>
+  <script src="./assets/js/plugins/chartist.min.js"></script>
+  <script src="./assets/js/plugins/bootstrap-notify.js"></script>
+  <script src="./assets/js/core/bootstrap-material-design.min.js"></script>
+  
+  
+<!-- DataTables  & Plugins -->
+<script src="./plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="./plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="./plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="./plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+<script src="./plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="./plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="./plugins/jszip/jszip.min.js"></script>
+
+<script src="./plugins/daterangepicker/daterangepicker.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/b-2.0.0/b-html5-2.0.0/b-print-2.0.0/datatables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+	
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="./assets/js/libs/jspdf.umd.js"></script>
+<script src="./assets/js/libs/jspdf.plugin.autotable.js"></script>
+
+<script src="./assets/dynamicjs/dynamicjs.js"></script>
+<script src="./assets/js/webcamandregistrationtabs.js"></script>
+<script src="./assets/dynamicjs/script.js"></script>
+
+
+
+<script>  
+		
+var uniqueid='Category';
+var listofstudents;
+   
+         $("#modalprogress").modal("show");         
+		 $(document).on('shown.bs.modal','#modalprogress', function () {
+		 
+			$.ajax({
+						url : '/api/exam/loadsubjectgroups',
+						contentType : "application/json",
+						success: function(data){             
+						listofstudents = JSON.parse(data);
+						dynamictable(listofstudents,'#div1','postsubjectgroupsdataforreg','#example1','#example1','#popupcreatenewexamcategory','#customerForm');
+						$("#modalprogress").modal("hide");				 
+					}		
+				});	     
+	
+		});
+		
+		
+$( document ).ready(function() {
+    dynamicformsubmit('#customerForm','postsubjectgroupsdataforreg',listofstudents,'save'); 	
+});	
+
+</script>
+
+
+
+
+</body>
+
+</html>
+
