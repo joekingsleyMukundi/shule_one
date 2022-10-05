@@ -138,24 +138,29 @@ public class LoginController {
  			try {
  				conn = DbConnector.dataSource.getConnection();
  				 
-	  			PreparedStatement pstmt= conn.prepareStatement("SELECT s.id FROM users u "
+	  			PreparedStatement pstmt = conn.prepareStatement("SELECT s.id FROM users u "
 				 		+ " inner join schooldetails s on u.school=s.id "
-				 		+ " where sessionid=?  ");			 
-	 			
-	  			pstmt.setString(1,RequestContextHolder.currentRequestAttributes().getSessionId());      
-	 			
-	 			ResultSet rs = pstmt.executeQuery();  
-				while (rs.next()) { 
-					school=rs.getInt("id");
-				}
+				 		);			 
+	 			//System.out.println(pstmt);
+	  			//pstmt.setString(1,RequestContextHolder.currentRequestAttributes().getSessionId());      
+	 			//System.out.println(RequestContextHolder.currentRequestAttributes().getSessionId());
+	 			ResultSet rs = pstmt.executeQuery(); 
+	 			System.out.println(rs);
+	 			if(rs.next()) {
+	 				school=rs.getInt("id");
+					System.out.println("shcool is"+school);
+	 			}
+//				while (rs.next()) { 
+//					
+//				}
 				
-			
+				System.out.println("shcool is"+school);
 	  		} catch (Exception e) {
 				e.printStackTrace();
 			}finally {
 			    if (conn != null) try { conn.close(); } catch (SQLException ignore) {}
 			}
-			 		
+			 
 	  		 return school;
 		 }
 	  	 

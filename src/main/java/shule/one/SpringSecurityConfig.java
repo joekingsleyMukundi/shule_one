@@ -7,14 +7,17 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 import shule.one.filter.JWTAuthenticationFilter;
 import shule.one.filter.JWTAuthorizationFilter;
+import shule.one.filter.JwtUtils;
 import shule.one.handler.LoginSuccessHandler;
 import shule.one.service.JWTService;
 import shule.one.service.JpaUserDetailsService;
@@ -22,6 +25,7 @@ import shule.one.service.JpaUserDetailsService;
 
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @Configuration
+@EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter  {
 	
 	@Bean
@@ -33,6 +37,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter  {
 	
 	@Autowired
 	JWTService jwtService;
+	
+	@Autowired
+	JwtUtils  jwtUtils;
 	
 	@Autowired
 	JpaUserDetailsService jpaUserDetailsService;
@@ -59,7 +66,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter  {
 		builder.userDetailsService(jpaUserDetailsService).passwordEncoder(encoder);
 		
 	}
+	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(jpaUserDetailsService);
+	}
 
+	@Bean
+	public JWTAuthorizationFilter authenticationJwtTokenFilter(JWTService jwtService , AuthenticationManager authenticationManagerBean, JwtUtils jwtUtils, JpaUserDetailsService jpaUserDetailsService) {
+		
+	    return new JWTAuthorizationFilter(authenticationManagerBean, jwtService, jwtUtils, jpaUserDetailsService);
+	}
+	
 
 	
 	@Override
@@ -73,12 +91,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter  {
 			.antMatchers("/resources/**").permitAll()
 		    .and().formLogin().successHandler(successHandler).loginPage("/").and().logout().permitAll()
 			.and().addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtService)) //here I add the filter to handle the login through the body of the POST method
-			.addFilter(new JWTAuthorizationFilter(authenticationManager(),  jwtService)) //I add the filter that checks if the JWT beare comes in the Authorization header
+			.addFilter(new JWTAuthorizationFilter(authenticationManagerBean(),  jwtService, jwtUtils, jpaUserDetailsService)) //I add the filter that checks if the JWT beare comes in the Authorization header
 			.csrf().disable() 
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);  //I delete the session
 		
 				
 	}
                 
-	
+
 }
